@@ -38,7 +38,7 @@ frostlib.dout("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
 frostlib.dout("FrostLIB Hash: " + frostlib_hash)
 if frostlib_hash != frostlib.HASH:
-    f = open("newhash.txt", 'w')
+    f = open("frostlib/dev/newhash.txt", 'w')
     f.write(frostlib_hash)
     f.close()
     exit()
