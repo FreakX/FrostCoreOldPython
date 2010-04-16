@@ -28,6 +28,7 @@ class world(object):
     def __init__(self,conf):
         self.__conf = conf
         self.__quests = {}
+        
     def load_data(self,path): #Load Data is not work correctly
         for questnum in xrange(1, 30):
             try:
