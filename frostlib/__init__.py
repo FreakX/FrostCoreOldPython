@@ -28,7 +28,8 @@ if __name__ != '__main__':
     import world
     import handler
     import wowmath
-LOG_LEVEL = 3                # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
+    import hash
+LOG_LEVEL = 1              # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
 DEBUG_MODE = True            # Debug Mode True|False
 RELEASE_TYPE = "PRE-ALPHA"       # Current Realease Type Alpha|Beta|Release
 REVISION = 5                # FrostCore Revision
@@ -36,6 +37,7 @@ CONNECTION_INFO = True       # Define if Connection Info Is shown
 CONNECTION_INFO_DELAY = 30   # Seconds between Connection Info
 CLIENT_AUTH_INFO = True      # Show Client Info on Connect True|False
 AUTHBUILD_ACCEPT = 11723
+HASH = ""
 TIME_SECOND = 1
 TIME_MINUTE = TIME_SECOND * 60
 TIME_HOUR = TIME_MINUTE * 60

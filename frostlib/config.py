@@ -21,7 +21,7 @@
    *
    */
 """
-
+import frostlib
 INI_FILE_WORLD = "world.ini"
 INI_FILE_LOGON = "logon.ini"
 def getkey(line):
@@ -32,7 +32,7 @@ def getval(line):
     #swallow everything after the =
     return line[ line.find('=') + 1 : ].strip()
 
-def getlogonconf():
+def loadlogonconf():
     try:
         confdict = {}
         f = open(INI_FILE_LOGON, 'r')
@@ -41,26 +41,24 @@ def getlogonconf():
             key = getkey(line)
             value = getval(line)
             confdict[key] = value
-        print "Logon configuration successfully loaded"
-        return confdict
-    except:
-        print "No valid INI File found ... will create one"
         try:
-            f = open(INI_FILE_WORLD, 'w')
-            f.write("char_database_host=127.0.0.1\n")
-            f.write("char_database_port=3306\n")
-            f.write("char_database_user=root\n")
-            f.write("char_database_pw=password\n")
-            f.write("logon_database_host=127.0.0.1\n")
-            f.write("logon_database_port=3306\n")
-            f.write("logon_database_user=root\n")
-            f.write("logon_database_pw=password\n")
-            print "Created a valid conf file!"
+            frostlib.LOG_LEVEL = int(confdict["LOG_LEVEL"])
+            frostlib.DEBUG_MODE = int(confdict["DEBUG_MODE"])
+            frostlib.CONNECTION_INFO = int(confdict["CONNECTION_INFO"])
+            frostlib.CONNECTION_INFO_DELAY = int(confdict["CONNECTION_INFO_DELAY"])
+            frostlib.CLIENT_AUTH_INFO = int(confdict["CLIENT_AUTH_INFO"])
+            frostlib.AUTHBUILD_ACCEPT = int(confdict["AUTHBUILD_ACCEPT"])
+            frostlib.HASH = str(confdict["FROSTLIB_HASH"])
+    
+
         except:
-            print "Error writing new conf file"
+            print "Error while loading Config"
+        print "Logon configuration successfully loaded"
+    except:
+        print "No valid INI File found"
 
             
-def getworldconf():
+def loadworldconf():
     try:
         confdict = {}
         f = open(INI_FILE_WORLD, 'r')
@@ -70,19 +68,5 @@ def getworldconf():
             value = getval(line)
             confdict[key] = value
         print "World configuration successfully loaded"
-        return confdict
     except:
-        print "No valid INI File found ... will create one"
-        try:
-            f = open(INI_FILE_WORLD, 'w')
-            f.write("char_database_host=127.0.0.1\n")
-            f.write("char_database_port=3306\n")
-            f.write("char_database_user=root\n")
-            f.write("char_database_pw=password\n")
-            f.write("logon_database_host=127.0.0.1\n")
-            f.write("logon_database_port=3306\n")
-            f.write("logon_database_user=root\n")
-            f.write("logon_database_pw=password\n")
-            print "Created a valid conf file!"
-        except:
-            print "Error writing new conf file"
+        print "No valid INI File found"

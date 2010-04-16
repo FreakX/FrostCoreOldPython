@@ -27,14 +27,22 @@ import frostlib
 from time import sleep
 import warnings
 warnings.filterwarnings("ignore")
+frostlib.config.loadlogonconf()
 frostlib.nout("__________                       _____ _________                     ")
 frostlib.nout("___  ____/______________ __________  /___  ____/______ _____________ ")
 frostlib.nout("__  /_    __  ___/_  __ \__  ___/_  __/_  /     _  __ \__  ___/_  _ \\")
 frostlib.nout("_  __/    _  /    / /_/ /_(__  ) / /_  / /___   / /_/ /_  /    /  __/")
 frostlib.nout("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_/     \___/ ")
 frostlib.dout("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
+frostlib.dout("Checking FrostLIB Hash...")
+frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
+frostlib.dout("FrostLIB Hash: " + frostlib_hash)
+if frostlib_hash != frostlib.HASH:
+    f = open("newhash.txt", 'w')
+    f.write(frostlib_hash)
+    f.close()
+    exit()
 frostlib.dout("FrostCore Logon is starting...")
-
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory
 from twisted.internet import reactor, threads, defer

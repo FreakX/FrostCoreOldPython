@@ -166,7 +166,6 @@ class instance(object):
         for member in self.member:
             member.setinstance(self.id)
             member.setinstancemode(self.mode)
-
         
         
         
