@@ -36,11 +36,12 @@ frostlib.nout("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_/     \_
 frostlib.dout("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
 frostlib.dout("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
-frostlib.dout("FrostLIB Hash: " + frostlib_hash)
+frostlib.dout("FrostLIB Hash: " + str(frostlib_hash))
 if frostlib_hash != frostlib.HASH:
-    f = open("frostlib/dev/newhash.txt", 'w')
-    f.write(frostlib_hash)
-    f.close()
+    if frostlib.DEBUG_MODE == True:
+        f = open("newhash.txt", 'w')
+        f.write(frostlib_hash)
+        f.close()
     exit()
 frostlib.dout("FrostCore Logon is starting...")
 # twisted Imports
