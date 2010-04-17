@@ -120,13 +120,57 @@ class world(object):
             item_spellcooldown_2= int(result[entry][72])
             item_spellcategory_2= int(result[entry][73])
             item_spellcategorycooldown_2 = int(result[entry][74])
-
-
-            
+            item_spelltrigger_3 = int(result[entry][75])
+            item_spellcharges_3 = int(result[entry][76])
+            item_spellcooldown_3 = int(result[entry][77])
+            item_spellcategory_3 = int(result[entry][78])
+            item_spellcategorycooldown = int(result[entry][79])
+            item_spelltrigger_4 = int(result[entry][80])
+            item_spellcharges_4 = int(result[entry][81])
+            item_spellcooldown_4 = int(result[entry][82])
+            item_spellcategory_4 = int(result[entry][83])
+            item_spellcategorycooldown_4 = int(result[entry][84])
+            item_spelltrigger_5 = int(result[entry][85])
+            item_spellcharges_5 = int(result[entry][86])
+            item_spellcooldown_5 = int(result[entry][87])
+            item_spellcategory_5 = int(result[entry][88])
+            item_spellcategorycooldown_5 = int(result[entry][89])
+            item_bonding = int(result[entry][90])
+            item_description = str(result[entry][91])
+            item_page_id = int(result[entry][92])
+            item_page_language = int(result[entry][93])
+            item_page_material = int(result[entry][94])
+            item_quest_id = int(result[entry][95])
+            item_lock_id = int(result[entry][96])
+            item_lock_material = int(result[entry][97])
+            item_sheathID = int(result[entry][98])
+            item_randomprop = int(result[entry][99])
+            item_randomsuffix = int(result[entry][100])
+            item_block = int(result[entry][101])
+            item_itemset = int(result[entry][102])
+            item_bagfamily = int(result[entry][103])
+            item_TotemCategory = int(result[entry][104])
+            item_socket_color_1 = int(result[entry][105])
+            item_unk201_3 = int(result[entry][106])
+            item_socket_color_2 = int(result[entry][107])
+            item_unk201_5 = int(result[entry][108])
+            item_socket_color_3 = int(result[entry][109])
+            item_unk201_7 = int(result[entry][110])
+            item_socket_bonus = int(result[entry][111])
+            item_GemProperties = int(result[entry][112])
+            item_ReqDisenchantSkill = int(result[entry][113])
+            item_ArmorDamageModifier = int(result[entry][114])
+            item_ExistingDuration = int(result[entry][115])
+            item_ItemLimitCategoryId = int(result[entry][116])
+            item_HolidayId = result[entry][117]
+            item = frostlib.classes.item() # TODO: Hier noch die ganzen Werte rein
+            self.witems[entry] = item
+                       
             p.update_time(entry)
             if str(p) != pold:
                 print p
                 pold = str(p)
+        print self.witems
             
                                       
         
