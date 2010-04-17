@@ -44,7 +44,7 @@ if frostlib_hash != frostlib.HASH:
 frostlib.dout("Loading Data...")
 sworld = frostlib.world.world()
 sworld.loaditems()
-"""
+
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory
@@ -98,4 +98,3 @@ try:
 except:
     frostlib.nout("Cannot Bind Socket on Port 8085!")
     frostlib.shutdown()
-"""
