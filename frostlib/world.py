@@ -41,6 +41,8 @@ class world(object):
         mysql.paramstyle = "format"
         cursor = mysql.cursor()
         resultcount = cursor.execute("SELECT * FROM item_template")
+        p = frostlib.ProgressBar(int(resultcount), "Loading Items...")
+        pold = str(p)
         result = cursor.fetchall()
         for entry in xrange(0,resultcount):
             item_entry = int (result[entry][0])
@@ -118,6 +120,13 @@ class world(object):
             item_spellcooldown_2= int(result[entry][72])
             item_spellcategory_2= int(result[entry][73])
             item_spellcategorycooldown_2 = int(result[entry][74])
+
+
+            
+            p.update_time(entry)
+            if str(p) != pold:
+                print p
+                pold = str(p)
             
                                       
         

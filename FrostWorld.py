@@ -43,6 +43,7 @@ if frostlib_hash != frostlib.HASH:
 
 frostlib.dout("Loading Data...")
 sworld = frostlib.world.world()
+sworld.loaditems()
 """
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports
