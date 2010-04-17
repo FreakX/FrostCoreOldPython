@@ -3,3 +3,4 @@
 *.txt
 /frostlib/dev
 /data/
+progress_bar_example.py
