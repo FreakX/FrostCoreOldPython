@@ -30,7 +30,7 @@ if __name__ != '__main__':
     import wowmath
     import hash
     import time
-LOG_LEVEL = 1                # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
+LOG_LEVEL = 3                # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
 DEBUG_MODE = True            # Debug Mode True|False
 RELEASE_TYPE = "PRE-ALPHA"   # Current Realease Type Alpha|Beta|Release
 REVISION = 4                 # FrostCore Revision

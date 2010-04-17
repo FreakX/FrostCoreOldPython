@@ -38,10 +38,6 @@ frostlib.dout("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
 frostlib.dout("FrostLIB Hash: " + str(frostlib_hash))
 if frostlib_hash != frostlib.HASH:
-    if frostlib.DEBUG_MODE == True:
-        f = open("newhash.txt", 'w')
-        f.write(frostlib_hash)
-        f.close()
     frostlib.nout("False FrostLIB HASH")
     frostlib.shutdown()
 frostlib.dout("FrostCore Logon is starting...")
