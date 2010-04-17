@@ -29,6 +29,7 @@ if __name__ != '__main__':
     import handler
     import wowmath
     import hash
+    import time
 LOG_LEVEL = 1                # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
 DEBUG_MODE = True            # Debug Mode True|False
 RELEASE_TYPE = "PRE-ALPHA"   # Current Realease Type Alpha|Beta|Release
@@ -44,6 +45,18 @@ TIME_HOUR = TIME_MINUTE * 60
 TIME_DAY = TIME_HOUR * 24
 TIME_MONTH = TIME_DAY * 30
 TIME_YEAR = TIME_MONTH * 12
+def shutdown():
+    print "Schutdown in 5"
+    time.sleep(1)
+    print "Schutdown in 4"
+    time.sleep(1)
+    print "Schutdown in 3"
+    time.sleep(1)
+    print "Schutdown in 2"
+    time.sleep(1)
+    print "Schutdown in 1"
+    time.sleep(1)
+    exit()
 
 def nout(out):
     print out
