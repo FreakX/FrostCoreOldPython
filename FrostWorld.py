@@ -43,7 +43,9 @@ if frostlib_hash != frostlib.HASH:
 
 frostlib.dout("Loading Data...")
 sworld = frostlib.world.world()
+sworld.connect_mysql()
 sworld.loaditems()
+sworld.loaditems_localized()
 
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports

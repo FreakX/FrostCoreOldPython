@@ -30,6 +30,7 @@ if __name__ != '__main__':
     import wowmath
     import hash
     import time
+    import frostlib
 LOG_LEVEL = 3                # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
 DEBUG_MODE = True            # Debug Mode True|False
 RELEASE_TYPE = "PRE-ALPHA"   # Current Realease Type Alpha|Beta|Release
@@ -46,31 +47,47 @@ TIME_DAY = TIME_HOUR * 24
 TIME_MONTH = TIME_DAY * 30
 TIME_YEAR = TIME_MONTH * 12
 def shutdown():
-    print "Schutdown in 5"
+    nout("Schutdown in 10")
     time.sleep(1)
-    print "Schutdown in 4"
+    nout("Schutdown in 9")
     time.sleep(1)
-    print "Schutdown in 3"
+    nout("Schutdown in 8")
     time.sleep(1)
-    print "Schutdown in 2"
+    nout("Schutdown in 7")
     time.sleep(1)
-    print "Schutdown in 1"
+    nout("Schutdown in 6")
     time.sleep(1)
+    nout("Schutdown in 5")
+    time.sleep(1)
+    nout("Schutdown in 4")
+    time.sleep(1)
+    nout("Schutdown in 3")
+    time.sleep(1)
+    nout("Schutdown in 2")
+    time.sleep(1)
+    nout("Schutdown in 1")
+    time.sleep(1)
+    logfile.close()
     exit()
-
+logfile = open("log.txt", "w")
 def nout(out):
     print out
+    logfile.write(out + "\n")
 
 def dout(out):
     if LOG_LEVEL >= 1:
         print out
+        logfile.write(out + "\n")
         
 def edout(out):
     if LOG_LEVEL >= 2:
         print out
+        logfile.write(out + "\n")
+        
 def eout(out):
     if LOG_LEVEL >= 3:
         print out
+        logfile.write(out + "\n")
 
 
 class ProgressBar:
