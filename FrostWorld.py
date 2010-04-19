@@ -46,6 +46,7 @@ sworld = frostlib.world.world()
 sworld.connect_mysql()
 sworld.loaditems()
 sworld.loaditems_localized()
+sworld.load_creatures()
 
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports

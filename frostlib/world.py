@@ -27,6 +27,7 @@ import frostlib
 class world(object):
     def __init__(self):
         self.witems = {}
+        self.wcreatures = {}
     def connect_mysql(self):
         import MySQLdb
         mysql_opts = {
@@ -309,7 +310,7 @@ class world(object):
         result = self.cursor.fetchall()
         for entry in range(0,resultcount):
             currentres = result[entry]
-            creature_entry = int(curentres[0])
+            creature_entry = int(currentres[0])
             creature_name = str(currentres[1])
             creature_subname = str(currentres[2])
             creature_info_str = currentres[3]
@@ -325,14 +326,14 @@ class world(object):
             creature_female_displayid2 = int(currentres[13])
             creature_unknown_float1 = float(currentres[14])
             creature_unknown_float2 = float(currentres[15])
-            creature_leader = int(currentres[14])
-            creature_questitem1 = int(currentres[15])
-            creature_questitem2 = int(currentres[16])
-            creature_questitem3 = int(currentres[17])
-            creature_questitem4 = int(currentres[18])
-            creature_questitem5 = int(currentres[19])
-            creature_questitem6 = int(currentres[20])
-            creature_pathid = int(currentres[21])
+            creature_leader = int(currentres[16])
+            creature_questitem1 = int(currentres[17])
+            creature_questitem2 = int(currentres[18])
+            creature_questitem3 = int(currentres[19])
+            creature_questitem4 = int(currentres[20])
+            creature_questitem5 = int(currentres[21])
+            creature_questitem6 = int(currentres[22])
+            creature_pathid = int(currentres[23])
             creature = frostlib.classes.creature(creature_entry,
                                                  creature_name,
                                                  creature_subname,
@@ -358,7 +359,7 @@ class world(object):
                                                  creature_questitem6,
                                                  creature_pathid)
 
-            self.wcreatures[creatures_entry] = creature
+            self.wcreatures[creature_entry] = creature
             
             p.update_time(entry)
             if str(p) != pold:
@@ -383,6 +384,6 @@ class world(object):
             if str(p) != pold:
                 frostlib.nout(str(p))
                 pold = str(p)
-        frostlib.dout(helpvar)
+        #frostlib.dout(helpvar)
         
     
