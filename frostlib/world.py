@@ -30,10 +30,10 @@ class world(object):
     def connect_mysql(self):
         import MySQLdb
         mysql_opts = {
-            'host': "localhost",
-            'user': "root",
-            'pass': "",
-            'db':   "fworld"
+            'host': frostlib.MYSQL_WORLD_HOST,
+            'user': frostlib.MYSQL_WORLD_USER,
+            'pass': frostlib.MYSQL_WORLD_PW,
+            'db':   frostlib.MYSQL_WORLD_DB
             }
         self.mysql = MySQLdb.connect(mysql_opts['host'], mysql_opts['user'], mysql_opts['pass'], mysql_opts['db']) 
         self.mysql.apilevel = "2.0"

@@ -27,7 +27,7 @@ import frostlib
 from time import sleep
 import warnings
 warnings.filterwarnings("ignore")
-frostlib.config.loadlogonconf()
+frostlib.config.loadworldconf()
 frostlib.nout("__________                       _____ _________                     ")
 frostlib.nout("___  ____/______________ __________  /___  ____/______ _____________ ")
 frostlib.nout("__  /_    __  ___/_  __ \__  ___/_  __/_  /     _  __ \__  ___/_  _ \\")
