@@ -9,7 +9,7 @@
 >- MySQL Datenbank mit neuster FrostDB 
 
 ### Danke an:
->- P13RR3 fuer die Logische mithilfe 
+>- P13RR3(FrostDB + FrostCore Headdev)
 
 ### Support:
 >- gibt es auf http://frostcore.demonic-legends.de/ 
