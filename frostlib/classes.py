@@ -21,7 +21,7 @@
    *
    */
 """
-
+import frostlib
 class account(object):
     
     def __init__(self,guid,name,password,email,expansion):
@@ -166,8 +166,269 @@ class instance(object):
         for member in self.member:
             member.setinstance(self.id)
             member.setinstancemode(self.mode)
+class item(object):
+    def __init__(self,
+                 item_entry,
+                 item_class,
+                 item_subclass,
+                 item_field4,
+                 item_name1,
+                 item_displayid,
+                 item_quality,
+                 item_flags,
+                 item_buyprice,
+                 item_sellprice,
+                 item_inventorytype,
+                 item_allowableclass,
+                 item_allowablerace,
+                 item_itemlevel,
+                 item_requiredlevel,
+                 item_RequiredSkill,
+                 item_RequiredSkillRank,
+                 item_RequiredSpell,
+                 item_RequiredPlayerRank1,
+                 item_RequiredPlayerRank2,
+                 item_RequiredFaction,
+                 item_RequiredFactionStanding,
+                 item_Unique,
+                 item_maxcount,
+                 item_ContainerSlots,
+                 item_itemstatscount,
+                 item_stat_type1,
+                 item_stat_value1,
+                 item_stat_type2,
+                 item_stat_value2,
+                 item_stat_type3,
+                 item_stat_value3,
+                 item_stat_type4,
+                 item_stat_value4,
+                 item_stat_type5,
+                 item_stat_value5,
+                 item_stat_type6,
+                 item_stat_value6,
+                 item_stat_type7,
+                 item_stat_value7,
+                 item_stat_type8,
+                 item_stat_value8,
+                 item_stat_type9,
+                 item_stat_value9,
+                 item_stat_type10,
+                 item_stat_value10,
+                 item_ScaledStatsDistributionID,
+                 item_ScaledStatsDistributionFlags,
+                 item_dmg_min1,
+                 item_dmg_max1,
+                 item_dmg_type1,
+                 item_dmg_min2,
+                 item_dmg_max2,
+                 item_dmg_type2,
+                 item_armor,
+                 item_holy_res,
+                 item_fire_res,
+                 item_nature_res,
+                 item_frost_res,
+                 item_shadow_res,
+                 item_arcane_res,
+                 item_delay,
+                 item_ammo_type,
+                 item_range,
+                 item_spellid_1,
+                 item_spelltrigger_1,
+                 item_spellcharges_1,
+                 item_spellcooldown_1,
+                 item_spellcategory_1,
+                 item_spellcategorycooldown_1,
+                 item_spellid_2,
+                 item_spelltrigger_2,
+                 item_spellcharges_2,
+                 item_spellcooldown_2,
+                 item_spellcategory_2,
+                 item_spellcategorycooldown_2,
+                 item_spellid_3,
+                 item_spelltrigger_3,
+                 item_spellcharges_3,
+                 item_spellcooldown_3,
+                 item_spellcategory_3,
+                 item_spellcategorycooldown_3,
+                 item_spellid_4,
+                 item_spelltrigger_4,
+                 item_spellcharges_4,
+                 item_spellcooldown_4,
+                 item_spellcategory_4,
+                 item_spellcategorycooldown_4,
+                 item_spellid_5,
+                 item_spelltrigger_5,
+                 item_spellcharges_5,
+                 item_spellcooldown_5,
+                 item_spellcategory_5,
+                 item_spellcategorycooldown_5,
+                 item_bonding,
+                 item_description,
+                 item_page_id,
+                 item_page_language,
+                 item_page_material,
+                 item_quest_id,
+                 item_lock_id,
+                 item_lock_material,
+                 item_sheathID,
+                 item_randomprop,
+                 item_randomsuffix,
+                 item_block,
+                 item_itemset,
+                 item_bagfamily,
+                 item_TotemCategory,
+                 item_socket_color_1,
+                 item_unk201_3,
+                 item_socket_color_2,
+                 item_unk201_5,
+                 item_socket_color_3,
+                 item_unk201_7,
+                 item_socket_bonus,
+                 item_GemProperties,
+                 item_ReqDisenchantSkill,
+                 item_ArmorDamageModifier,
+                 item_ExistingDuration,
+                 item_ItemLimitCategoryId,
+                 item_HolidayId):
         
+        self.entry =            item_entry
+        self.item_class =            item_class
+        self.subclass =         item_subclass
+        self.field4 =           item_field4
+        self.en_name =          item_name1
+        self.displayid =        item_displayid
+        self.quality =          item_quality
+        self.flags =            item_flags
+        self.buyprice =         item_buyprice
+        self.sellprice =        item_sellprice
+        self.inventorytype =    item_inventorytype
+        self.allowableclass =   item_allowableclass
+        self.allowablerace =    item_allowablerace
+        self.itemlevel =        item_itemlevel
+        self.requiredlevel =    item_requiredlevel
+        self.RequiredSkill =    item_RequiredSkill
+        self.RequiredSkillRank =item_RequiredSkillRank
+        self.RequiredSpell =    item_RequiredSpell
+        self.RequiredPlayerRank1=item_RequiredPlayerRank1
+        self.RequiredPlayerRank2=item_RequiredPlayerRank2
+        self.RequiredFaction=   item_RequiredFaction
+        self.RequiredFactionStanding=item_RequiredFactionStanding
+        self.Unique = item_Unique
+        self.maxcount = item_maxcount
+        self.ContainerSlots = item_ContainerSlots
+        self.itemstatscount = item_itemstatscount
+        self.stat_type1 = item_stat_type1
+        self.stat_value1= item_stat_value1
+        self.stat_type2 = item_stat_type2
+        self.stat_value2= item_stat_value2
+        self.stat_type3 = item_stat_type3
+        self.stat_value3= item_stat_value3
+        self.stat_type4 = item_stat_type4
+        self.stat_value4= item_stat_value4
+        self.stat_type5 = item_stat_type5
+        self.stat_value5= item_stat_value5
+        self.stat_type6 = item_stat_type6
+        self.stat_value6= item_stat_value6
+        self.stat_type7 = item_stat_type7
+        self.stat_value7= item_stat_value7
+        self.stat_type8 = item_stat_type8
+        self.stat_value8= item_stat_value8
+        self.stat_type9 = item_stat_type9
+        self.stat_value9= item_stat_value9
+        self.stat_type10= item_stat_type10
+        self.stat_value10=item_stat_value10
+        self.ScaledStatsDistributionID = item_ScaledStatsDistributionID
+        self.ScaledStatsDistributionFlags=item_ScaledStatsDistributionFlags
+        self.dmg_min1 = item_dmg_min1
+        self.dmg_max1 = item_dmg_max1
+        self.dmg_type1= item_dmg_type1
+        self.dmg_min2 = item_dmg_min2
+        self.dmg_max2 = item_dmg_max2
+        self.dmg_type2= item_dmg_type2
+        self.armor = item_armor
+        self.holy_res = item_holy_res
+        self.fire_res = item_fire_res
+        self.nature_res = item_nature_res
+        self.frost_res = item_frost_res
+        self.shadow_res= item_shadow_res
+        self.arcane_res= item_arcane_res
+        self.delay = item_delay
+        self.ammo_type= item_ammo_type
+        self.range = item_range
+        self.spellid_1 = item_spellid_1
+        self.spelltrigger_1 = item_spelltrigger_1
+        self.spellcharges_1 = item_spellcharges_1
+        self.spellcooldown_1= item_spellcooldown_1
+        self.spellcategory_1= item_spellcategory_1
+        self.spellcategorycooldown_1 = item_spellcategorycooldown_1
+        self.spellid_2 = item_spellid_2
+        self.spelltrigger_2 = item_spelltrigger_2
+        self.spellcharges_2 = item_spellcharges_2
+        self.spellcooldown_2= item_spellcooldown_2
+        self.spellcategory_2= item_spellcategory_2
+        self.spellcategorycooldown_2 = item_spellcategorycooldown_2
+        self.spellid_3 = item_spellid_3 
+        self.spelltrigger_3 = item_spelltrigger_3
+        self.spellcharges_3 = item_spellcharges_3
+        self.spellcooldown_3 = item_spellcooldown_3
+        self.spellcategory_3 = item_spellcategory_3
+        self.spellcategorycooldown_3 = item_spellcategorycooldown_3
+        self.spellid_4 = item_spellid_4
+        self.spelltrigger_4 = item_spelltrigger_4
+        self.spellcharges_4 = item_spellcharges_4
+        self.spellcooldown_4 = item_spellcooldown_4
+        self.spellcategory_4 = item_spellcategory_4
+        self.spellcategorycooldown_4 = item_spellcategorycooldown_4
+        self.spellid_5 = item_spellid_5
+        self.spelltrigger_5 = item_spelltrigger_5
+        self.spellcharges_5 = item_spellcharges_5
+        self.spellcooldown_5 = item_spellcooldown_5
+        self.spellcategory_5 = item_spellcategory_5
+        self.spellcategorycooldown_5 = item_spellcategorycooldown_5
+        self.bonding = item_bonding
+        self.en_description = item_description
+        self.page_id = item_page_id
+        self.page_language = item_page_language
+        self.page_material = item_page_material
+        self.quest_id = item_quest_id
+        self.lock_id = item_lock_id
+        self.lock_material = item_lock_material
+        self.sheathID = item_sheathID
+        self.randomprop = item_randomprop
+        self.randomsuffix = item_randomsuffix
+        self.block = item_block
+        self.itemset = item_itemset
+        self.bagfamily = item_bagfamily
+        self.TotemCategory = item_TotemCategory
+        self.socket_color_1 = item_socket_color_1
+        self.unk201_3 = item_unk201_3
+        self.socket_color_2 = item_socket_color_2
+        self.unk201_5 = item_unk201_5
+        self.socket_color_3 = item_socket_color_3
+        self.unk201_7 = item_unk201_7
+        self.socket_bonus = item_socket_bonus
+        self.GemProperties = item_GemProperties
+        self.ReqDisenchantSkill = item_ReqDisenchantSkill
+        self.ArmorDamageModifier = item_ArmorDamageModifier
+        self.ExistingDuration = item_ExistingDuration
+        self.ItemLimitCategoryId = item_ItemLimitCategoryId
+        self.HolidayId = item_HolidayId
         
+    def set_localized(self,langcode,langname,langdesc):
+        if langcode == "deDE":
+            self.de_name = langname
+            self.de_description = langdesc
+        elif langcode == "esES":
+            self.es_name = langname
+            self.es_description = langdesc
+        elif langcode == "ruRU":
+            self.ru_name = langname
+            self.ru_description = langdesc
+        elif langcode == "frFR":
+            self.fr_name = langname
+            self.fr_description = langdesc
+        else:
+            frostlib.dout("Undefined Language Code: " + str(langcode))
         
         
     

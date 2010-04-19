@@ -36,12 +36,10 @@ frostlib.nout("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_/     \_
 frostlib.dout("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
 frostlib.dout("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
-frostlib.dout("FrostLIB Hash: " + frostlib_hash)
+frostlib.dout("FrostLIB Hash: " + str(frostlib_hash))
 if frostlib_hash != frostlib.HASH:
-    f = open("newhash.txt", 'w')
-    f.write(frostlib_hash)
-    f.close()
-    exit()
+    frostlib.nout("False FrostLIB HASH")
+    frostlib.shutdown()
 frostlib.dout("FrostCore Logon is starting...")
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory
@@ -93,17 +91,5 @@ try:
         reactor.callInThread(running)
     reactor.run()
 except:
-    print "--ERROR----ERROR----ERROR----ERROR--"
-    print "Cannot Bind Logon on Port 3724"
-    print "--ERROR----ERROR----ERROR----ERROR--"
-    print "Schutdown in 5"
-    sleep(1)
-    print "Schutdown in 4"
-    sleep(1)
-    print "Schutdown in 3"
-    sleep(1)
-    print "Schutdown in 2"
-    sleep(1)
-    print "Schutdown in 1"
-    sleep(1)
-    exit
+    frostlib.nout("Cannot Bind Socket on Port 3724!")
+    frostlib.shutdown()

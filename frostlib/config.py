@@ -67,6 +67,22 @@ def loadworldconf():
             key = getkey(line)
             value = getval(line)
             confdict[key] = value
+        try:
+            frostlib.MYSQL_WORLD_HOST = confdict["MYSQL_WORLD_HOST"]
+            frostlib.MYSQL_WORLD_USER = confdict["MYSQL_WORLD_USER"]
+            frostlib.MYSQL_WORLD_PW = confdict["MYSQL_WORLD_PW"]
+            frostlib.MYSQL_WORLD_DB = confdict["MYSQL_WORLD_DB"]
+            frostlib.LOG_LEVEL = int(confdict["LOG_LEVEL"])
+            frostlib.DEBUG_MODE = int(confdict["DEBUG_MODE"])
+            frostlib.CONNECTION_INFO = int(confdict["CONNECTION_INFO"])
+            frostlib.CONNECTION_INFO_DELAY = int(confdict["CONNECTION_INFO_DELAY"])
+            frostlib.CLIENT_AUTH_INFO = int(confdict["CLIENT_AUTH_INFO"])
+            frostlib.AUTHBUILD_ACCEPT = int(confdict["AUTHBUILD_ACCEPT"])
+            frostlib.HASH = str(confdict["FROSTLIB_HASH"])
+
+
+        except:
+            print "Error while loading Config"
         print "World configuration successfully loaded"
     except:
         print "No valid INI File found"
