@@ -1,20 +1,20 @@
-### FrostCore
-## Funktionen:
+# FrostCore
+### Funktionen:
 ~ Übersetzungen in: Englisch, Deutsch, Französisch, Spanisch, Russisch
 ~ extrem schnelle Entwicklung
 ~ Völlig Blizzlike
 
-## Vorraussetzungen:
+### Vorraussetzungen:
 ~ Python 2.5.*
 ~ MySQL Datenbank mit neuster FrostDB
 
-## Danke an:
+### Danke an:
 ~ P13RR3 für die Logische mithilfe
 
-## Support:
+### Support:
 ~ gibt es auf http://frostcore.demonic-legends.de/
 
-### Lizenz
+# Lizenz
   /*
    * FrostCore MMORPG Server Emulator
    * Copyright (C) 2010 < http://frostcore.demonic-legends.de/ >
