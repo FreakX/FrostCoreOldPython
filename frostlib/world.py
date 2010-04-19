@@ -302,13 +302,74 @@ class world(object):
                 frostlib.nout(str(p))
                 pold = str(p)
         #print self.witems
+    def load_creatures(self):
+        resultcount = self.cursor.execute("SELECT * FROM creature_template")
+        p = frostlib.ProgressBar(int(resultcount), "Loading Creature Template...")
+        pold = str(p)
+        result = self.cursor.fetchall()
+        for entry in range(0,resultcount):
+            currentres = result[entry]
+            creatures_entry = int(curentres[0])
+            creatures_name = str(currentres[1])
+            creatures_subname = str(currentres[2])
+            creatures_info_str = currentres[3]
+            creatures_flags1 = int(currentres[4])
+            creatures_type = int(currentres[5])
+            creatures_family = int(currentres[6])
+            creatures_rank = int(currentres[7])
+            creatures_killcredit1 = int(currentres[8])
+            creatures_killcredit2 = int(currentres[9])
+            creatures_male_displayid = int(currentres[10])
+            creatures_female_displayid = int(currentres[11])
+            creatures_male_displayid2 = int(currentres[12])
+            creatures_female_displayid2 = int(currentres[13])
+            creatures_unknown_float1 = float(currentres[14])
+            creatures_unknown_float2 = float(currentres[15])
+            creatures_leader = int(currentres[14])
+            creatures_questitem1 = int(currentres[15])
+            creatures_questitem2 = int(currentres[16])
+            creatures_questitem3 = int(currentres[17])
+            creatures_questitem4 = int(currentres[18])
+            creatures_questitem5 = int(currentres[19])
+            creatures_questitem6 = int(currentres[20])
+            creatures_pathid = int(currentres[21])
+            creature = frostlib.classes.creature(creatures_entry,
+                                                 creatures_name,
+                                                 creatures_subname,
+                                                 creatures_info_str,
+                                                 creatures_flags1,
+                                                 creatures_type,
+                                                 creatures_family,
+                                                 creatures_rank,
+                                                 creatures_killcredit1,
+                                                 creatures_killcredit2,
+                                                 creatures_male_displayid,
+                                                 creatures_female_displayid,
+                                                 creatures_male_displayid2,
+                                                 creatures_female_displayid2,
+                                                 creatures_unknown_float1,
+                                                 creatures_unknown_float2,
+                                                 creatures_leader,
+                                                 creatures_questitem1,
+                                                 creatures_questitem2,
+                                                 creatures_questitem3,
+                                                 creatures_questitem4,
+                                                 creatures_questitem5,
+                                                 creatures_questitem6,
+                                                 creatures_pathid)
+
+            self.wcreatures[creatures_entry] = creature
             
+            p.update_time(entry)
+            if str(p) != pold:
+                frostlib.nout(str(p))
+                pold = str(p)
+                        
     def loaditems_localized(self):
         resultcount = self.cursor.execute("SELECT * FROM items_localized")
         p = frostlib.ProgressBar(int(resultcount), "Loading Item Localizations...")
         pold = str(p)
         result = self.cursor.fetchall()
-        #print result
         helpvar = ""
         for entry in range(0,resultcount):
             
