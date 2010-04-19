@@ -429,6 +429,75 @@ class item(object):
             self.fr_description = langdesc
         else:
             frostlib.dout("Undefined Language Code: " + str(langcode))
+
+
+class creature(object):
+    def __init__(self,
+                 creature_entry,
+                 creature_name,
+                 creature_subname,
+                 creature_info_str,
+                 creature_flags1,
+                 creature_type,
+                 creature_family,
+                 creature_rank,
+                 creature_killcredit1,
+                 creature_killcredit2,
+                 creature_male_displayid,
+                 creature_female_displayid,
+                 creature_male_displayid2,
+                 creature_female_displayid2,
+                 creature_unknown_float1,
+                 creature_unknown_float2,
+                 creature_leader,
+                 creature_questitem1,
+                 creature_questitem2,
+                 creature_questitem3,
+                 creature_questitem4,
+                 creature_questitem5,
+                 creature_questitem6,
+                 creature_pathid):
+
+        self.entry = creature_entry
+        self.en_name = creature_name
+        self.en_subname = creature_subname
+        self.info_str = creature_info_str
+        self.flags1 = creature_flags1
+        self.type = creature_type
+        self.family = creature_family
+        self.rank = creature_rank
+        self.killcredit1 = creature_killcredit1
+        self.killcredit2 = creature_killcredit2
+        self.male_displayid = creature_male_displayid
+        self.female_displayid = creature_female_displayid
+        self.male_displayid2 = creature_male_displayid2
+        self.female_displayid2 = creature_female_displayid2
+        self.unknown_float1 = creature_unknown_float1
+        self.unknown_float2 = creature_unknown_float2
+        self.leader = creature_leader
+        self.questitem1 = creature_questitem1
+        self.questitem2 = creature_questitem2
+        self.questitem3 = creature_questitem3
+        self.questitem4 = creature_questitem4
+        self.questitem5 = creature_questitem5
+        self.questitem6 = creature_questitem6
+        self.pathid = creature_pathid
+
+    def set_localized(self,langcode,langname,langsubname):
+        if langcode == "deDE":
+            self.de_name = langname
+            self.de_subname = langsubname
+        elif langcode == "esES":
+            self.es_name = langname
+            self.es_subname = langsubname
+        elif langcode == "ruRU":
+            self.ru_name = langname
+            self.ru_subname = langsubname
+        elif langcode == "frFR":
+            self.fr_name = langname
+            self.fr_subname = langsubname
+        else:
+            frostlib.dout("Undefined Language Code: " + str(langcode))
         
         
     

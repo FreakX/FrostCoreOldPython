@@ -309,54 +309,54 @@ class world(object):
         result = self.cursor.fetchall()
         for entry in range(0,resultcount):
             currentres = result[entry]
-            creatures_entry = int(curentres[0])
-            creatures_name = str(currentres[1])
-            creatures_subname = str(currentres[2])
-            creatures_info_str = currentres[3]
-            creatures_flags1 = int(currentres[4])
-            creatures_type = int(currentres[5])
-            creatures_family = int(currentres[6])
-            creatures_rank = int(currentres[7])
-            creatures_killcredit1 = int(currentres[8])
-            creatures_killcredit2 = int(currentres[9])
-            creatures_male_displayid = int(currentres[10])
-            creatures_female_displayid = int(currentres[11])
-            creatures_male_displayid2 = int(currentres[12])
-            creatures_female_displayid2 = int(currentres[13])
-            creatures_unknown_float1 = float(currentres[14])
-            creatures_unknown_float2 = float(currentres[15])
-            creatures_leader = int(currentres[14])
-            creatures_questitem1 = int(currentres[15])
-            creatures_questitem2 = int(currentres[16])
-            creatures_questitem3 = int(currentres[17])
-            creatures_questitem4 = int(currentres[18])
-            creatures_questitem5 = int(currentres[19])
-            creatures_questitem6 = int(currentres[20])
-            creatures_pathid = int(currentres[21])
-            creature = frostlib.classes.creature(creatures_entry,
-                                                 creatures_name,
-                                                 creatures_subname,
-                                                 creatures_info_str,
-                                                 creatures_flags1,
-                                                 creatures_type,
-                                                 creatures_family,
-                                                 creatures_rank,
-                                                 creatures_killcredit1,
-                                                 creatures_killcredit2,
-                                                 creatures_male_displayid,
-                                                 creatures_female_displayid,
-                                                 creatures_male_displayid2,
-                                                 creatures_female_displayid2,
-                                                 creatures_unknown_float1,
-                                                 creatures_unknown_float2,
-                                                 creatures_leader,
-                                                 creatures_questitem1,
-                                                 creatures_questitem2,
-                                                 creatures_questitem3,
-                                                 creatures_questitem4,
-                                                 creatures_questitem5,
-                                                 creatures_questitem6,
-                                                 creatures_pathid)
+            creature_entry = int(curentres[0])
+            creature_name = str(currentres[1])
+            creature_subname = str(currentres[2])
+            creature_info_str = currentres[3]
+            creature_flags1 = int(currentres[4])
+            creature_type = int(currentres[5])
+            creature_family = int(currentres[6])
+            creature_rank = int(currentres[7])
+            creature_killcredit1 = int(currentres[8])
+            creature_killcredit2 = int(currentres[9])
+            creature_male_displayid = int(currentres[10])
+            creature_female_displayid = int(currentres[11])
+            creature_male_displayid2 = int(currentres[12])
+            creature_female_displayid2 = int(currentres[13])
+            creature_unknown_float1 = float(currentres[14])
+            creature_unknown_float2 = float(currentres[15])
+            creature_leader = int(currentres[14])
+            creature_questitem1 = int(currentres[15])
+            creature_questitem2 = int(currentres[16])
+            creature_questitem3 = int(currentres[17])
+            creature_questitem4 = int(currentres[18])
+            creature_questitem5 = int(currentres[19])
+            creature_questitem6 = int(currentres[20])
+            creature_pathid = int(currentres[21])
+            creature = frostlib.classes.creature(creature_entry,
+                                                 creature_name,
+                                                 creature_subname,
+                                                 creature_info_str,
+                                                 creature_flags1,
+                                                 creature_type,
+                                                 creature_family,
+                                                 creature_rank,
+                                                 creature_killcredit1,
+                                                 creature_killcredit2,
+                                                 creature_male_displayid,
+                                                 creature_female_displayid,
+                                                 creature_male_displayid2,
+                                                 creature_female_displayid2,
+                                                 creature_unknown_float1,
+                                                 creature_unknown_float2,
+                                                 creature_leader,
+                                                 creature_questitem1,
+                                                 creature_questitem2,
+                                                 creature_questitem3,
+                                                 creature_questitem4,
+                                                 creature_questitem5,
+                                                 creature_questitem6,
+                                                 creature_pathid)
 
             self.wcreatures[creatures_entry] = creature
             
