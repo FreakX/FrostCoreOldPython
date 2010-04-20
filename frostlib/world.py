@@ -384,6 +384,6 @@ class world(object):
             if str(p) != pold:
                 frostlib.nout(str(p))
                 pold = str(p)
-        #frostlib.dout(helpvar)
+        frostlib.eout(helpvar)
         
     
