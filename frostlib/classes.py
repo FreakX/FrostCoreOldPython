@@ -560,6 +560,26 @@ class creature(object):
                 return self.ru_subname
         except NameError:
             return self.en_subname
-        
+
+class creature_instance(object):
+    def __init__(self, creatureobject, xpos, ypos, zpos, size):
+        self.creatureobject = creatureobject
+        self.xpos = xpos
+        self.ypos = ypos
+        self.zpos = zpos
+        self.size = size
+    
+    def getlocalizedname(self, lang):
+        return self.creatureobject.getlocalizedname(lang)
+    def getlocalizedsubname(self, lang):
+        return self.creatureobject.getlocalizedsubname(lang)
+
+    def setscript(self, scriptname):
+        if scriptname == "boss_lichking":
+            self.script = frostlib.creaturescripts.icecrown.lichking()
+        elif scriptname == "boss_illidan":
+            self.script = frostlib.creaturescripts.blacktemple.illidan()
+            
+               
         
     
