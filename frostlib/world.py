@@ -29,18 +29,22 @@ class world(object):
         self.witems = {}
         self.wcreatures = {}
     def connect_mysql(self):
-        import MySQLdb
-        mysql_opts = {
-            'host': frostlib.MYSQL_WORLD_HOST,
-            'user': frostlib.MYSQL_WORLD_USER,
-            'pass': frostlib.MYSQL_WORLD_PW,
-            'db':   frostlib.MYSQL_WORLD_DB
-            }
-        self.mysql = MySQLdb.connect(mysql_opts['host'], mysql_opts['user'], mysql_opts['pass'], mysql_opts['db']) 
-        self.mysql.apilevel = "2.0"
-        self.mysql.threadsafety = 2
-        self.mysql.paramstyle = "format"
-        self.cursor = self.mysql.cursor()
+        try:
+            import MySQLdb
+            mysql_opts = {
+                'host': frostlib.MYSQL_WORLD_HOST,
+                'user': frostlib.MYSQL_WORLD_USER,
+                'pass': frostlib.MYSQL_WORLD_PW,
+                'db':   frostlib.MYSQL_WORLD_DB
+                }
+            self.mysql = MySQLdb.connect(mysql_opts['host'], mysql_opts['user'], mysql_opts['pass'], mysql_opts['db']) 
+            self.mysql.apilevel = "2.0"
+            self.mysql.threadsafety = 2
+            self.mysql.paramstyle = "format"
+            self.cursor = self.mysql.cursor()
+        except:
+            import traceback
+            traceback.print_exc(file=frostlib.logfile)
     def loaditems(self):
         resultcount = self.cursor.execute("SELECT * FROM item_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Items...")
@@ -173,6 +177,8 @@ class world(object):
                 item_HolidayId = currentry[121]
                 del currentry
             except:
+                import traceback
+                traceback.print_exc(file=frostlib.logfile)
                 frostlib.dout("Fehler beim Item: " + str(entry))
             item = frostlib.classes.item(item_entry,
                                          item_class,

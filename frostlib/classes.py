@@ -430,6 +430,38 @@ class item(object):
         else:
             frostlib.dout("Undefined Language Code: " + str(langcode))
 
+    def getlocalizedname(self, lang):
+        try:
+            if lang == "enUS":
+                return self.en_name
+            elif lang == "deDE":
+                return self.de_name
+            elif lang == "esES":
+                return self.es_name
+            elif lang == "frFR":
+                return self.fr_name
+            elif lang == "ruRU":
+                return self.ru_name
+        except NameError:
+            return self.en_name
+
+    def getlocalizeddesciption(self, lang):
+        try:
+            if lang == "enUS":
+                return self.en_description
+            elif lang == "deDE":
+                return self.de_description
+            elif lang == "esES":
+                return self.es_description
+            elif lang == "frFR":
+                return self.fr_description
+            elif lang == "ruRU":
+                return self.ru_description
+        except NameError:
+            return self.en_description
+            
+                
+
 
 class creature(object):
     def __init__(self,
@@ -498,6 +530,36 @@ class creature(object):
             self.fr_subname = langsubname
         else:
             frostlib.dout("Undefined Language Code: " + str(langcode))
+
+    def getlocalizedname(self, lang):
+        try:
+            if lang == "enUS":
+                return self.en_name
+            elif lang == "deDE":
+                return self.de_name
+            elif lang == "esES":
+                return self.es_name
+            elif lang == "frFR":
+                return self.fr_name
+            elif lang == "ruRU":
+                return self.ru_name
+        except NameError:
+            return self.en_name
+
+    def getlocalizedsubname(self, lang):
+        try:
+            if lang == "enUS":
+                return self.en_subname
+            elif lang == "deDE":
+                return self.de_subname
+            elif lang == "esES":
+                return self.es_subname
+            elif lang == "frFR":
+                return self.fr_subname
+            elif lang == "ruRU":
+                return self.ru_subname
+        except NameError:
+            return self.en_subname
         
         
     
