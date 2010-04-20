@@ -45,6 +45,8 @@ class world(object):
         except:
             import traceback
             traceback.print_exc(file=frostlib.logfile)
+            frostlib.nout("No Connection to MySQL Server")
+            frostlib.shutdown()
     def loaditems(self):
         resultcount = self.cursor.execute("SELECT * FROM item_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Items...")
