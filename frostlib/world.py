@@ -373,23 +373,76 @@ class world(object):
                 pold = str(p)
                         
     def loaditems_localized(self):
-        resultcount = self.cursor.execute("SELECT * FROM items_localized")
+        resultcount_de = int(self.cursor.execute("SELECT * FROM items_localized_de"))
+        result_de = self.cursor.fetchall()
+        resultcount_es = int(self.cursor.execute("SELECT * FROM items_localized_es"))
+        result_es = self.cursor.fetchall()
+        resultcount_fr = int(self.cursor.execute("SELECT * FROM items_localized_fr"))
+        result_fr = self.cursor.fetchall()
+        resultcount_ru = int(self.cursor.execute("SELECT * FROM items_localized_ru"))
+        result_ru = self.cursor.fetchall()
+        resultcount = resultcount_de + resultcount_es + resultcount_fr + resultcount_ru
+        helpvar = ""
         p = frostlib.ProgressBar(int(resultcount), "Loading Item Localizations...")
         pold = str(p)
-        result = self.cursor.fetchall()
-        helpvar = ""
-        for entry in range(0,resultcount):
+        cur = 0
+        for entry in range(0,resultcount_de):
             
-            currentres = result[entry]
+            currentres = result_de[entry]
             item_entry = int(currentres[0])
             try:
                 self.witems[item_entry].set_localized(currentres[1],currentres[2],currentres[3])
             except:
                 helpvar += "Got localized name for item " + str(item_entry) + " , but there is no Item with entry " + str(item_entry) + "\n"
-            p.update_time(entry)
+            p.update_time(cur)
+            cur += 1
             if str(p) != pold:
                 frostlib.nout(str(p))
                 pold = str(p)
+
+        for entry in range(0,resultcount_es):
+            
+            currentres = result_es[entry]
+            item_entry = int(currentres[0])
+            try:
+                self.witems[item_entry].set_localized(currentres[1],currentres[2],currentres[3])
+            except:
+                helpvar += "Got localized name for item " + str(item_entry) + " , but there is no Item with entry " + str(item_entry) + "\n"
+            p.update_time(cur)
+            cur += 1
+            if str(p) != pold:
+                frostlib.nout(str(p))
+                pold = str(p)
+
+                
+        for entry in range(0,resultcount_fr):
+            
+            currentres = result_fr[entry]
+            item_entry = int(currentres[0])
+            try:
+                self.witems[item_entry].set_localized(currentres[1],currentres[2],currentres[3])
+            except:
+                helpvar += "Got localized name for item " + str(item_entry) + " , but there is no Item with entry " + str(item_entry) + "\n"
+            p.update_time(cur)
+            cur += 1
+            if str(p) != pold:
+                frostlib.nout(str(p))
+                pold = str(p)
+
+        for entry in range(0,resultcount_ru):
+            
+            currentres = result_ru[entry]
+            item_entry = int(currentres[0])
+            try:
+                self.witems[item_entry].set_localized(currentres[1],currentres[2],currentres[3])
+            except:
+                helpvar += "Got localized name for item " + str(item_entry) + " , but there is no Item with entry " + str(item_entry) + "\n"
+            p.update_time(cur)
+            cur += 1
+            if str(p) != pold:
+                frostlib.nout(str(p))
+                pold = str(p)
+        
         frostlib.eout(helpvar)
         
     
