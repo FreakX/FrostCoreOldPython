@@ -28,6 +28,7 @@ if __name__ != '__main__':
     import world
     import handler
     import wowmath
+    import scripts
     import hash
     import time
     import frostlib
