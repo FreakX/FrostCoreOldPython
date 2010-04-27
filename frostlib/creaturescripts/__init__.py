@@ -24,7 +24,6 @@ try:
     import gnomeregan
     import razorfen_kraul
     import scarlet_monastery
-    """
     import razorfen_downs
     import uldaman
     import zulfarrak
@@ -89,7 +88,6 @@ try:
     import ulduar
     import trial_of_the_crusader
     import icecrown
-    """
 
 except:
     frostlib.nout("Error while loading Scripts!")
