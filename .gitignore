@@ -1,4 +1,3 @@
 *.pyc
-*.psproj
 *.txt
-/data/
+.hg

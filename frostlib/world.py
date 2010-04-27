@@ -28,7 +28,7 @@ class world(object):
     def __init__(self):
         self.witems = {}
         self.wcreatures = {}
-    def connect_mysql(self):
+    def connect_db(self):
         try:
             import MySQLdb
             mysql_opts = {
