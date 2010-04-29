@@ -17,7 +17,16 @@ class script_timer:
             return True
         else:
             return False
-    def reset(self):
+
+    def newtime(self, mininter, maxinter):
+        self.mininter = mininter
+        self.maxinter = maxinter
+
+        
+    def reset(self, mininter=0, maxinter=0):
+        if mininter != 0 and maxinter != 0:
+            self.mininter = mininter
+            self.maxinter = maxinter
         self.lastcast = time.time()
         self.inter = random.randint(self.mininter,self.maxinter)
         
