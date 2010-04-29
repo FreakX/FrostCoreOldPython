@@ -26,13 +26,13 @@ class boss_arlokk(basescript.script_npc):
         self.TIMER_MARK = basescript.script_timer(35,35)
         self.TIMER_CLEAVE = basescript.script_timer(4,4)
         self.TIMER_VANISH = basescript.script_timer(60,60)
-        self.TIMER_VISIBLE = basecript.script_timer(6,6)
+        self.TIMER_VISIBLE = basescript.script_timer(6,6)
 
         self.TIMER_SUMMON = basescript.script_timer(5,5)
         self.SUMMON_COUNT = 0
 
-        self.IS_PHASE_TWO = false
-        self.IS_VANISHED = false
+        self.IS_PHASE_TWO = False
+        self.IS_VANISHED = False
 
         self.MARKED_GUID = 0
 
@@ -51,14 +51,14 @@ class boss_arlokk(basescript.script_npc):
 
     def update(self):
         if self.IS_PHASE_TWO == False:
-            if self.TIMER_SHADOWWORPAIN.ready():
+            if self.TIMER_SHADOWWORDPAIN.ready():
                 self.cast(self.target(), self.SPELL_SHADOWWORDPAIN)
                 self.TIMER_SHADOWWORDPAIN.newtime(15,15)
                 self.TIMER_SHADOWWORDPAIN.reset()
 
             if self.TIMER_MARK.ready():
                 helpvar = self.randtarget()
-                self.cast(helpvar), self.SPELL_MARK)
+                self.cast(helpvar, self.SPELL_MARK)
                 self.MARKED_GUID = helpvar
                 self.TIMER_MARK.newtime(15,15)
                 self.TIMER_MARK.reset()
