@@ -20,6 +20,9 @@ class script_npc(object):
         print str(time.strftime("%M:%S")) + " Summon NPC: " + str(cre_id)
     def guid(self):
         return 123456789
+
+    def teleporttoplayer(self,player):
+        print  str(time.strftime("%M:%S")) + " Teleport to Player: " + str(player)
     
 
 class script_timer:

@@ -234,7 +234,60 @@ class boss_golemagg(basescript.script_npc):
         self.domeleeattack()
             
         
-          
+class boss_shazzrah(basescript.script_npc):
+    def __init__(self):
+        self.SPELL_ARCANEEXPLOSION = 19712
+        self.SPELL_SHAZZRAHCURSE   = 19713
+        self.SPELL_DEADENMAGIC     = 19714
+        self.SPELL_COUNTERSPELL    = 19715
+        self.SPELL_GATE_DUMMY      = 23138
+
+        self.TIMER_ARCANEEXPLOSION = basescript.script_timer(6,6)
+        self.TIMER_SHAZZRAHCURSE   = basescript.script_timer(10,10)
+        self.TIMER_DEADENMAGIC     = basescript.script_timer(24,24)
+        self.TIMER_COUNTERSPELL    = basescript.script_timer(15,15)
+        self.TIMER_BLINK           = basescript.script_timer(30,30)
+
+    def reset(self):
+        self.TIMER_ARCANEEXPLOSION.reset(6,6)
+        self.TIMER_SHAZZRAHCURSE.reset(10,10)
+        self.TIMER_DEADENMAGIC.reset(24,24)
+        self.TIMER_COUNTERSPELL.reset(15,15)
+        self.TIMER_BLINK.reset(30,30)
+
+    def update(self):
+        if self.TIMER_ARCANEEXPLOSION.ready():
+            self.cast(self.target(), self.SPELL_ARCANEEXPLOSION)
+            self.TIMER_ARCANEEXPLOSION.newtime(5,9)
+            self.TIMER_ARCANEEXPLOSION.reset()
+            
+        if self.TIMER_SHAZZRAHCURSE.ready():
+            self.cast(self.randtarget(), self.SPELL_SHAZZRAHCURSE)
+            self.TIMER_SHAZZRAHCURSE.newtime(25,30)
+            self.TIMER_SHAZZRAHCURSE.reset()
+
+        if self.TIMER_DEADENMAGIC.ready():
+            self.cast(self.guid(), self.SPELL_DEADENMAGIC)
+            self.TIMER_DEADENMAGIC.newtime(35,35)
+            self.TIMER_DEADENMAGIC.reset()
+
+        if self.TIMER_COUNTERSPELL.ready():
+            self.cast(self.target(), self.SPELL_COUNTERSPELL)
+            self.TIMER_COUNTERSPELL.newtime(16,20)
+            self.TIMER_COUNTERSPELL.reset()
+
+        if self.TIMER_BLINK.ready():
+            self.cast(self.guid(), self.SPELL_GATE_DUMMY)
+
+            toplayer = self.randtarget()
+            self.teleporttoplayer(toplayer)
+
+            self.cast(self.guid(), self.SPELL_ARCANEEXPLOSION)
+
+            self.TIMER_BLINK.newtime(45,45)
+            self.TIMER_BLINK.reset()
+            
+        self.domeleeattack()
             
         
         
