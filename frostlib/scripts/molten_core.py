@@ -2,7 +2,7 @@
 # Scriptklassen erben von der Basisscriptklasse
 import basescript
 
-class boss_baron_geddon(object): #Hier eigendlich die basisscriptclass rein^^
+class boss_baron_geddon(basescript.script_npc):
     def __init__(self):
         self.EMOTE_SERVICE = -1409000
         self.SPELL_INFERNO = 19695
@@ -27,20 +27,20 @@ class boss_baron_geddon(object): #Hier eigendlich die basisscriptclass rein^^
             return
         
         if self.TIMER_INFERNO.ready():
-            self.cast(self.target,self.SPELL_INFERNO)
+            self.cast(self.guid,self.SPELL_INFERNO)
             self.TIMER_INFERNO.reset()
 
         if self.TIMER_IGNITEMANA.ready():
-            self.cast(self.randtarget,self.SPELL_IGNITEMANA)
+            self.cast(self.randtarget(),self.SPELL_IGNITEMANA)
             self.TIMER_IGNITEMANA.reset()
 
         if self.TIMER_LIVINGBOMB.ready():
-            self.cast(self.randtarget, self.SPELL_LIVINGBOMB)
+            self.cast(self.randtarget(), self.SPELL_LIVINGBOMB)
             self.TIMER_LIVINGBOMB.reset()
 
         self.domeleeattack()
 
-class boss_garr(object):
+class boss_garr(basescript.script_npc):
     def __init__(self):
         self.SPELL_ANTIMAGICPULSE = 19492
         self.SPELL_MAGMASHACKLES  = 19496
@@ -68,13 +68,13 @@ class boss_garr(object):
             return
         
         if self.TIMER_ANTIMAGICPULSE.ready():
-            self.cast(self.target, self.SPELL_ANTIMAGICPULSE)
+            self.cast(self.guid, self.SPELL_ANTIMAGICPULSE)
             self.TIMER_ANTIMAGICPULSE.newtime(10,15)
             self.TIMER_ANTIMAGICPULSE.reset()
 
             
         if self.TIMER_MAGMASHACKLES.ready():
-            self.cast(self.target, self.SPELL_MAGMASHACKLES)
+            self.cast(self.guid, self.SPELL_MAGMASHACKLES)
             self.TIMER_MAGMASHACKLES.newtime(8,12)
             self.TIMER_MAGMASHACKLES.reset()
 
@@ -85,7 +85,7 @@ class boss_garr(object):
 
         self.domeleeattack()
 
-class boss_lucifron(object):
+class boss_lucifron(basescript.script_npc):
     def __init__(self):
         self.SPELL_IMPENDINGDOOM = 19702
         self.SPELL_LUCIFRONCURSE = 19703
@@ -102,22 +102,22 @@ class boss_lucifron(object):
 
     def update(self):
         if self.TIMER_IMPENDINGDOOM.ready():
-            self.cast(self.target, self.SPELL_IMPENDINGDOOM)
+            self.cast(self.target(), self.SPELL_IMPENDINGDOOM)
             self.TIMER_IMPENDINGDOOM.newtime(20,20)
             self.TIMER_IMPENDINGDOOM.reset()
             
         if self.TIMER_LUCIFRONCURSE.ready():
-            self.cast(self.target, self.SPELL_LUCIFRONCURSE)
+            self.cast(self.target(), self.SPELL_LUCIFRONCURSE)
             self.TIMER_LUCIFRONCURSE.newtime(15,15)
             self.TIMER_LUCIFRONCURSE.reset()
 
         if self.TIMER_SHADOWSHOCK.ready():
-            self.cast(self.target, self.SPELL_SHADOWSHOCK)
+            self.cast(self.target(), self.SPELL_SHADOWSHOCK)
             self.TIMER_SHADOWSHOCK.reset()
 
         self.domeleeattack()
 
-class boss_magmadar(object):
+class boss_magmadar(basescript.script_npc):
     def __init__(self):
         self.EMOTE_GENERIC_FRENZY_KILL = -10000001
 
@@ -140,20 +140,99 @@ class boss_magmadar(object):
     def update(self):
         if self.TIMER_FRENZY.ready():
             self.say(self.EMOTE_GENERIC_FRENZY_KILL)
-            self.cast(self.target, self.SPELL_FRENZY)
-            self.TIMER_FRENZY.newtime(15)
+            self.cast(self.guid, self.SPELL_FRENZY)
+            self.TIMER_FRENZY.newtime(15,15)
             self.TIMER_FRENZY.reset()
 
         if self.TIMER_PANIC.ready():
-            self.cast(self.newtarget, self.SPELL_PANIC)
-            self.TIMER_PANIC.newtime(35)
+            self.cast(self.target(), self.SPELL_PANIC)
+            self.TIMER_PANIC.newtime(35,35)
             self.TIMER_PANIC.reset()
 
         if self.TIMER_LAVABOMB.ready():
-            self.cast(self.randtarget, self.SPELL_LAVABOMB)
+            self.cast(self.randtarget(), self.SPELL_LAVABOMB)
             self.TIMER_LAVABOMB.reset()
 
         self.domeleeattack()
+
+class boss_gehennas(basescript.script_npc): # Es fehlen noch die adds
+    def __init__(self):
+        self.SPELL_SHADOWBOLT = 19728
+        self.SPELL_RAINOFFIRE = 19717
+        self.SPELL_GEHANNASCURSE = 19716
+
+        self.TIMER_SHADOWBOLT = basescript.script_timer(6,6)
+        self.TIMER_RAINOFFIRE = basescript.script_timer(10,10)
+        self.TIMER_GEHANNASCURSE = basescript.script_timer(12,12)
+
+    def reset(self):
+        self.TIMER_SHADOWBOLT.reset(6,6)
+        self.TIMER_RAINOFFIRE.reset(10,10)
+        self.TIMER_GEHANNASCURSE.reset(12,12)
+
+    def update(self):
+        if self.TIMER_SHADOWBOLT.ready():
+            self.cast(self.randtarget(), self.SPELL_SHADOWBOLT)
+            self.TIMER_SHADOWBOLT.newtime(7,7)
+            self.TIMER_SHADOWBOLT.reset()
+
+        if self.TIMER_RAINOFFIRE.ready():
+            self.cast(self.randtarget(), self.SPELL_RAINOFFIRE)
+            self.TIMER_RAINOFFIRE.newtime(4,12)
+            self.TIMER_RAINOFFIRE.reset()
+
+        if self.TIMER_GEHANNASCURSE.ready():
+            self.cast(self.target(), self.SPELL_GEHANNASCURSE)
+            self.TIMER_GEHANNASCURSE.newtime(22,30)
+            self.TIMER_GEHANNASCURSE.reset()
+
+
+        self.domeleeattack()
+
+class boss_golemagg(basescript.script_npc):
+    def __init__(self):
+        self.SPELL_MAGMASPLASH = 13879
+        self.SPELL_PYROBLAST   = 20228
+        self.SPELL_EARTHQUAKE  = 19798
+        self.SPELL_ENRAGE      = 19953
+        self.SPELL_GOLEMAGG_TRUST = 20553
+
+        self.EMOTE_LOWHP = -1409002
+        self.SPELL_MANGLE = 19820
+
+        self.TIMER_PYROBLAST = basescript.script_timer(7,7)
+        self.TIMER_EARTHQUAKE = basescript.script_timer(3,3)
+        self.TIMER_BUFF = basescript.script_timer(2.5,2.5)
+        self.ENRAGED = False
+
+    def reset(self):
+        self.TIMER_PYROBLAST.reset(7,7)
+        self.TIMER_EARTHQUAKE.reset(3,3)
+        self.TIMER_BUFF.reset(2.5,2.5)
+        self.ENRAGED = False
+        self.cast(self.guid, self.SPELL_MAGMASPLASH)
+
+    def update(self):
+
+        if self.TIMER_PYROBLAST.ready():
+            self.cast(self.randtarget(),self.SPELL_PYROBLAST)
+            self.TIMER_PYROBLAST.reset()
+
+        if self.ENRAGED == False and self.gethealthpercent < 10:
+            self.cast(self.guid, self.SPELL_ENRAGE)
+            self.ENRAGED = True
+
+        if self.ENRAGED == True:
+            if self.TIMER_EARTHQUAKE.ready():
+                self.cast(self.target, self.SPELL_EARTHQUAKE)
+                self.TIMER_EARTHQUAKE.reset()
+
+        if self.TIMER_BUFF.ready():
+            self.cast(self.target, self.SPELL_GOLEMAGG_TRUST)
+            self.TIMER_BUFF.reset()
+
+        self.domeleeattack()
+            
         
           
             
