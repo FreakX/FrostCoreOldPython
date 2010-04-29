@@ -224,11 +224,11 @@ class boss_golemagg(basescript.script_npc):
 
         if self.ENRAGED == True:
             if self.TIMER_EARTHQUAKE.ready():
-                self.cast(self.target, self.SPELL_EARTHQUAKE)
+                self.cast(self.target(), self.SPELL_EARTHQUAKE)
                 self.TIMER_EARTHQUAKE.reset()
 
         if self.TIMER_BUFF.ready():
-            self.cast(self.target, self.SPELL_GOLEMAGG_TRUST)
+            self.cast(self.target(), self.SPELL_GOLEMAGG_TRUST)
             self.TIMER_BUFF.reset()
 
         self.domeleeattack()

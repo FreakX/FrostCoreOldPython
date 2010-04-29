@@ -7,7 +7,7 @@ class script_npc(object):
     def target(self):
         return "Daniel"
     def randtarget(self):
-        print str(time.strftime("%M:%S")) +  "Search random Target"
+        print str(time.strftime("%M:%S")) +  " Search random Target"
     def domeleeattack(self):
         pass
     def gethealthpercent(self):
@@ -15,9 +15,9 @@ class script_npc(object):
     def newtarget(self):
         return "newtarget"
     def say(self, sth):
-        print "Say: " + str(sth)
+        print str(time.strftime("%M:%S")) + " Say: " + str(sth)
     def summon_npc(self, cre_id):
-        print "Summon NPC: " + str(cre_id)
+        print str(time.strftime("%M:%S")) + " Summon NPC: " + str(cre_id)
     def guid(self):
         return 123456789
     
