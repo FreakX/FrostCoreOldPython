@@ -1,5 +1,5 @@
 # -*- coding: cp1252 -*-
-import frostlib
+#import frostlib
 ##
 ## Scripte werden in Instancen geladen, d.h. jede instanz ist ein Modul
 ## Für Creatures die nicht in Instanzen stehen sind die Module
