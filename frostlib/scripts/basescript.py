@@ -16,13 +16,17 @@ class script_npc(object):
         return "newtarget"
     def say(self, sth):
         print "Say: " + str(sth)
+    def summon_npc(self, cre_id):
+        print "Summon NPC: " + str(cre_id)
+    def guid(self):
+        return 123456789
     
 
 class script_timer:
     def __init__(self, mininter,maxinter):
-        self.mininter = mininter
-        self.maxinter = maxinter
-        self.inter = random.randint(self.mininter,self.maxinter)
+        self.mininter = int(mininter*1000)
+        self.maxinter = int(maxinter*1000)
+        self.inter = float(random.randint(self.mininter,self.maxinter)/1000)
         self.lastcast = time.time()
 
     def ready(self):
@@ -34,14 +38,15 @@ class script_timer:
             return False
 
     def newtime(self, mininter, maxinter):
-        self.mininter = mininter
-        self.maxinter = maxinter
+        self.mininter = int(mininter*1000)
+        self.maxinter = int(maxinter*1000)
 
         
     def reset(self, mininter=0, maxinter=0):
         if mininter != 0 and maxinter != 0:
-            self.mininter = mininter
-            self.maxinter = maxinter
+            self.mininter = int(mininter*1000)
+            self.maxinter = int(maxinter*1000)
         self.lastcast = time.time()
-        self.inter = random.randint(self.mininter,self.maxinter)
+        self.inter = float(random.randint(self.mininter,self.maxinter)/1000)
+
         

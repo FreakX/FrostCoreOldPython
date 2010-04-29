@@ -22,12 +22,12 @@ class boss_baron_geddon(basescript.script_npc):
     def update(self):
         if self.gethealthpercent() <= 2:
             self.castinterrupt()
-            self.cast(self.guid, self.SPELL_ARMAGEDDOM)
+            self.cast(self.guid(), self.SPELL_ARMAGEDDOM)
             self.say(self.EMOTE_SERVICE)
             return
         
         if self.TIMER_INFERNO.ready():
-            self.cast(self.guid,self.SPELL_INFERNO)
+            self.cast(self.guid(),self.SPELL_INFERNO)
             self.TIMER_INFERNO.reset()
 
         if self.TIMER_IGNITEMANA.ready():
@@ -64,17 +64,17 @@ class boss_garr(basescript.script_npc):
             
     def update(self):
         if self.gethealthpercent() < 20:
-            self.cast(self.guid, self.SPELL_ENRAGE)
+            self.cast(self.guid(), self.SPELL_ENRAGE)
             return
         
         if self.TIMER_ANTIMAGICPULSE.ready():
-            self.cast(self.guid, self.SPELL_ANTIMAGICPULSE)
+            self.cast(self.guid(), self.SPELL_ANTIMAGICPULSE)
             self.TIMER_ANTIMAGICPULSE.newtime(10,15)
             self.TIMER_ANTIMAGICPULSE.reset()
 
             
         if self.TIMER_MAGMASHACKLES.ready():
-            self.cast(self.guid, self.SPELL_MAGMASHACKLES)
+            self.cast(self.guid(), self.SPELL_MAGMASHACKLES)
             self.TIMER_MAGMASHACKLES.newtime(8,12)
             self.TIMER_MAGMASHACKLES.reset()
 
@@ -135,12 +135,12 @@ class boss_magmadar(basescript.script_npc):
         self.TIMER_FRENZY.reset(30,30)
         self.TIMER_PANIC.reset(20,20)
         self.TIMER_LAVABOMB.reset(12,12)
-        self.cast(self.guid, self.SPELL_MAGMASPIT)
+        self.cast(self.guid(), self.SPELL_MAGMASPIT)
 
     def update(self):
         if self.TIMER_FRENZY.ready():
             self.say(self.EMOTE_GENERIC_FRENZY_KILL)
-            self.cast(self.guid, self.SPELL_FRENZY)
+            self.cast(self.guid(), self.SPELL_FRENZY)
             self.TIMER_FRENZY.newtime(15,15)
             self.TIMER_FRENZY.reset()
 
@@ -210,7 +210,7 @@ class boss_golemagg(basescript.script_npc):
         self.TIMER_EARTHQUAKE.reset(3,3)
         self.TIMER_BUFF.reset(2.5,2.5)
         self.ENRAGED = False
-        self.cast(self.guid, self.SPELL_MAGMASPLASH)
+        self.cast(self.guid(), self.SPELL_MAGMASPLASH)
 
     def update(self):
 
@@ -219,7 +219,7 @@ class boss_golemagg(basescript.script_npc):
             self.TIMER_PYROBLAST.reset()
 
         if self.ENRAGED == False and self.gethealthpercent < 10:
-            self.cast(self.guid, self.SPELL_ENRAGE)
+            self.cast(self.guid(), self.SPELL_ENRAGE)
             self.ENRAGED = True
 
         if self.ENRAGED == True:
