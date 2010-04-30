@@ -292,7 +292,7 @@ class boss_shazzrah(basescript.script_npc):
 class boss_sulfuron_harbringer(basescript.script_npc):
     def __init__(self):
         self.SPELL_DARKSTRIKE = 19777
-        self.SPELL_DEMORIZINGSHOUT =19778
+        self.SPELL_DEMORALIZINGSHOUT =19778
         self.SPELL_INSPIRE = 19779
         self.SPELL_KNOCKDOWN = 19780
         self.SPELL_FLAMESPEAR = 19781
@@ -313,7 +313,7 @@ class boss_sulfuron_harbringer(basescript.script_npc):
     def update(self):
 
         if self.TIMER_DEMORALIZINGSHOUT.ready():
-            self.cast(self.target(), self.SPELL_DEMORALIZINGSHOT)
+            self.cast(self.target(), self.SPELL_DEMORALIZINGSHOUT)
             self.TIMER_DEMORALIZINGSHOUT.newtime(15,20)
             self.TIMER_DEMORALIZINGSHOUT.reset()
 
@@ -325,7 +325,7 @@ class boss_sulfuron_harbringer(basescript.script_npc):
         if self.TIMER_KNOCKDOWN.ready():
             self.cast(self.target(), self.SPELL_KNOCKDOWN)
             self.TIMER_KNOCKDOWN.newtime(12,15)
-            self.TIMER_KNOCKDOWN-reset()
+            self.TIMER_KNOCKDOWN.reset()
 
         if self.TIMER_FLAMESPEAR.ready():
             self.cast(self.randtarget(), self.SPELL_FLAMESPEAR)
