@@ -289,7 +289,53 @@ class boss_shazzrah(basescript.script_npc):
             
         self.domeleeattack()
             
-        
+class boss_sulfuron_harbringer(basescript.script_npc):
+    def __init__(self):
+        self.SPELL_DARKSTRIKE = 19777
+        self.SPELL_DEMORIZINGSHOUT =19778
+        self.SPELL_INSPIRE = 19779
+        self.SPELL_KNOCKDOWN = 19780
+        self.SPELL_FLAMESPEAR = 19781
+
+        self.TIMER_DARKSTRIKE = basescript.script_timer(10,10)
+        self.TIMER_DEMORALIZINGSHOUT = basescript.script_timer(15,15)
+        self.TIMER_INSPIRE = basescript.script_timer(13,13)
+        self.TIMER_KNOCKDOWN = basescript.script_timer(6,6)
+        self.TIMER_FLAMESPEAR = basescript.script_timer(2,2)
+
+    def reset(self):
+        self.TIMER_DARKSTRIKE.reset(10,10)
+        self.TIMER_DEMORALIZINGSHOUT.reset(15,15)
+        self.TIMER_INSPIRE.reset(13,13)
+        self.TIMER_KNOCKDOWN.reset(6,6)
+        self.TIMER_FLAMESPEAR.reset(2,2)
+
+    def update(self):
+
+        if self.TIMER_DEMORALIZINGSHOUT.ready():
+            self.cast(self.target(), self.SPELL_DEMORALIZINGSHOT)
+            self.TIMER_DEMORALIZINGSHOUT.newtime(15,20)
+            self.TIMER_DEMORALIZINGSHOUT.reset()
+
+        if self.TIMER_INSPIRE.ready():
+            self.cast(self.randtarget(), self.SPELL_INSPIRE)
+            self.TIMER_INSPIRE.newtime(20,26)
+            self.TIMER_INSPIRE.reset()
+
+        if self.TIMER_KNOCKDOWN.ready():
+            self.cast(self.target(), self.SPELL_KNOCKDOWN)
+            self.TIMER_KNOCKDOWN.newtime(12,15)
+            self.TIMER_KNOCKDOWN-reset()
+
+        if self.TIMER_FLAMESPEAR.ready():
+            self.cast(self.randtarget(), self.SPELL_FLAMESPEAR)
+            self.TIMER_FLAMESPEAR.newtime(12,16)
+            self.TIMER_FLAMESPEAR.reset()
+
+        if self.TIMER_DARKSTRIKE.ready():
+            self.cast(self.guid(), self.SPELL_DARKSTRIKE)
+            self.TIMER_DARKSTRIKE.newtime(15,18)
+            self.TIMER_DARKSTRIKE.reset()
         
         
             
