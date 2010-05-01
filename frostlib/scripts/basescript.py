@@ -25,7 +25,27 @@ class script_npc(object):
 
     def teleporttoplayer(self,player):
         print  str(time.strftime("%M:%S")) + " Teleport to Player: " + str(player)
-    
+
+    def setdisplayid(self, modelid):
+        print str(time.strftime("%M:%S")) + " Change Displayid to: " + str(modelid)
+
+    def set(self, group, key, value):
+        pass
+
+    def selectable(self):
+        print str(time.strftime("%M:%S")) + " Make not Selectable"
+
+    def unselectable(self):
+        print str(time.strftime("%M:%S")) + " Make Selectable"
+
+    def attackstop(self):
+        print str(time.strftime("%M:%S")) + " Stop Attacking"
+
+    def attack(self):
+        print str(time.strftime("%M:%S")) + " Start Attacking"
+
+    def settarget(self,newtar):
+        self.target = newtar
 
 class script_timer:
     def __init__(self, mininter,maxinter):
@@ -53,5 +73,7 @@ class script_timer:
             self.maxinter = int(maxinter*1000)
         self.lastcast = time.time()
         self.inter = float(random.randint(self.mininter,self.maxinter)/1000)
-
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
         

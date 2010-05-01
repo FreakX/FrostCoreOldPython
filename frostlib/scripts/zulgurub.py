@@ -4,7 +4,8 @@ import basescript
 
 class boss_arlokk(basescript.script_npc):
     def __init__(self):
-        
+        self.mindmg = 100
+        self.maxdmg = 200
         self.SAY_AGGRO = -1309011
         self.SAY_FEAST_PANTHER = -1309012
         self.SAY_DEATH = -1309013
@@ -16,7 +17,7 @@ class boss_arlokk(basescript.script_npc):
         self.SPELL_PANTHER_TRANSFORM = 24190
 
         self.MODEL_ID_NORMAL = 15218
-        self.MODEL_ID_PHANTER = 15215
+        self.MODEL_ID_PANTHER = 15215
         self.MODEL_ID_BLANK = 11686
 
         self.NPC_ZULIAN_PROWLER = 15101
