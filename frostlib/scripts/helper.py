@@ -38,6 +38,7 @@ time.sleep(0.01)
 a = __init__.molten_core.boss_majordomo_executus()
 script.append(a)
 time.sleep(0.01)
+"""
 a = __init__.zulgurub.boss_arlokk()
 script.append(a)
 time.sleep(0.01)
@@ -170,6 +171,7 @@ time.sleep(0.01)
 a = __init__.molten_core.boss_majordomo_executus()
 script.append(a)
 time.sleep(0.01)
+"""
 
 
 random.shuffle(script)
@@ -181,7 +183,7 @@ while True:
             
                         
         except:
-            #x.update()
+            x.update()
             for i in range(20):
                 print "ERROR in " + str(x)
             script.remove(x)
