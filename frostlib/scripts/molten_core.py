@@ -336,6 +336,101 @@ class boss_sulfuron_harbringer(basescript.script_npc):
             self.cast(self.guid(), self.SPELL_DARKSTRIKE)
             self.TIMER_DARKSTRIKE.newtime(15,18)
             self.TIMER_DARKSTRIKE.reset()
+            
+        self.domeleeattack()
+
+        
+class mob_sulfuron_harbringer(basescript.script_npc):
+    def __init__(self):
+        self.SPELL_HEAL = 19775
+        self.SPELL_SHADOWWORDPAIN = 19776
+        self.SPELL_IMMOLATE = 20294
+
+        self.TIMER_HEAL = basescript.script_timer(15,30)
+        self.TIMER_SHADOWWORDPAIN = basescript.script_timer(2,2)
+        self.TIMER_IMMOLATE = basescript.script_timer(8,8)
+
+    def ready(self):
+        self.TIMER_HEAL.reset(15,30)
+        self.TIMER_SHADOWWORDPAIN.reset(2,2)
+        self.TIMER_IMMOLATE.reset(8,8)
+
+    def update(self):
+        if self.gethealthpercent() < 20:
+            if self.TIMER_HEAL.ready():
+                self.cast(self.guid(), self.SPELL_HEAL)
+                self.TIMER_HEAL.newtime(15,20)
+                self.TIMER_HEAL.reset()
+
+        if self.TIMER_SHADOWWORDPAIN.ready():
+            self.cast(self.randtarget(), self.SPELL_SHADOWWORDPAIN)
+            self.TIMER_SHADOWWORDPAIN.newtime(18,26)
+            self.TIMER_SHADOWWORDPAIN.reset()
+
+        if self.TIMER_IMMOLATE.ready():
+            self.cast(self.randtarget(), self.SPELL_IMMOLATE)
+            self.TIMER_IMMOLATE.newtime(15,25)
+            self.TIMER_IMMOLATE.reset()
+
+        self.domeleeattack()
+
+
+class boss_majordomo_executus(basescript.script_npc):
+    def __init__(self):
+        self.SAY_AGGRO   = -1409003
+        self.SAY_SPAWN   = -1409004
+        self.SAY_SLAY    = -1409005
+        self.SAY_SPECIAL = -1409006
+        self.SAY_DEFEAT  = -1409007
+
+        self.SAY_SUMMON_MAJ   = -1409008
+        self.SAY_ARRIVAL1_RAG = -1409009
+        self.SAY_ARRIVAL2_MAJ = -1409010
+        self.SAY_ARRIVAL3_RAG = -1409011
+        self.SAY_ARRIVAL5_RAG = -1409012
+
+        self.SPAWN_RAG_X = 838.51
+        self.SPAWN_RAG_Y = -829.84
+        self.SPAWN_RAG_Z = -232.00
+        self.SPAWN_RAG_O = 1.7
+
+        self.SPELL_MAGIC_REFLECTION = 20619
+        self.SPELL_DAMAGE_REFLECTION= 21075
+        self.SPELL_BLASTWAVE        = 20229
+        self.SPELL_AEGIS            = 20620
+        self.SPELL_TELEPORT         = 20618
+        self.SPELL_SUMMON_GAGNAROS  = 19774
+
+        self.ENTRY_FLAMEWALKER_HEALER  = 11663
+        self.ENTRY_FLAMEWALKER_ELITE   = 11664
+
+        self.TIMER_MAGIC_REFLECTION  = basescript.script_timer(30,30)
+        self.TIMER_DAMAGE_REFLECTION = basescript.script_timer(15,15)
+        self.TIMER_BLASTWAVE         = basescript.script_timer(10,10)
+
+    def reset(self):
+        
+        self.TIMER_MAGIC_REFLECTION.reset(30,30)
+        self.TIMER_DAMAGE_REFLECTION.reset(15,15)
+        self.TIMER_BLASTWAVE.reset(10,10)
+
+    def update(self):
+
+        if self.gethealthpercent < 50:
+            self.cast(self.guid(), self.SPELL_AEGIS)
+
+        if self.TIMER_MAGIC_REFLECTION.ready():
+            self.cast(self.guid(), self.SPELL_MAGIC_REFLECTION)
+            self.TIMER_MAGIC_REFLECTION.newtime(60,60)
+            self.TIMER_MAGIC_REFLECTION.reset()
+
+        if self.TIMER_BLASTWAVE.ready():
+            self.cast(self.target(), self.SPELL_MAGIC_REFLECTION)
+            self.TIMER_BLASTWAVE.newtime(10,10)
+            self.TIMER_BLASTWAVE.reset()
+
+        self.domeleeattack()
+
         
         
             

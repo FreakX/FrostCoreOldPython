@@ -5,21 +5,23 @@ class script_npc(object):
     def cast(self, target, spellid):
         print str(time.strftime("%M:%S")) + " Casting Spellid: " + str(spellid) + " on " + str(target)
     def target(self):
-        return "Daniel"
+        return "Current Target"
     def randtarget(self):
-        print str(time.strftime("%M:%S")) +  " Search random Target"
+        return "Random Target"
     def domeleeattack(self):
         pass
     def gethealthpercent(self):
         return 20
     def newtarget(self):
-        return "newtarget"
+        return "New Target"
     def say(self, sth):
         print str(time.strftime("%M:%S")) + " Say: " + str(sth)
+        
     def summon_npc(self, cre_id):
         print str(time.strftime("%M:%S")) + " Summon NPC: " + str(cre_id)
+        
     def guid(self):
-        return 123456789
+        return "GUID from Script"
 
     def teleporttoplayer(self,player):
         print  str(time.strftime("%M:%S")) + " Teleport to Player: " + str(player)
