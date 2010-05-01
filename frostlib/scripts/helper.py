@@ -8,6 +8,9 @@ script = []
 a = __init__.zulgurub.boss_arlokk()
 script.append(a)
 time.sleep(0.01)
+a = __init__.zulgurub.boss_gahzranka()
+script.append(a)
+time.sleep(0.01)
 a = __init__.molten_core.boss_baron_geddon()
 script.append(a)
 time.sleep(0.01)
@@ -181,7 +184,7 @@ while True:
             
                         
         except:
-            #x.update()
+            x.update()
             for i in range(20):
                 print "ERROR in " + str(x)
             script.remove(x)

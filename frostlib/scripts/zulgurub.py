@@ -105,5 +105,41 @@ class boss_arlokk(basescript.script_npc):
                 self.IS_VANISHED = False
 
         self.domeleeattack()
+
+class boss_gahzranka(basescript.script_npc):
+    def __init__(self):
+        self.SPELL_FROSTBREATH = 16099
+        self.SPELL_MASSIVEGEYSER = 22421
+        self.SPELL_SLAM = 24326
+
+        self.TIMER_FROSTBREATH = basescript.script_timer(8,8)
+        self.TIMER_MASSIVEGEYSER = basescript.script_timer(25,25)
+        self.TIMER_SLAM = basescript.script_timer(17,17)
+
+    def reset(self):
+        self.TIMER_FROSTBREATH.reset(8,8)
+        self.TIMER_MASSIVEGEYSER.reset(25,25)
+        self.TIMER_SLAM.reset(17,17)
+
+    def update(self):
+        if self.TIMER_FROSTBREATH.ready():
+            self.cast(self.target(), self.SPELL_FROSTBREATH)
+            self.TIMER_FROSTBREATH.newtime(7,11)
+            self.TIMER_FROSTBREATH.reset()
+
+        if self.TIMER_MASSIVEGEYSER.ready():
+            self.cast(self.target(), self.SPELL_MASSIVEGEYSER)
+            self.TIMER_MASSIVEGEYSER.newtime(22,32)
+            self.TIMER_MASSIVEGEYSER.reset()
+
+        if self.TIMER_SLAM.ready():
+            self.cast(self.target(), self.SPELL_SLAM)
+            self.TIMER_SLAM.newtime(12,20)
+            self.TIMER_SLAM.reset()
+
+        self.domeleeattack()
+        
+        
+    
                 
         
