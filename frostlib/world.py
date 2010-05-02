@@ -85,7 +85,7 @@ class world(object):
                 currentry = result_de[enry]
                 script_id = str(currentry[0])
                 script_text = str(currentry[1])
-                self.wscript_texts[script_id].set_lang("de", script_text)
+                self.wscript_texts[script_id].set_lang("deDE", script_text)
                 p.update_time(cur)
                 cur += 1
                 if str(p) != pold:
@@ -97,7 +97,7 @@ class world(object):
                 currentry = result_es[enry]
                 script_id = str(currentry[0])
                 script_text = str(currentry[1])
-                self.wscript_texts[script_id].set_lang("es", script_text)
+                self.wscript_texts[script_id].set_lang("esES", script_text)
                 p.update_time(cur)
                 cur += 1
                 if str(p) != pold:
@@ -109,7 +109,7 @@ class world(object):
                 currentry = result_fr[enry]
                 script_id = str(currentry[0])
                 script_text = str(currentry[1])
-                self.wscript_texts[script_id].set_lang("fr", script_text)
+                self.wscript_texts[script_id].set_lang("frFR", script_text)
                 p.update_time(cur)
                 cur += 1
                 if str(p) != pold:
@@ -121,7 +121,7 @@ class world(object):
                 currentry = result_ru[enry]
                 script_id = str(currentry[0])
                 script_text = str(currentry[1])
-                self.wscript_texts[script_id].set_lang("ru", script_text)
+                self.wscript_texts[script_id].set_lang("ruRU", script_text)
                 p.update_time(cur)
                 cur += 1
                 if str(p) != pold:
