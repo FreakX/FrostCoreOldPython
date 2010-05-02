@@ -344,11 +344,12 @@ class boss_hazzarah(self):
 
      if self.TIMER_ILLUSION.ready():
 
+            target = self.randtarget()
+            spawned_creature = self.spawn_creature_to_target(15163, target) # 15163 Is die Creature Id von der Illusion die gespawnt werden soll
+            spawned_creature.attack(target) # Die gespawnte Creature soll das anvisierte target angreifen
+
             self.TIMER_ILLUSION.newtime(15,25)
             self.TIMER_ILLUSION.reset()
-
-
-    "Fehlt noch was. Brauche ich noch Hilfe für.
 
         self.domeleeattack()
 
