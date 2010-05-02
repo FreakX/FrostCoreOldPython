@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 # zulgurub creature Scripts:
 # Scriptklassen erben von der Basisscriptklasse
 import basescript
@@ -80,6 +81,7 @@ class boss_arlokk(basescript.script_npc):
                 self.summon_npc(self.NPC_ZULIAN_PROWLER)
                 self.TIMER_SUMMON.newtime(5,5)
                 self.TIMER_SUMMON.reset()
+                
         if self.TIMER_VANISH.ready():
             self.setdisplayid(self.MODEL_ID_BLANK)
             self.unselectable()
@@ -312,6 +314,81 @@ class boss_hakkar(basescript.script_npc):
             self.TIMER_CHECKARLOKK.reset()
 
         self.domeleeattack()
+
+class boss_hazzarah(self):
+    def __init__(self):
+        self.SPELL_MANABURN = 26046
+        self.SPELL_SLEEP = 24664
+
+        self.TIMER_MANABURN = basescript.script_timer(4,10)
+        self.TIMER_SLEEP = basescript.script_timer(10,18)
+        self.TIMER_ILLUSION = basescript.script_timer(10,18)
+
+    def reset(self):
+        self.TIMER_MANABURN.reset(4,10)
+        self.TIMER_SLEEP.reset(10,18)
+        self.TIMER_ILLUSION.reset(10,18)
+
+    def update(self):
+        if self.TIMER_MANABURN.ready():
+            self.cast(self.target(), self.SPELL_MANABURN)
+
+            self.TIMER_MANABURN.newtime(8,16)
+            self.TIMER_MANABURN.reset()
+
+        if self.TIMER_SLEEP.ready():
+            self.cast(self.target(), self.SPELL_SLEEP)
+
+            self.TIMER_SLEEP.newtime(12,20)
+            self.TIMER_SLEEP.reset()
+
+     if self.TIMER_ILLUSION.ready():
+
+            self.TIMER_ILLUSION.newtime(15,25)
+            self.TIMER_ILLUSION.reset()
+
+
+    "Fehlt noch was. Brauche ich noch Hilfe für.
+
+        self.domeleeattack()
+
+class boss_jeklik(self):
+    def __init__(self):
+        self.SAY_AGGRO = -1309002
+        self.SAY_RAINFIRE = -1309003
+        self.SAY_DEATH = -1309004
+
+        self.SPELL_CHARGE = 22911
+        self.SPELL_SONICBURST = 23918
+        self.SPELL_SCREECH = 6605
+        self.SPELL_SHADOWWORDPAIN = 23952
+        self.SPELL_MINDFLAY = 26044
+        self.SPELL_CHAINMINDFLAY = 23954
+        self.SPELL_GREATERHEAL = 23954
+        self.SPELL_BATFORM = 23966
+
+        self.TIMER_CHARGE = basescript.script_timer(20,20)
+        self.TIMER_SONICBURST = basescript.script_timer(8,8)
+        self.TIMER_SCREECH = basescript.script_timer(13,13)
+        self.TIMER_SPAWNBATS = basescript.script_timer(60,60)
+        self.TIMER_SHADOWWORDPAIN = basescript.script_timer(6,6)
+        self.TIMER_MINDFLAY = basescript.script_timer(11,11)
+        self.TIMER_CHAINMINDFLAY = basescript.script_timer(26,26)
+        self.TIMER_GREATERHEAL = basescript.script_timer(50,50)
+        self.TIMER_SPAWNFLYINGBATS = basescript.script_timer(10,10)
+
+    def reset(self):
+        self.TIMER_CHARGE.reset(20,20)
+        self.TIMER_SONICBURST.reset(8,8)
+        self.TIMER_SCREECH.reset(13,13)
+        self.TIMER_SPAWNBATS.reset(60,60)
+        self.TIMER_SHADOWWORDPAIN.reset(6,6)
+        self.TIMER_MINDFLAY.reset(11,11)
+        self.TIMER_CHAINMINDFLAY.reset(26,26)
+        self.TIMER_GREATERHEAL.reset(50,50)
+        self.TIMER_SPAWNFLYINGBATS.reset(10,10)
+        
+            
 
         
             
