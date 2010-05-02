@@ -5,18 +5,6 @@ import random
 maxdelay = 0.25
 script = []
 
-<<<<<<< HEAD
-a = __init__.zulgurub.boss_arlokk()
-script.append(a)
-time.sleep(0.01)
-a = __init__.zulgurub.boss_gahzranka()
-script.append(a)
-time.sleep(0.01)
-
-"""
-a = __init__.zulgurub.boss_arlokk()
-script.append(a)
-time.sleep(0.01)
 a = __init__.molten_core.boss_baron_geddon()
 script.append(a)
 time.sleep(0.01)
@@ -45,9 +33,9 @@ a = __init__.molten_core.mob_sulfuron_harbringer()
 script.append(a)
 time.sleep(0.01)
 a = __init__.molten_core.boss_majordomo_executus()
-=======
+script.append(a)
+time.sleep(0.01)
 a = __init__.zulgurub.boss_hakkar()
->>>>>>> origin/master
 script.append(a)
 time.sleep(0.01)
 a = __init__.zulgurub.boss_arlokk()
