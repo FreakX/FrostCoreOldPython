@@ -580,6 +580,39 @@ class creature_instance(object):
         elif scriptname == "boss_illidan":
             self.script = frostlib.creaturescripts.blacktemple.illidan()
             
-               
+
+class script_text(object):
+    def __init__(self, script_id, script_text):
+        self.en_script_text = script_text
+        self.script_text_id = script_id
+
+    def set_lang(self, script_lang, script_text):
+        if script_lang == "deDE":
+            self.de_text = script_text
+
+        elif script_lang == "esES":
+            self.es_text = script_text
+
+        elif script_lang == "frFR":
+            self.fr_text = script_text
+
+        elif script_lang == "ruRU":
+            self.ru_text = script_text
+
+        else:
+            frostlib.dout("Undefined Language Code: " + str(script_lang))
         
-    
+    def getlocalizedsubname(self, lang):
+        try:
+            if lang == "enUS":
+                return self.en_text
+            elif lang == "deDE":
+                return self.de_text
+            elif lang == "esES":
+                return self.es_text
+            elif lang == "frFR":
+                return self.fr_text
+            elif lang == "ruRU":
+                return self.ru_text
+        except NameError:
+            return self.en_text
