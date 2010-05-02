@@ -41,9 +41,9 @@ class script_npc(object):
     def attackstop(self):
         print str(time.strftime("%M:%S")) + " Stop Attacking"
 
-    def attack(self):
-        print str(time.strftime("%M:%S")) + " Start Attacking"
-
+    def attack(self,creature):
+        print str(time.strftime("%M:%S")) + " Start Attacking " + str(creature)
+        
     def settarget(self,newtar):
         self.target = newtar
 

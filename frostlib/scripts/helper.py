@@ -8,6 +8,15 @@ script = []
 a = __init__.zulgurub.boss_hakkar()
 script.append(a)
 time.sleep(0.01)
+a = __init__.zulgurub.boss_arlokk()
+script.append(a)
+time.sleep(0.01)
+a = __init__.zulgurub.boss_gahzranka()
+script.append(a)
+time.sleep(0.01)
+a = __init__.zulgurub.boss_grilek()
+script.append(a)
+time.sleep(0.01)
 
 
 
