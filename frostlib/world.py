@@ -47,6 +47,90 @@ class world(object):
             traceback.print_exc(file=frostlib.logfile)
             frostlib.nout("No Connection to MySQL Server")
             frostlib.shutdown()
+    def loadscripttexts(self):
+        resultcount_en = self.cursor.execute("SELECT * FROM script_texts_en")
+        result_en = self.cursor.fetchall()
+
+        resultcount_de = self.cursor.execute("SELECT * FROM script_texts_de")
+        result_de = self.cursor.fetchall()
+
+        resultcount_es = self.cursor.execute("SELECT * FROM script_texts_es")
+        result_es = self.cursor.fetchall()
+
+        resultcount_fr = self.cursor.execute("SELECT * FROM script_texts_fr")
+        result_fr = self.cursor.fetchall()
+
+        resultcount_ru = self.cursor.execute("SELECT * FROM script_texts_ru")
+        result_ru = self.cursor.fetchall()
+
+        counter = int(resultcount_en) + int(resultcount_de) + int(resultcount_es) + int(resultcount_fr) + int(resultcount_ru)
+        p = frostlib.ProgressBar(int(counter), "Loading Script Texts...")
+        cur = 0
+        for entry in range(0,resultcount_en):
+            try:
+                currentry = result_en[enry]
+                script_id = str(currentry[0])
+                script_text = str(currentry[1])
+                script_text_obj = frostlib.classes.script_text(script_id,
+                                                               script_text)
+                self.wscript_texts[script_id] = script_text_obj
+                p.update_time(cur)
+                cur += 1
+                if str(p) != pold:
+                    frostlib.nout(str(p))
+                    pold = str(p)
+
+        for entry in range(0,resultcount_de):
+            try:
+                currentry = result_de[enry]
+                script_id = str(currentry[0])
+                script_text = str(currentry[1])
+                self.wscript_texts[script_id].set_lang("de", script_text)
+                p.update_time(cur)
+                cur += 1
+                if str(p) != pold:
+                    frostlib.nout(str(p))
+                    pold = str(p)
+
+        for entry in range(0,resultcount_es):
+            try:
+                currentry = result_es[enry]
+                script_id = str(currentry[0])
+                script_text = str(currentry[1])
+                self.wscript_texts[script_id].set_lang("es", script_text)
+                p.update_time(cur)
+                cur += 1
+                if str(p) != pold:
+                    frostlib.nout(str(p))
+                    pold = str(p)
+
+        for entry in range(0,resultcount_fr):
+            try:
+                currentry = result_fr[enry]
+                script_id = str(currentry[0])
+                script_text = str(currentry[1])
+                self.wscript_texts[script_id].set_lang("fr", script_text)
+                p.update_time(cur)
+                cur += 1
+                if str(p) != pold:
+                    frostlib.nout(str(p))
+                    pold = str(p)
+
+        for entry in range(0,resultcount_ru):
+            try:
+                currentry = result_ru[enry]
+                script_id = str(currentry[0])
+                script_text = str(currentry[1])
+                self.wscript_texts[script_id].set_lang("ru", script_text)
+                p.update_time(cur)
+                cur += 1
+                if str(p) != pold:
+                    frostlib.nout(str(p))
+                    pold = str(p)
+                
+                
+
+        
     def loaditems(self):
         resultcount = self.cursor.execute("SELECT * FROM item_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Items...")
