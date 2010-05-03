@@ -20,11 +20,16 @@ if frostlib_hash != frostlib.HASH:
     frostlib.shutdown()
 
 frostlib.dout("Loading Data...")
-sworld = frostlib.world.world()
-sworld.connect_db()
-sworld.loaditems()
-sworld.loaditems_localized()
-sworld.load_creatures()
+frostlib.sworld = frostlib.world.world()
+a = frostlib.scripts.molten_core.boss_gehennas()
+b = [a]
+while True:
+    for x in b:
+        x.update()
+frostlib.sworld.connect_db()
+frostlib.sworld.loaditems()
+frostlib.sworld.loaditems_localized()
+frostlib.sworld.load_creatures()
 
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports

@@ -342,7 +342,7 @@ class boss_hazzarah(self):
             self.TIMER_SLEEP.newtime(12,20)
             self.TIMER_SLEEP.reset()
 
-     if self.TIMER_ILLUSION.ready():
+        if self.TIMER_ILLUSION.ready():
 
             target = self.randtarget()
             spawned_creature = self.spawn_creature_to_target(15163, target) # 15163 Is die Creature Id von der Illusion die gespawnt werden soll

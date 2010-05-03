@@ -28,6 +28,8 @@ class world(object):
     def __init__(self):
         self.witems = {}
         self.wcreatures = {}
+    def castspell(self, caster, target, spellid):
+        print str(time.strftime("%M:%S")) + " Creature " + str(caster) + " casting Spellid: " + str(spellid) + " on " + str(target)
     def connect_db(self):
         try:
             import MySQLdb
@@ -48,6 +50,7 @@ class world(object):
             frostlib.nout("No Connection to MySQL Server")
             frostlib.shutdown()
     def loadscripttexts(self):
+        """
         resultcount_en = self.cursor.execute("SELECT * FROM script_texts_en")
         result_en = self.cursor.fetchall()
 
@@ -130,7 +133,8 @@ class world(object):
                 
                 
 
-        
+            """
+        pass
     def loaditems(self):
         resultcount = self.cursor.execute("SELECT * FROM item_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Items...")

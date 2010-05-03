@@ -1,9 +1,10 @@
 ## Basic CreatureScript:
+from frostlib import sworld
 import time
 import random
 class script_npc(object):
     def cast(self, target, spellid):
-        print str(time.strftime("%M:%S")) + " Casting Spellid: " + str(spellid) + " on " + str(target)
+        sworld.castspell(self.guid, target, spellid)
     def target(self):
         return "Current Target"
     def randtarget(self):
@@ -47,6 +48,13 @@ class script_npc(object):
     def settarget(self,newtar):
         self.target = newtar
 
+    def spawn_creature(self, cre_id, posx, posy, posz, rotation):
+        print "Creature ID: " + str(cre_id)
+        print "Pos X:       " + str(posx)
+        print "Pos Y:       " + str(posy)
+        print "Pos Z:       " + str(posz)
+        print "Orientation: " + str(rotation)
+        
 class script_timer:
     def __init__(self, mininter,maxinter):
         self.mininter = int(mininter*1000)

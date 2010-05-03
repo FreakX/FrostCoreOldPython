@@ -53,6 +53,8 @@ TIME_HOUR = TIME_MINUTE * 60
 TIME_DAY = TIME_HOUR * 24
 TIME_MONTH = TIME_DAY * 30
 TIME_YEAR = TIME_MONTH * 12
+
+sworld = True
 def shutdown():
     nout("Schutdown in 10")
     time.sleep(1)
