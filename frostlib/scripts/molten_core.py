@@ -432,5 +432,61 @@ class boss_majordomo_executus(basescript.script_npc):
         self.domeleeattack()
 
         
+
+class instance(basescripp.script_instance):
+    def __inut__(self):
+        self.STATUS_BARON_GEDDON = False
+        self.STATUS_GARR = False
+        self.STATUS_GEHENNAS = False
+        self.STATUS_GOLEMAGG = False
+        self.STATUS_MAJORDOMO_EXECUTUS = False
+        self.STATUS_RAGNAROS = False
+        self.STATUS_SHAZZRAH = False
+        self.STATUS_SULFURON_HARBRINGER = False
+
+        self.ID_BARON_GEDDON = 00000 # ID von Baron Geddon
+        self.ID_GARR = 00000 # ID von Garr
+        self.ID_GEHENNAS = 00000 # Id von Gehennas
+        self.ID_GOLEMAGG = 00000 # Id von Golemagg
+        self.ID_MAJORDOMO_EXECUTUS = 00000 # Id von Majordomo Executus
+        self.ID_RAGNAROS = 00000 # Id von Ragnaros
+        self.ID_SHAZZRAH = 00000 # Id von Shazzrah
+        self.ID_SULFURON_HARBRINGER = 00000 # Id von Sulfuron Harbringer
+
+
+    def reset(self):
+        self.STATUS_BARON_GEDDON = False
+        self.STATUS_GARR = False
+        self.STATUS_GEHENNAS = False
+        self.STATUS_GOLEMAGG = False
+        self.STATUS_MAJORDOMO_EXECUTUS = False
+        self.STATUS_RAGNAROS = False
+        self.STATUS_SHAZZRAH = False
+        self.STATUS_SULFURON_HARBRINGER = False
+
+    def update(self):
+        if self.isdead(self.ID_BARON_GEDDON):
+            self.STATUS_BARON_GEDDON = True
+
+        if self.isdead(self.ID_GARR):
+            self.STATUS_GARR = True
+
+        if self.isdead(self.ID_GEHENNAS):
+            self.STATUS_GEHENNAS = True
+
+        if self.isdead(self.ID_GOLEMAGG):
+            self.STATUS_GOLEMAGG = True
+
+        if self.isdead(self.ID_MAJORDOMO_EXECUTUS):
+            self.STATUS_MAJORDOMO_EXECUTUS = True:
+
+        if self.isdead(self.ID_RAGNAROS):
+            self.STATUS_RAGNAROS = True
+
+        if self.isdead(self.ID_SHAZZRAH):
+            self.STATUS_SHAZZRAH = True
+
+        if self.isdead(self.ID_SULFURON_HARBRINGER):
+            self.STATUS_SULFURON_HARBRINGER = True
         
             
