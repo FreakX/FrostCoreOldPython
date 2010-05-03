@@ -378,6 +378,8 @@ class boss_jeklik(self):
         self.TIMER_GREATERHEAL = basescript.script_timer(50,50)
         self.TIMER_SPAWNFLYINGBATS = basescript.script_timer(10,10)
 
+        self.PHASETWO = False
+
     def reset(self):
         self.TIMER_CHARGE.reset(20,20)
         self.TIMER_SONICBURST.reset(8,8)
@@ -388,7 +390,92 @@ class boss_jeklik(self):
         self.TIMER_CHAINMINDFLAY.reset(26,26)
         self.TIMER_GREATERHEAL.reset(50,50)
         self.TIMER_SPAWNFLYINGBATS.reset(10,10)
-        
+
+    def update(self):
+        if self.gethealthpercent() > 50:
+            if self.TIMER_CHARGE.ready():
+                self.cast(self.randtarget(), self.SPELL_CHARGE)
+
+                self.TIMER_CHARGE.newtime(15,30)
+                self.TIMER_CHARGE.reset()
+
+            if self.TIMER_SONICBURST.ready():
+                self.cast(self.target(), self.SPELL_SONICBURST)
+
+                self.TIMER_SONICBURST.newtime(8,13)
+                self.TIMER_SONICBURST.reset()
+
+            if self.TIMER_SCREECH.ready():
+                self.cast(self.target(), self.SPELL_SCREECH)
+
+                self.TIMER_SCREECH.newtime(18,26)
+                self.TIMER_SCREECH.reset()
+
+            if self.TIMER_SPAWNBATS.ready():
+                target = self.randtarget()
+
+                bat = self.spawn_creature(11368, -12291.6220, -1380.2640, 144.8304, 5.483)
+                bat.attack(target)
+
+                bat = self.spawn_creature(11368, -12289.6220, -1380.2640, 144.8304, 5.483)
+                bat.attack(target)
+
+                bat = self.spawn_creature(11368, -12293.6220, -1380.2640, 144.8304, 5.483)
+                bat.attack(target)
+
+                bat = self.spawn_creature(11368, -12291.6220, -1380.2640, 144.8304, 5.483)
+                bat.attack(target)
+
+                bat = self.spawn_creature(11368, -12289.6220, -1380.2640, 144.8304, 5.483)
+                bat.attack(target)
+
+                bat = self.spawn_creature(11368, -12293.6220, -1380.2640, 144.8304, 5.483)
+                bat.attack(target)
+
+                self.TIMER_SPAWNBATS.newtime(60,60)
+                self.TIMER_SPAWNBATS.reset()
+
+        else   
+            if self.PHASETWO:
+                if self.TIMER_SHADOWWORDPAIN.ready():
+                    self.cast(self.randtarget(), self.SPELL_SHADOWWORDPAIN)
+
+                    self.TIMER_SHADOWWORDPAIN.newtime(12,18)
+                    self.TIMER_SHADOWWORDPAIN.reset()
+
+                if self.TIMER_MINDFLAY.ready():
+                    self.cast(self.target(), self.SPELL_MINDFLAY)
+
+                    self.TIMER_MINDFLAY.newtime(16,16)
+                    self.TIMER_MINDFLAY.reset()
+
+                if self.TIMER_CHAINMINDFLAY.ready():
+                    self.cast(self.target(), self.SPELL_CHAINMINDFLAY)
+
+                    self.TIMER_CHAINMINDFLAY.newtime(15,30)
+                    self.TIMER_CHAINMINDFLAY.reset()
+
+                if self.TIMER_GREATERHEAL.ready():
+                    self.cast(self.guid(), self.SPELL_GREATERHEAL)
+
+                    self.TIMER_GREATERHEAL.newtime(25,35)
+                    self.TIMER_GREATERHEAL.reset()
+
+                if self.TIMER_SPAWNFLYINGBATS.ready():
+                    target = self.randtarget()
+
+                    flyingbat = self.spawn_creature(14965, target.getpositionX(), target.getpositionY(), target.getpositionZ()+15, 0)
+
+                    flyingbat.attack(target)
+
+                    self.TIMER_SPAWNFLYINGBATS.newtime(10,15)
+                    self.TIMER_SPAWNFLYINGBATS.reset()
+
+            else
+                self.setdisplayid(15219)
+                self.PHASETWO = True
+
+        self.domeleeattack()
             
 
         
