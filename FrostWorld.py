@@ -45,6 +45,8 @@ if frostlib.DEBUG_MODE == True:
     frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_arlokk())
     frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_gahzranka())
     frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_grilek())
+    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_hazzarah())
+    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_jeklik())
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory
