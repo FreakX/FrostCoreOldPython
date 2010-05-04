@@ -30,10 +30,37 @@ class world(object):
         self.witems = {}
         self.wcreatures = {}
         self.wscripts = []
+        self.wscript_texts = {}
         
-    def castspell(self, caster, target, spellid):
+    def script_castspell(self, caster, target, spellid):
         print str(time.strftime("%M:%S")) + " Creature " + str(caster) + " casting Spellid: " + str(spellid) + " on " + str(target)
-
+    def script_say(self, say, textid):
+        print str(time.strftime("%M:%S")) + " Creature " + str(say) + " Saying: " + str(textid)
+        try:
+            text = self.wscript_texts[textid]
+            try:
+                print str(time.strftime("%M:%S")) + " enES: " + str(text.getlocalizedtext("enES"))
+            except:
+                print "Error"
+            try:
+                print str(time.strftime("%M:%S")) + " deDE: " + str(text.getlocalizedtext("deDE"))
+            except:
+                print "Error"
+            try:
+                print str(time.strftime("%M:%S")) + " esES: " + str(text.getlocalizedtext("esES"))
+            except:
+                print "Error"
+            try:
+                print str(time.strftime("%M:%S")) + " frFR: " + str(text.getlocalizedtext("frFR"))
+            except:
+                print "Error"
+            try:
+                print str(time.strftime("%M:%S")) + " ruRU: " + str(text.getlocalizedtext("ruRU"))
+            except:
+                print "Error"
+        except:
+            frostlib.nout("No Script Text with ID: " + str(textid))
+        
     def update_player(self):
         # Player Update Code
         pass
@@ -67,7 +94,7 @@ class world(object):
             frostlib.nout("No Connection to MySQL Server")
             frostlib.shutdown()
     def loadscripttexts(self):
-        """
+        
         resultcount_en = self.cursor.execute("SELECT * FROM script_texts_en")
         result_en = self.cursor.fetchall()
 
@@ -99,6 +126,8 @@ class world(object):
                 if str(p) != pold:
                     frostlib.nout(str(p))
                     pold = str(p)
+            except:
+                frostlib.nout("Error while loading Script Text " + str(currentry) + " enEN")
 
         for entry in range(0,resultcount_de):
             try:
@@ -111,6 +140,8 @@ class world(object):
                 if str(p) != pold:
                     frostlib.nout(str(p))
                     pold = str(p)
+            except:
+                frostlib.nout("Error while loading Script Text " + str(currentry) + " deDE")
 
         for entry in range(0,resultcount_es):
             try:
@@ -123,6 +154,8 @@ class world(object):
                 if str(p) != pold:
                     frostlib.nout(str(p))
                     pold = str(p)
+            except:
+                frostlib.nout("Error while loading Script Text " + str(currentry) + " esES")
 
         for entry in range(0,resultcount_fr):
             try:
@@ -136,6 +169,9 @@ class world(object):
                     frostlib.nout(str(p))
                     pold = str(p)
 
+            except:
+                frostlib.nout("Error while loading Script Text " + str(currentry) + " frFR")
+
         for entry in range(0,resultcount_ru):
             try:
                 currentry = result_ru[enry]
@@ -147,11 +183,9 @@ class world(object):
                 if str(p) != pold:
                     frostlib.nout(str(p))
                     pold = str(p)
+            except:
+                frostlib.nout("Error while loading Script Text " + str(currentry) + " ruRU")
                 
-                
-
-            """
-        pass
     def loaditems(self):
         resultcount = self.cursor.execute("SELECT * FROM item_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Items...")

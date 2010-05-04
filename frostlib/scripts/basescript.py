@@ -5,7 +5,7 @@ import random
 class script_npc(object):
     
     def cast(self, target, spellid):
-        sworld.castspell(self.guid() , target, spellid)
+        sworld.script_castspell(self.guid() , target, spellid)
     def target(self):
         return "Current Target"
     def randtarget(self):
@@ -17,13 +17,13 @@ class script_npc(object):
     def newtarget(self):
         return "New Target"
     def say(self, sth):
-        print str(time.strftime("%M:%S")) + " Say: " + str(sth)
+        sworld.script_say(self.guid() , sth)
         
     def summon_npc(self, cre_id):
         print str(time.strftime("%M:%S")) + " Summon NPC: " + str(cre_id)
         
     def guid(self):
-        return "GUID from Script"
+        return self
 
     def teleporttoplayer(self,player):
         print  str(time.strftime("%M:%S")) + " Teleport to Player: " + str(player)
