@@ -1,3 +1,4 @@
 *.pyc
 *.txt
-mysql_start.bat.Ink
+world.ini
+logon.ini
