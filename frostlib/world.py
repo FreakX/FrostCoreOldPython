@@ -23,6 +23,7 @@
 """
 # World Class
 import frostlib
+import time
 
 class world(object):
     def __init__(self):

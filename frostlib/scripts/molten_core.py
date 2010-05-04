@@ -432,7 +432,7 @@ class boss_majordomo_executus(basescript.script_npc):
         self.domeleeattack()
 
         
-
+""" # Need basescript support
 class instance(basescripp.script_instance):
     def __inut__(self):
         self.STATUS_BARON_GEDDON = False
@@ -478,7 +478,7 @@ class instance(basescripp.script_instance):
             self.STATUS_GOLEMAGG = True
 
         if self.isdead(self.ID_MAJORDOMO_EXECUTUS):
-            self.STATUS_MAJORDOMO_EXECUTUS = True:
+            self.STATUS_MAJORDOMO_EXECUTUS = True
 
         if self.isdead(self.ID_RAGNAROS):
             self.STATUS_RAGNAROS = True
@@ -489,4 +489,4 @@ class instance(basescripp.script_instance):
         if self.isdead(self.ID_SULFURON_HARBRINGER):
             self.STATUS_SULFURON_HARBRINGER = True
         
-            
+"""            

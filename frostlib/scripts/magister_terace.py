@@ -75,7 +75,7 @@ class boss_felblood_kaelthas(basescript.script_npc):
         self.TIMER_GRAVITY_LAPSE.reset(20,20)
 
     def update(self):
-        if self.PHASE == 1
+        if self.PHASE == 1:
             if self.instance.mode == "heroic":
                 if self.TIMER_PYROBLAST.ready():
                     self.cast(self.guid(), self.SPELL_SHOCK_BARRIER)
@@ -91,7 +91,7 @@ class boss_felblood_kaelthas(basescript.script_npc):
                 self.TIMER_FIREBALL.reset()
 
             if self.TIMER_PHOENIX.ready():
-                target = self.randtarget():
+                target = self.randtarget()
                 randompos = random.randint(0,2)
                 posx = self.LOCATIONS[randompos][0]
                 posy = self.LOCATIONS[randompos][1]

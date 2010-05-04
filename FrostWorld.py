@@ -21,11 +21,6 @@ if frostlib_hash != frostlib.HASH:
 
 frostlib.dout("Loading Data...")
 frostlib.sworld = frostlib.world.world()
-a = frostlib.scripts.molten_core.boss_gehennas()
-b = [a]
-while True:
-    for x in b:
-        x.update()
 frostlib.sworld.connect_db()
 frostlib.sworld.loaditems()
 frostlib.sworld.loaditems_localized()
@@ -72,6 +67,12 @@ def running():
         time.sleep(frostlib.CONNECTION_INFO_DELAY)
         print str(active_connections) + " World Connections Active"
 
+def running_scripts():
+    a = frostlib.scripts.molten_core.boss_gehennas()
+    b = [a]
+    while True:
+        for x in b:
+            x.update()
 factory = Factory()
 factory.protocol = LogonProtocol
 print "FrostCore World Ready!"
@@ -80,6 +81,7 @@ try:
     print "FrostCore World now listen for Connections!"
     if frostlib.CONNECTION_INFO == True:
         reactor.callInThread(running)
+    reactor.callInThread(running_scripts)
     reactor.run()
 except:
     frostlib.nout("Cannot Bind Socket on Port 8085!")

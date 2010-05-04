@@ -1,10 +1,11 @@
 ## Basic CreatureScript:
-from frostlib import sworld
+from .. import sworld
 import time
 import random
 class script_npc(object):
+    
     def cast(self, target, spellid):
-        sworld.castspell(self.guid, target, spellid)
+        sworld.castspell(self.guid() , target, spellid)
     def target(self):
         return "Current Target"
     def randtarget(self):

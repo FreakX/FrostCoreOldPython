@@ -315,7 +315,7 @@ class boss_hakkar(basescript.script_npc):
 
         self.domeleeattack()
 
-class boss_hazzarah(self):
+class boss_hazzarah(basescript.script_npc):
     def __init__(self):
         self.SPELL_MANABURN = 26046
         self.SPELL_SLEEP = 24664
@@ -353,7 +353,7 @@ class boss_hazzarah(self):
 
         self.domeleeattack()
 
-class boss_jeklik(self):
+class boss_jeklik(basescript.script_npc):
     def __init__(self):
         self.SAY_AGGRO = -1309002
         self.SAY_RAINFIRE = -1309003
@@ -435,7 +435,7 @@ class boss_jeklik(self):
                 self.TIMER_SPAWNBATS.newtime(60,60)
                 self.TIMER_SPAWNBATS.reset()
 
-        else   
+        else:
             if self.PHASETWO:
                 if self.TIMER_SHADOWWORDPAIN.ready():
                     self.cast(self.randtarget(), self.SPELL_SHADOWWORDPAIN)
@@ -471,7 +471,7 @@ class boss_jeklik(self):
                     self.TIMER_SPAWNFLYINGBATS.newtime(10,15)
                     self.TIMER_SPAWNFLYINGBATS.reset()
 
-            else
+            else:
                 self.setdisplayid(15219)
                 self.PHASETWO = True
 
