@@ -68,7 +68,11 @@ class world(object):
         # Scripts Update Code
         a_time = time.time()
         for script in self.wscripts:
-            script.update()
+            try:
+                script.update()
+            except:
+                self.wscripts.delete(script)
+                raise "ScriptError", script
         b_time = time.time()
         time_diff = b_time - a_time
         if time_diff <= frostlib.maxscriptdelay:

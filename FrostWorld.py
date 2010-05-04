@@ -88,10 +88,10 @@ def running():
 
 def update_scripts():
     while True:
-        #try:
-        frostlib.sworld.update_scripts()
-        #except:
-        #    frostlib.dout("Error in sWorld")
+        try:
+            frostlib.sworld.update_scripts()
+        except:
+            frostlib.dout("Error in FrostScript")
 factory = Factory()
 factory.protocol = LogonProtocol
 print "FrostCore World Ready!"
