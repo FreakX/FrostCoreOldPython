@@ -29,8 +29,24 @@ class world(object):
     def __init__(self):
         self.witems = {}
         self.wcreatures = {}
+        self.wscripts = []
+        
     def castspell(self, caster, target, spellid):
         print str(time.strftime("%M:%S")) + " Creature " + str(caster) + " casting Spellid: " + str(spellid) + " on " + str(target)
+
+    def update_player(self):
+        # Player Update Code
+        pass
+    def update_scripts(self):
+        # Scripts Update Code
+        a_time = time.time()
+        for script in self.wscripts:
+            script.update()
+        b_time = time.time()
+        time_diff = b_time - a_time
+        if time_diff <= frostlib.maxscriptdelay:
+            time.sleep(frostlib.maxscriptdelay - time_diff)
+        
     def connect_db(self):
         try:
             import MySQLdb

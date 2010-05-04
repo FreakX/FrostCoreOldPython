@@ -43,7 +43,7 @@ CLIENT_AUTH_INFO = True      # Show Client Info on Connect True|False
 AUTHBUILD_ACCEPT = 11723
 HASH = ""
 
-
+maxscriptdelay = 0.25
 MYSQL_WORLD_HOST = ""
 MYSQL_WORLD_USER = ""
 MYSQL_WORLD_PW = ""

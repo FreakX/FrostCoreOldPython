@@ -25,6 +25,12 @@ frostlib.sworld.connect_db()
 frostlib.sworld.loaditems()
 frostlib.sworld.loaditems_localized()
 frostlib.sworld.load_creatures()
+frostlib.dout("Loading Data Completed !")
+
+# Debug Code for Dev
+if frostlib.DEBUG_MODE == True:
+    frostlib.dout("Debugging Scripts...")
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_gehennas())
 
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports
@@ -67,21 +73,21 @@ def running():
         time.sleep(frostlib.CONNECTION_INFO_DELAY)
         print str(active_connections) + " World Connections Active"
 
-def running_scripts():
-    a = frostlib.scripts.molten_core.boss_gehennas()
-    b = [a]
+def update_scripts():
     while True:
-        for x in b:
-            x.update()
+        #try:
+        frostlib.sworld.update_scripts()
+        #except:
+        #    frostlib.dout("Error in sWorld")
 factory = Factory()
 factory.protocol = LogonProtocol
 print "FrostCore World Ready!"
+reactor.callInThread(update_scripts)
 try:
     reactor.listenTCP(8085, factory)
     print "FrostCore World now listen for Connections!"
     if frostlib.CONNECTION_INFO == True:
         reactor.callInThread(running)
-    reactor.callInThread(running_scripts)
     reactor.run()
 except:
     frostlib.nout("Cannot Bind Socket on Port 8085!")
