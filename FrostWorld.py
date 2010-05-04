@@ -31,7 +31,20 @@ frostlib.dout("Loading Data Completed !")
 if frostlib.DEBUG_MODE == True:
     frostlib.dout("Debugging Scripts...")
     frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_gehennas())
-
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_baron_geddon())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_garr())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_lucifron())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_magmadar())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_gehennas())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_golemagg())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_shazzrah())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_sulfuron_harbringer())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.mob_sulfuron_harbringer())
+    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_majordomo_executus())
+    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_hakkar())
+    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_arlokk())
+    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_gahzranka())
+    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_grilek())
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory
