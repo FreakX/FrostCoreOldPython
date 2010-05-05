@@ -20,15 +20,16 @@ if frostlib_hash != frostlib.HASH:
     frostlib.shutdown()
 
 frostlib.dout("Loading Data...")
-frostlib.sworld = frostlib.world.world()
 frostlib.sworld.connect_db()
 frostlib.sworld.loaditems()
 frostlib.sworld.loaditems_localized()
 frostlib.sworld.load_creatures()
+frostlib.sworld.loadscripttexts()
 frostlib.dout("Loading Data Completed !")
 
 # Debug Code for Dev
 if frostlib.DEBUG_MODE == True:
+    
     frostlib.dout("Debugging Scripts...")
     frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_gehennas())
     frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_baron_geddon())

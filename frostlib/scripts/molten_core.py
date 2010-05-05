@@ -119,7 +119,7 @@ class boss_lucifron(basescript.script_npc):
 
 class boss_magmadar(basescript.script_npc):
     def __init__(self):
-        self.EMOTE_GENERIC_FRENZY_KILL = -10000001
+        self.EMOTE_GENERIC_FRENZY_KILL = 223344
 
         self.SPELL_FRENZY   = 19451
         self.SPELL_MAGMASPIT= 19449

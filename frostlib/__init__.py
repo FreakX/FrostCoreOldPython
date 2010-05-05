@@ -56,10 +56,6 @@ TIME_MONTH = TIME_DAY * 30
 TIME_YEAR = TIME_MONTH * 12
 
 
-
-def sworld():
-    global sworld
-    return sworld
 def shutdown():
     nout("Schutdown in 10")
     time.sleep(1)

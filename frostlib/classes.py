@@ -583,7 +583,7 @@ class creature_instance(object):
 
 class script_text(object):
     def __init__(self, script_id, script_text):
-        self.en_script_text = script_text
+        self.en_text = script_text
         self.script_text_id = script_id
 
     def set_lang(self, script_lang, script_text):
@@ -602,7 +602,7 @@ class script_text(object):
         else:
             frostlib.dout("Undefined Language Code: " + str(script_lang))
         
-    def getlocalizedsubname(self, lang):
+    def getlocalizedtext(self, lang):
         try:
             if lang == "enUS":
                 return self.en_text

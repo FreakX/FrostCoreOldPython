@@ -36,30 +36,30 @@ class world(object):
         print str(time.strftime("%M:%S")) + " Creature " + str(caster) + " casting Spellid: " + str(spellid) + " on " + str(target)
     def script_say(self, say, textid):
         print str(time.strftime("%M:%S")) + " Creature " + str(say) + " Saying: " + str(textid)
+        #try:
+        text = self.wscript_texts[int(textid)]
         try:
-            text = self.wscript_texts[textid]
-            try:
-                print str(time.strftime("%M:%S")) + " enES: " + str(text.getlocalizedtext("enES"))
-            except:
-                print "Error"
-            try:
-                print str(time.strftime("%M:%S")) + " deDE: " + str(text.getlocalizedtext("deDE"))
-            except:
-                print "Error"
-            try:
-                print str(time.strftime("%M:%S")) + " esES: " + str(text.getlocalizedtext("esES"))
-            except:
-                print "Error"
-            try:
-                print str(time.strftime("%M:%S")) + " frFR: " + str(text.getlocalizedtext("frFR"))
-            except:
-                print "Error"
-            try:
-                print str(time.strftime("%M:%S")) + " ruRU: " + str(text.getlocalizedtext("ruRU"))
-            except:
-                print "Error"
+            print str(time.strftime("%M:%S")) + " enUS: " + str(text.getlocalizedtext("enUS"))
         except:
-            frostlib.nout("No Script Text with ID: " + str(textid))
+            print "Error"
+        try:
+            print str(time.strftime("%M:%S")) + " deDE: " + str(text.getlocalizedtext("deDE"))
+        except:
+            print "Error"
+        try:
+            print str(time.strftime("%M:%S")) + " esES: " + str(text.getlocalizedtext("esES"))
+        except:
+            print "Error"
+        try:
+            print str(time.strftime("%M:%S")) + " frFR: " + str(text.getlocalizedtext("frFR"))
+        except:
+            print "Error"
+        try:
+            print str(time.strftime("%M:%S")) + " ruRU: " + str(text.getlocalizedtext("ruRU"))
+        except:
+            print "Error"
+        #except:
+        #    frostlib.nout("No Script Text with ID: " + str(textid))
         
     def update_player(self):
         # Player Update Code
@@ -71,7 +71,7 @@ class world(object):
             try:
                 script.update()
             except:
-                self.wscripts.delete(script)
+                self.wscripts.remove(script)
                 raise "ScriptError", script
         b_time = time.time()
         time_diff = b_time - a_time
@@ -116,27 +116,28 @@ class world(object):
 
         counter = int(resultcount_en) + int(resultcount_de) + int(resultcount_es) + int(resultcount_fr) + int(resultcount_ru)
         p = frostlib.ProgressBar(int(counter), "Loading Script Texts...")
+        pold = str(p)
         cur = 0
         for entry in range(0,resultcount_en):
-            try:
-                currentry = result_en[enry]
-                script_id = str(currentry[0])
-                script_text = str(currentry[1])
-                script_text_obj = frostlib.classes.script_text(script_id,
-                                                               script_text)
-                self.wscript_texts[script_id] = script_text_obj
-                p.update_time(cur)
-                cur += 1
-                if str(p) != pold:
-                    frostlib.nout(str(p))
-                    pold = str(p)
-            except:
-                frostlib.nout("Error while loading Script Text " + str(currentry) + " enEN")
-
+            #try:
+            currentry = result_en[entry]
+            script_id = int(currentry[0])
+            script_text = str(currentry[1])
+            script_text_obj = frostlib.classes.script_text(script_id,
+                                                           script_text)
+            self.wscript_texts[script_id] = script_text_obj
+            p.update_time(cur)
+            cur += 1
+            if str(p) != pold:
+                frostlib.nout(str(p))
+                pold = str(p)
+            #except:
+            #    frostlib.nout("Error while loading Script Text " + str(currentry) + " enEN")
+        
         for entry in range(0,resultcount_de):
             try:
-                currentry = result_de[enry]
-                script_id = str(currentry[0])
+                currentry = result_de[entry]
+                script_id = int(currentry[0])
                 script_text = str(currentry[1])
                 self.wscript_texts[script_id].set_lang("deDE", script_text)
                 p.update_time(cur)
@@ -149,8 +150,8 @@ class world(object):
 
         for entry in range(0,resultcount_es):
             try:
-                currentry = result_es[enry]
-                script_id = str(currentry[0])
+                currentry = result_es[entry]
+                script_id = int(currentry[0])
                 script_text = str(currentry[1])
                 self.wscript_texts[script_id].set_lang("esES", script_text)
                 p.update_time(cur)
@@ -163,8 +164,8 @@ class world(object):
 
         for entry in range(0,resultcount_fr):
             try:
-                currentry = result_fr[enry]
-                script_id = str(currentry[0])
+                currentry = result_fr[entry]
+                script_id = int(currentry[0])
                 script_text = str(currentry[1])
                 self.wscript_texts[script_id].set_lang("frFR", script_text)
                 p.update_time(cur)
@@ -178,8 +179,8 @@ class world(object):
 
         for entry in range(0,resultcount_ru):
             try:
-                currentry = result_ru[enry]
-                script_id = str(currentry[0])
+                currentry = result_ru[entry]
+                script_id = int(currentry[0])
                 script_text = str(currentry[1])
                 self.wscript_texts[script_id].set_lang("ruRU", script_text)
                 p.update_time(cur)
@@ -189,7 +190,6 @@ class world(object):
                     pold = str(p)
             except:
                 frostlib.nout("Error while loading Script Text " + str(currentry) + " ruRU")
-                
     def loaditems(self):
         resultcount = self.cursor.execute("SELECT * FROM item_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Items...")
