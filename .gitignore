@@ -1,5 +1,5 @@
 *.pyc
 *.txt
-*.ini
-/logon.ini
-/world.ini
+world.ini
+logon.ini
+

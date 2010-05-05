@@ -22,11 +22,11 @@
    */
 """
 if __name__ != '__main__':
+    import world
+    sworld = world.world()
     import classes
     import config
     import opcodes
-    import world
-    sworld = world.world()
     import handler
     import wowmath
     import scripts
