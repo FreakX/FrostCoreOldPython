@@ -55,10 +55,15 @@ from twisted.internet import reactor, threads, defer
 
 active_connections = 0
 
-class LogonProtocol(Protocol):
+class WorldProtocol(Protocol):
+    """
+    World Protokoll Klasse
+
+    Wird von twisted verwendet um das Netzwerk zu verwalten
+    """
 
     def dataReceived(self, data):
-        d = defer.succeed(frostlib.handler.logonhandler(data))
+        d = defer.succeed(frostlib.handler.worldhandler(data))
 
         def got_info(res):
             if res != "error":
@@ -84,19 +89,25 @@ class LogonProtocol(Protocol):
         print "Connection Lost from " + str(self.transport.getPeer()[1])
 
 def running():
+    """
+    Zeigt die aktuellen offenen Connections an
+    """
     import time
     while True:
         time.sleep(frostlib.CONNECTION_INFO_DELAY)
         print str(active_connections) + " World Connections Active"
 
 def update_scripts():
+    """
+    Aktualisiert die Scripts in der World
+    """
     while True:
         try:
             frostlib.sworld.update_scripts()
         except:
             frostlib.dout("Error in FrostScript")
 factory = Factory()
-factory.protocol = LogonProtocol
+factory.protocol = WorldProtocol
 print "FrostCore World Ready!"
 reactor.callInThread(update_scripts)
 try:

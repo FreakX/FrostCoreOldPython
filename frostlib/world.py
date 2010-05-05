@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 """
   /*
    * FrostCore MMORPG Server Emulator
@@ -26,15 +27,23 @@ import frostlib
 import time
 
 class world(object):
+    """ World Object, Steuert alle Vorgänge """
     def __init__(self):
         self.witems = {}
         self.wcreatures = {}
         self.wscripts = []
         self.wscript_texts = {}
-        
+    def script_setmodelid(self, changer, modelid):
+        """ Setzt Modelid's """
+        print str(time.strftime("%M:%S")) + " Creature " + str(changer) + " changing Modelid to " + str(modelid)
     def script_castspell(self, caster, target, spellid):
+        """ Castet Spells """
         print str(time.strftime("%M:%S")) + " Creature " + str(caster) + " casting Spellid: " + str(spellid) + " on " + str(target)
+        pass
     def script_say(self, say, textid):
+        """ Sagt Texte
+
+        say -> Creature die Text sagt"""
         print str(time.strftime("%M:%S")) + " Creature " + str(say) + " Saying: " + str(textid)
         #try:
         text = self.wscript_texts[int(textid)]
@@ -62,9 +71,11 @@ class world(object):
         #    frostlib.nout("No Script Text with ID: " + str(textid))
         
     def update_player(self):
+        """ Update Player """
         # Player Update Code
         pass
     def update_scripts(self):
+        """ Update Scripts """
         # Scripts Update Code
         a_time = time.time()
         for script in self.wscripts:
@@ -79,6 +90,9 @@ class world(object):
             time.sleep(frostlib.maxscriptdelay - time_diff)
         
     def connect_db(self):
+        """
+        Stellt eine Datenbankverbindung her
+        """
         try:
             import MySQLdb
             mysql_opts = {
@@ -98,7 +112,9 @@ class world(object):
             frostlib.nout("No Connection to MySQL Server")
             frostlib.shutdown()
     def loadscripttexts(self):
-        
+        """
+        Lädt die Script Texte aus der Datenbank
+        """
         resultcount_en = self.cursor.execute("SELECT * FROM script_texts_en")
         result_en = self.cursor.fetchall()
 
@@ -191,6 +207,9 @@ class world(object):
             except:
                 frostlib.nout("Error while loading Script Text " + str(currentry) + " ruRU")
     def loaditems(self):
+        """
+        Lädt Items aus der Datenbank
+        """
         resultcount = self.cursor.execute("SELECT * FROM item_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Items...")
         pold = str(p)
@@ -455,6 +474,9 @@ class world(object):
                 pold = str(p)
         #print self.witems
     def load_creatures(self):
+        """
+        Lädt Creatures aus der Datenbank
+        """
         resultcount = self.cursor.execute("SELECT * FROM creature_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Creature Template...")
         pold = str(p)
@@ -518,6 +540,10 @@ class world(object):
                 pold = str(p)
                         
     def loaditems_localized(self):
+        """
+        Lädt Itemnamen aus der Datenbank
+        (deDE, esES, frFR, ruRU (enUS ist schon bei der item tabelle ))
+        """
         resultcount_de = int(self.cursor.execute("SELECT * FROM items_localized_de"))
         result_de = self.cursor.fetchall()
         resultcount_es = int(self.cursor.execute("SELECT * FROM items_localized_es"))
