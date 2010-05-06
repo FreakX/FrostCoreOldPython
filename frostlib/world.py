@@ -28,8 +28,12 @@ import time
 import ItemHandler
 import CreatureHandler
 import ScriptHandler
+import PlayerHandler
 
-class world(ItemHandler.ItemHandler, CreatureHandler.CreatureHandler, ScriptHandler.ScriptHandler):
+class world(ItemHandler.ItemHandler,
+            CreatureHandler.CreatureHandler,
+            ScriptHandler.ScriptHandler,
+            PlayerHandler.PlayerHandler):
     """ World Object, Steuert alle Vorgänge """
     def __init__(self):
         self.witems = {}
