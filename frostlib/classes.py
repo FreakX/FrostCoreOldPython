@@ -616,3 +616,17 @@ class script_text(object):
                 return self.ru_text
         except NameError:
             return self.en_text
+
+class bag(object):
+    def __init__(self):
+        self.bag = {}
+        maxslots = 0
+        for x in xrange(0,500):
+            self.bag[x] = False
+    def insert(self, slot, item):
+        self.bag[slot] = item
+
+    
+        
+        
+        
