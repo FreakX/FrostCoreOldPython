@@ -31,23 +31,7 @@ frostlib.dout("Loading Data Completed !")
 if frostlib.DEBUG_MODE == True:
     
     frostlib.dout("Debugging Scripts...")
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_gehennas())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_baron_geddon())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_garr())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_lucifron())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_magmadar())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_gehennas())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_golemagg())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_shazzrah())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_sulfuron_harbringer())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.mob_sulfuron_harbringer())
-    frostlib.sworld.wscripts.append(frostlib.scripts.molten_core.boss_majordomo_executus())
-    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_hakkar())
-    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_arlokk())
-    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_gahzranka())
-    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_grilek())
-    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_hazzarah())
-    frostlib.sworld.wscripts.append(frostlib.scripts.zulgurub.boss_jeklik())
+
 frostlib.dout("FrostCore World is starting...")
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory
@@ -87,7 +71,45 @@ class WorldProtocol(Protocol):
         global active_connections
         active_connections = active_connections-1
         print "Connection Lost from " + str(self.transport.getPeer()[1])
-
+def developement():
+    import time
+    for y in xrange(0,500):
+        x = frostlib.scripts.molten_core.boss_gehennas()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_baron_geddon()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_garr()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_lucifron()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_magmadar()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_gehennas()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_golemagg()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_shazzrah()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_sulfuron_harbringer()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.mob_sulfuron_harbringer()
+        x.RegisterScript()
+        x = frostlib.scripts.molten_core.boss_majordomo_executus()
+        x.RegisterScript()
+        x = frostlib.scripts.zulgurub.boss_hakkar()
+        x.RegisterScript()
+        x = frostlib.scripts.zulgurub.boss_arlokk()
+        x.RegisterScript()
+        x = frostlib.scripts.zulgurub.boss_gahzranka()
+        x.RegisterScript()
+        x = frostlib.scripts.zulgurub.boss_grilek()
+        x.RegisterScript()
+        x = frostlib.scripts.zulgurub.boss_hazzarah()
+        x.RegisterScript()
+        x = frostlib.scripts.zulgurub.boss_jeklik()
+        x.RegisterScript()
+        time.sleep(0.15)
+    
 def running():
     """
     Zeigt die aktuellen offenen Connections an
@@ -110,6 +132,7 @@ factory = Factory()
 factory.protocol = WorldProtocol
 print "FrostCore World Ready!"
 reactor.callInThread(update_scripts)
+reactor.callInThread(developement)
 try:
     reactor.listenTCP(8085, factory)
     print "FrostCore World now listen for Connections!"

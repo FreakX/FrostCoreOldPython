@@ -105,6 +105,11 @@ class script_npc(object):
         print "Pos Y:       " + str(posy)
         print "Pos Z:       " + str(posz)
         print "Orientation: " + str(rotation)
+
+    def RegisterScript(self):
+        sworld.RegisterScript(self)
+        print "sWorld::RegisterScript->" + str(self)
+        
         
 class script_timer:
     """

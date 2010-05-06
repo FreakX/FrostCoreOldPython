@@ -33,6 +33,7 @@ class world(object):
         self.wcreatures = {}
         self.wscripts = []
         self.wscript_texts = {}
+        self.numscripts = 1
     def script_setmodelid(self, changer, modelid):
         """ Setzt Modelid's """
         print str(time.strftime("%M:%S")) + " Creature " + str(changer) + " changing Modelid to " + str(modelid)
@@ -69,6 +70,17 @@ class world(object):
             print "Error"
         #except:
         #    frostlib.nout("No Script Text with ID: " + str(textid))
+
+
+        
+    def RegisterScript(self, script):
+        script.scriptid = self.numscripts
+        print ">>> ScriptNumber::>" + str(self.numscripts)
+        self.numscripts += 1
+        self.wscripts.append(script)
+        
+
+
         
     def update_player(self):
         """ Update Player """
