@@ -29,11 +29,13 @@ import ItemHandler
 import CreatureHandler
 import ScriptHandler
 import PlayerHandler
+import BagHandler
 
 class world(ItemHandler.ItemHandler,
             CreatureHandler.CreatureHandler,
             ScriptHandler.ScriptHandler,
-            PlayerHandler.PlayerHandler):
+            PlayerHandler.PlayerHandler,
+            BagHandler.BagHandler):
     """ World Object, Steuert alle Vorgänge """
     def __init__(self):
         self.witems = {}
