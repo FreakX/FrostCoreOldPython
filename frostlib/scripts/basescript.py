@@ -4,7 +4,8 @@ from .. import sworld
 import time
 import random
 class script_npc(object):
-    
+    def hastarget(self):
+        return True
     def cast(self, target, spellid):
         """
         Wird ausgeführt wenn ein Spell aus einem Script heraus

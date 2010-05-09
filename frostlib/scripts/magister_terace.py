@@ -75,6 +75,9 @@ class boss_felblood_kaelthas(basescript.script_npc):
         self.TIMER_GRAVITY_LAPSE.reset(20,20)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.PHASE == 1:
             if self.instance.mode == "heroic":
                 if self.TIMER_PYROBLAST.ready():
