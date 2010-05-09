@@ -8,6 +8,7 @@ class CreatureHandler(object):
         resultcount = self.cursor.execute("SELECT * FROM creature_template")
         p = frostlib.ProgressBar(int(resultcount), "Loading Creature Template...")
         pold = str(p)
+        count = 0
         result = self.cursor.fetchall()
         for entry in range(0,resultcount):
             currentres = result[entry]
@@ -61,9 +62,10 @@ class CreatureHandler(object):
                                                  creature_pathid)
 
             self.wcreatures[creature_entry] = creature
-            
+            count += 1
             p.update_time(entry)
             if str(p) != pold:
                 frostlib.nout(str(p))
                 pold = str(p)
+        frostlib.nout(">>> Loaded " + str(count) + " Creatures")
                         

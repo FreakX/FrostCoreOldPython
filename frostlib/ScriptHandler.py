@@ -20,7 +20,7 @@ class ScriptHandler(object):
 
         resultcount_ru = self.cursor.execute("SELECT * FROM script_texts_ru")
         result_ru = self.cursor.fetchall()
-
+        
         counter = int(resultcount_en) + int(resultcount_de) + int(resultcount_es) + int(resultcount_fr) + int(resultcount_ru)
         p = frostlib.ProgressBar(int(counter), "Loading Script Texts...")
         pold = str(p)
@@ -30,7 +30,7 @@ class ScriptHandler(object):
             currentry = result_en[entry]
             script_id = int(currentry[0])
             script_text = str(currentry[1])
-            script_text_obj = frostlib.classes.script_text(script_id,
+            script_text_obj = frostlib.classes.ScriptText(script_id,
                                                            script_text)
             self.wscript_texts[script_id] = script_text_obj
             p.update_time(cur)
@@ -98,7 +98,7 @@ class ScriptHandler(object):
             except:
                 frostlib.nout("Error while loading Script Text " + str(currentry) + " ruRU")
     
-    
+        frostlib.nout(">>> Loaded " + str(cur) + " Script Texts")
     
     def script_setmodelid(self, changer, modelid):
         """ Setzt Modelid's """
