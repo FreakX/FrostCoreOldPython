@@ -35,7 +35,7 @@ def GetHashofDirs(directory, verbose=0):
       for names in files:
         if names.endswith(".py"):
           if verbose == 1:
-            frostlib.edout('Hashing '+ names)
+            frostlib.slogger.debug('Hashing '+ names)
           filepath = os.path.join(root,names)
           try:
             f1 = open(filepath, 'rb')

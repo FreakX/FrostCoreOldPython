@@ -22,8 +22,8 @@
    */
 """
 import frostlib
-INI_FILE_WORLD = "world.ini"
-INI_FILE_LOGON = "logon.ini"
+INI_FILE_WORLD = "world.cfg"
+INI_FILE_LOGON = "logon.cfg"
 def getkey(line):
     #swallow everything up to the =
     return line[ : line.find('=') ].strip()
@@ -53,7 +53,7 @@ def loadlogonconf():
 
         except:
             print "Error while loading Config"
-        print "Logon configuration successfully loaded"
+        frostlib.slogger.debug("Logon configuration successfully loaded")
     except:
         print "No valid INI File found"
 
@@ -83,6 +83,6 @@ def loadworldconf():
 
         except:
             print "Error while loading Config"
-        print "World configuration successfully loaded"
+        frostlib.slogger.debug("World configuration successfully loaded")
     except:
         print "No valid INI File found"

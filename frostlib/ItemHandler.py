@@ -33,7 +33,7 @@ class ItemHandler(object):
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
 
         for entry in range(0,resultcount_es):
@@ -48,7 +48,7 @@ class ItemHandler(object):
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
 
                 
@@ -64,7 +64,7 @@ class ItemHandler(object):
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
 
         for entry in range(0,resultcount_ru):
@@ -79,11 +79,11 @@ class ItemHandler(object):
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
         
-        frostlib.eout(helpvar)
-        frostlib.nout(">>> Loaded " + str(count) + " Item Localizations")
+        frostlib.slogger.debug(helpvar)
+        frostlib.slogger.info(">>> Loaded " + str(count) + " Item Localizations")
 
         
     def loaditems(self):
@@ -222,9 +222,7 @@ class ItemHandler(object):
                 item_HolidayId = currentry[121]
                 del currentry
             except:
-                import traceback
-                traceback.print_exc(file=frostlib.logfile)
-                frostlib.dout("Fehler beim Item: " + str(entry))
+                frostlib.slogger.debug("Fehler beim Item: " + str(entry))
             item = frostlib.classes.Item(item_entry,
                                          item_class,
                                          item_subclass,
@@ -352,6 +350,6 @@ class ItemHandler(object):
                        
             p.update_time(entry)
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
-        frostlib.nout(">>> Loaded " + str(count) + " Items")
+        frostlib.slogger.info(">>> Loaded " + str(count) + " Items")

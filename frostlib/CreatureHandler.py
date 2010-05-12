@@ -65,7 +65,7 @@ class CreatureHandler(object):
             count += 1
             p.update_time(entry)
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
-        frostlib.nout(">>> Loaded " + str(count) + " Creatures")
+        frostlib.slogger.info(">>> Loaded " + str(count) + " Creatures")
                         

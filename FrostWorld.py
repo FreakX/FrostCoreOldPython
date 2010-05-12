@@ -6,33 +6,28 @@ from time import sleep
 import warnings
 warnings.filterwarnings("ignore")
 frostlib.config.loadworldconf()
-frostlib.nout("__________                       _____ _________                     ")
-frostlib.nout("___  ____/______________ __________  /___  ____/______ _____________ ")
-frostlib.nout("__  /_    __  ___/_  __ \__  ___/_  __/_  /     _  __ \__  ___/_  _ \\")
-frostlib.nout("_  __/    _  /    / /_/ /_(__  ) / /_  / /___   / /_/ /_  /    /  __/")
-frostlib.nout("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_/     \___/ ")
-frostlib.dout("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
-frostlib.dout("Checking FrostLIB Hash...")
+frostlib.slogger.info("__________                       _____ _________                     ")
+frostlib.slogger.info("___  ____/______________ __________  /___  ____/______ _____________ ")
+frostlib.slogger.info("__  /_    __  ___/_  __ \__  ___/_  __/_  /     _  __ \__  ___/_  _ \\")
+frostlib.slogger.info("_  __/    _  /    / /_/ /_(__  ) / /_  / /___   / /_/ /_  /    /  __/")
+frostlib.slogger.info("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_/     \___/ ")
+frostlib.slogger.debug("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
+frostlib.slogger.info("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
-frostlib.dout("FrostLIB Hash: " + str(frostlib_hash))
+frostlib.slogger.info("FrostLIB Hash: " + str(frostlib_hash))
 if frostlib_hash != frostlib.HASH:
-    frostlib.nout("False FrostLIB HASH")
+    frostlib.slogger.info("False FrostLIB HASH")
     frostlib.shutdown()
     
-frostlib.dout("Loading Data...")
+frostlib.slogger.info("Loading Data...")
 frostlib.sworld.connect_db()
 frostlib.sworld.loaditems()
 frostlib.sworld.loaditems_localized()
 frostlib.sworld.load_creatures()
 frostlib.sworld.loadscripttexts()
-frostlib.dout("Loading Data Completed !")
+frostlib.slogger.info("Loading Data Completed !")
 
-# Debug Code for Dev
-if frostlib.DEBUG_MODE == True:
-    
-    frostlib.dout("Debugging Scripts...")
-
-frostlib.dout("FrostCore World is starting...")
+frostlib.slogger.info("FrostCore World is starting...")
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory
 from twisted.internet import reactor, threads, defer
@@ -53,7 +48,7 @@ class WorldProtocol(Protocol):
             if res != "error":
                 self.transport.write(res)
             else:
-                print "Malformed Packet...dropping Connection"
+                frostlib.slogger.debug("Malformed Packet...dropping Connection")
                 self.transport.loseConnection()
 
         d = d.addCallback(got_info)
@@ -65,13 +60,14 @@ class WorldProtocol(Protocol):
     def connectionMade(self):
         global active_connections
         active_connections = active_connections+1
-        print "Accepting Connection from " + str(self.transport.getPeer()[1]) + " on Port " + str(self.transport.getPeer()[2])
-
+        frostlib.slogger.debug("Accepting Connection from " + str(self.transport.getPeer()[1]) + " on Port " + str(self.transport.getPeer()[2])
+)
     def connectionLost(self, reason):
         global active_connections
         active_connections = active_connections-1
-        print "Connection Lost from " + str(self.transport.getPeer()[1])
+        frostlib.slogger.debug("Connection Lost from " + str(self.transport.getPeer()[1]))
 def developement():
+    for x in xrange(0,500):
         frostlib.scripts.molten_core.boss_gehennas().RegisterScript()
         frostlib.scripts.molten_core.boss_baron_geddon().RegisterScript()
         frostlib.scripts.molten_core.boss_garr().RegisterScript()
@@ -97,7 +93,7 @@ def running():
     import time
     while True:
         time.sleep(frostlib.CONNECTION_INFO_DELAY)
-        print str(active_connections) + " World Connections Active"
+        frostlib.slogger.debug(str(active_connections) + " World Connections Active")
 
 def update_scripts():
     """
@@ -107,18 +103,18 @@ def update_scripts():
         try:
             frostlib.sworld.update_scripts()
         except:
-            frostlib.dout("Error in FrostScript")
+            frostlib.slogger.debug("Error in FrostScript")
 factory = Factory()
 factory.protocol = WorldProtocol
-print "FrostCore World Ready!"
+frostlib.slogger.info("FrostCore World Ready!")
 reactor.callInThread(update_scripts)
 reactor.callInThread(developement)
 try:
     reactor.listenTCP(8085, factory)
-    print "FrostCore World now listen for Connections!"
+    frostlib.slogger.debug("FrostCore World now listen for Connections!")
     if frostlib.CONNECTION_INFO == True:
         reactor.callInThread(running)
     reactor.run()
 except:
-    frostlib.nout("Cannot Bind Socket on Port 8085!")
+    frostlib.slogger.info("Cannot Bind Socket on Port 8085!")
     frostlib.shutdown()

@@ -86,7 +86,7 @@ class world(ItemHandler.ItemHandler,
         except:
             import traceback
             traceback.print_exc(file=frostlib.logfile)
-            frostlib.nout("No Connection to MySQL Server")
+            frostlib.slogger.info("No Connection to MySQL Server")
             frostlib.shutdown()
 
         

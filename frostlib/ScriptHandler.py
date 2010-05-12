@@ -36,7 +36,7 @@ class ScriptHandler(object):
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
             #except:
             #    frostlib.nout("Error while loading Script Text " + str(currentry) + " enEN")
@@ -50,10 +50,10 @@ class ScriptHandler(object):
                 p.update_time(cur)
                 cur += 1
                 if str(p) != pold:
-                    frostlib.nout(str(p))
+                    frostlib.slogger.info(str(p))
                     pold = str(p)
             except:
-                frostlib.nout("Error while loading Script Text " + str(currentry) + " deDE")
+                frostlib.slogger.info("Error while loading Script Text " + str(currentry) + " deDE")
 
         for entry in range(0,resultcount_es):
             try:
@@ -64,10 +64,10 @@ class ScriptHandler(object):
                 p.update_time(cur)
                 cur += 1
                 if str(p) != pold:
-                    frostlib.nout(str(p))
+                    frostlib.slogger.info(str(p))
                     pold = str(p)
             except:
-                frostlib.nout("Error while loading Script Text " + str(currentry) + " esES")
+                frostlib.slogger.info("Error while loading Script Text " + str(currentry) + " esES")
 
         for entry in range(0,resultcount_fr):
             try:
@@ -78,11 +78,11 @@ class ScriptHandler(object):
                 p.update_time(cur)
                 cur += 1
                 if str(p) != pold:
-                    frostlib.nout(str(p))
+                    frostlib.slogger.info(str(p))
                     pold = str(p)
 
             except:
-                frostlib.nout("Error while loading Script Text " + str(currentry) + " frFR")
+                frostlib.slogger.info("Error while loading Script Text " + str(currentry) + " frFR")
 
         for entry in range(0,resultcount_ru):
             try:
@@ -93,55 +93,53 @@ class ScriptHandler(object):
                 p.update_time(cur)
                 cur += 1
                 if str(p) != pold:
-                    frostlib.nout(str(p))
+                    frostlib.slogger.info(str(p))
                     pold = str(p)
             except:
-                frostlib.nout("Error while loading Script Text " + str(currentry) + " ruRU")
+                frostlib.slogger.info("Error while loading Script Text " + str(currentry) + " ruRU")
     
-        frostlib.nout(">>> Loaded " + str(cur) + " Script Texts")
+        frostlib.slogger.info(">>> Loaded " + str(cur) + " Script Texts")
     
     def script_setmodelid(self, changer, modelid):
         """ Setzt Modelid's """
-        print str(time.strftime("%M:%S")) + " Creature " + str(changer) + " changing Modelid to " + str(modelid)
+        frostlib.slogger.info("Creature " + str(changer) + " changing Modelid to " + str(modelid))
     def script_castspell(self, caster, target, spellid):
         """ Castet Spells """
-        print str(time.strftime("%M:%S")) + " Creature " + str(caster) + " casting Spellid: " + str(spellid) + " on " + str(target)
+        frostlib.slogger.info("Creature " + str(caster) + " casting Spellid: " + str(spellid) + " on " + str(target))
         pass
     def script_say(self, say, textid):
         """ Sagt Texte
 
         say -> Creature die Text sagt"""
-        print str(time.strftime("%M:%S")) + " Creature " + str(say) + " Saying: " + str(textid)
-        #try:
+        frostlib.slogger.info("Creature " + str(say) + " Saying: " + str(textid))
         text = self.wscript_texts[int(textid)]
         try:
-            print str(time.strftime("%M:%S")) + " enUS: " + str(text.getlocalizedtext("enUS"))
+            frostlib.slogger.info("enUS: " + str(text.getlocalizedtext("enUS")))
         except:
-            print "Error"
+            frostlib.slogger.warning("No enUS Localization for: " + str(textid))
         try:
-            print str(time.strftime("%M:%S")) + " deDE: " + str(text.getlocalizedtext("deDE"))
+            frostlib.slogger.info("deDE: " + str(text.getlocalizedtext("deDE")))
         except:
-            print "Error"
+            frostlib.slogger.warning("No deDE Localization for: " + str(textid))
         try:
-            print str(time.strftime("%M:%S")) + " esES: " + str(text.getlocalizedtext("esES"))
+            frostlib.slogger.info("esES: " + str(text.getlocalizedtext("esES")))
         except:
-            print "Error"
+            frostlib.slogger.warning("No esES Localization for: " + str(textid))
         try:
-            print str(time.strftime("%M:%S")) + " frFR: " + str(text.getlocalizedtext("frFR"))
+            frostlib.slogger.info("frFR: " + str(text.getlocalizedtext("frFR")))
         except:
-            print "Error"
+            frostlib.slogger.warning("No frFR Localization for: " + str(textid))
         try:
-            print str(time.strftime("%M:%S")) + " ruRU: " + str(text.getlocalizedtext("ruRU"))
+            frostlib.slogger.info("ruRU: " + str(text.getlocalizedtext("ruRU")))
         except:
-            print "Error"
-        #except:
-        #    frostlib.nout("No Script Text with ID: " + str(textid))
+            frostlib.slogger.warning("No ruRU Localization for: " + str(textid))
+        
 
 
         
     def RegisterScript(self, script):
         script.scriptid = self.numscripts
-        print ">>> ScriptNumber::>" + str(self.numscripts)
+        frostlib.slogger.info(">>> ScriptNumber::>" + str(self.numscripts))
         self.numscripts += 1
         self.wscripts.append(script)
         

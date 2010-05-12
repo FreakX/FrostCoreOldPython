@@ -24,6 +24,20 @@
 if __name__ != '__main__':
     import world
     sworld = world.world()
+    import logging
+    import logging.handlers
+    slogger = logging.getLogger("FrostCore")
+    ch = logging.StreamHandler()
+    dh = logging.FileHandler("FrostCore.log")
+    ch.setLevel(logging.INFO)
+    dh.setLevel(logging.INFO)
+    dhformatter = logging.Formatter("%(asctime)s - %(module)s::%(funcName)s#%(lineno)s - %(message)s")
+    chformatter = logging.Formatter("%(asctime)s: %(message)s", "%H:%M")
+    ch.setFormatter(chformatter)
+    dh.setFormatter(dhformatter)
+    slogger.addHandler(ch)
+    slogger.addHandler(dh)
+    slogger.setLevel(logging.DEBUG)
     import classes
     import config
     import opcodes
@@ -57,48 +71,27 @@ TIME_YEAR = TIME_MONTH * 12
 
 
 def shutdown():
-    nout("Schutdown in 10")
+    frostlib.slogger.info("Schutdown in 10")
     time.sleep(1)
-    nout("Schutdown in 9")
+    frostlib.slogger.info("Schutdown in 9")
     time.sleep(1)
-    nout("Schutdown in 8")
+    frostlib.slogger.info("Schutdown in 8")
     time.sleep(1)
-    nout("Schutdown in 7")
+    frostlib.slogger.info("Schutdown in 7")
     time.sleep(1)
-    nout("Schutdown in 6")
+    frostlib.slogger.info("Schutdown in 6")
     time.sleep(1)
-    nout("Schutdown in 5")
+    frostlib.slogger.info("Schutdown in 5")
     time.sleep(1)
-    nout("Schutdown in 4")
+    frostlib.slogger.info("Schutdown in 4")
     time.sleep(1)
-    nout("Schutdown in 3")
+    frostlib.slogger.info("Schutdown in 3")
     time.sleep(1)
-    nout("Schutdown in 2")
+    frostlib.slogger.info("Schutdown in 2")
     time.sleep(1)
-    nout("Schutdown in 1")
+    frostlib.slogger.info("Schutdown in 1")
     time.sleep(1)
-    logfile.close()
     exit()
-logfile = open("log.txt", "w")
-def nout(out):
-    print out
-    logfile.write(out + "\n")
-
-def dout(out):
-    if LOG_LEVEL >= 1:
-        print out
-        logfile.write(out + "\n")
-        
-def edout(out):
-    if LOG_LEVEL >= 2:
-        print out
-        logfile.write(out + "\n")
-        
-def eout(out):
-    if LOG_LEVEL >= 3:
-        print out
-        logfile.write(out + "\n")
-
 
 class ProgressBar:
     def __init__(self, duration, text):
