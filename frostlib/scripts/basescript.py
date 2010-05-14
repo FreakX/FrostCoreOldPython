@@ -4,6 +4,8 @@ from .. import sworld
 import time
 import random
 class script_npc(object):
+    def __str__(self):
+        return str(self.name) + "::" + str(self.scriptid)
     def hastarget(self):
         return True
     def cast(self, target, spellid):

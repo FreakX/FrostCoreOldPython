@@ -28,19 +28,19 @@ from time import sleep
 import warnings
 warnings.filterwarnings("ignore")
 frostlib.config.loadlogonconf()
-frostlib.nout("__________                       _____ _________                     ")
-frostlib.nout("___  ____/______________ __________  /___  ____/______ _____________ ")
-frostlib.nout("__  /_    __  ___/_  __ \__  ___/_  __/_  /     _  __ \__  ___/_  _ \\")
-frostlib.nout("_  __/    _  /    / /_/ /_(__  ) / /_  / /___   / /_/ /_  /    /  __/")
-frostlib.nout("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_/     \___/ ")
-frostlib.dout("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
-frostlib.dout("Checking FrostLIB Hash...")
+frostlib.slogger.info("__________                       _____ _________                     ")
+frostlib.slogger.info("___  ____/______________ __________  /___  ____/______ _____________ ")
+frostlib.slogger.info("__  /_    __  ___/_  __ \__  ___/_  __/_  /     _  __ \__  ___/_  _ \\")
+frostlib.slogger.info("_  __/    _  /    / /_/ /_(__  ) / /_  / /___   / /_/ /_  /    /  __/")
+frostlib.slogger.info("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_/     \___/ ")
+frostlib.slogger.info("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
+frostlib.slogger.debug("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
-frostlib.dout("FrostLIB Hash: " + str(frostlib_hash))
+frostlib.slogger.debug("FrostLIB Hash: " + str(frostlib_hash))
 if frostlib_hash != frostlib.HASH:
-    frostlib.nout("False FrostLIB HASH")
+    frostlib.slogger.info("False FrostLIB HASH")
     frostlib.shutdown()
-frostlib.dout("FrostCore Logon is starting...")
+frostlib.slogger.debug("FrostCore Logon is starting...")
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory
 from twisted.internet import reactor, threads, defer
@@ -56,7 +56,7 @@ class LogonProtocol(Protocol):
             if res != "error":
                 self.transport.write(res)
             else:
-                print "Malformed Packet...dropping Connection"
+                frostlib.slogger.exception("Malformed Packet...dropping Connection")
                 self.transport.loseConnection()
 
         d = d.addCallback(got_info)
@@ -68,18 +68,18 @@ class LogonProtocol(Protocol):
     def connectionMade(self):
         global active_connections
         active_connections = active_connections+1
-        print "Accepting Connection from " + str(self.transport.getPeer()[1]) + " on Port " + str(self.transport.getPeer()[2])
+        frostlib.slogger.debug("Accepting Connection from " + str(self.transport.getPeer()[1]) + " on Port " + str(self.transport.getPeer()[2]))
 
     def connectionLost(self, reason):
         global active_connections
         active_connections = active_connections-1
-        print "Connection Lost from " + str(self.transport.getPeer()[1])
+        frostlib.slogger.debug("Connection Lost from " + str(self.transport.getPeer()[1]))
 
 def running():
     import time
     while True:
         time.sleep(frostlib.CONNECTION_INFO_DELAY)
-        print str(active_connections) + " Logon Connections Active"
+        frostlib.slogger.info(str(active_connections) + " Logon Connections Active")
 
 factory = Factory()
 factory.protocol = LogonProtocol
@@ -91,5 +91,5 @@ try:
         reactor.callInThread(running)
     reactor.run()
 except:
-    frostlib.nout("Cannot Bind Socket on Port 3724!")
+    frostlib.slogger.exception("Cannot Bind Socket on Port 3724!")
     frostlib.shutdown()

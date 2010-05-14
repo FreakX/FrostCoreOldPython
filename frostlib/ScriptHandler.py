@@ -139,6 +139,7 @@ class ScriptHandler(object):
         
     def RegisterScript(self, script):
         script.scriptid = self.numscripts
+        script.name = script.__class__.__name__
         frostlib.slogger.info(">>> ScriptNumber::>" + str(self.numscripts))
         self.numscripts += 1
         self.wscripts.append(script)
