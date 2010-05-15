@@ -31,13 +31,15 @@ import ScriptHandler
 import PlayerHandler
 import BagHandler
 import TerrainHandler
+import SpellHandler
 
 class world(ItemHandler.ItemHandler,
             CreatureHandler.CreatureHandler,
             ScriptHandler.ScriptHandler,
             PlayerHandler.PlayerHandler,
             BagHandler.BagHandler,
-            TerrainHandler.TerrainHandler):
+            TerrainHandler.TerrainHandler,
+            SpellHandler.SpellHandler):
     """ World Object, Steuert alle Vorgänge """
     def __init__(self):
         self.witems = {}
