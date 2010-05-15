@@ -134,7 +134,25 @@ class ScriptHandler(object):
         except:
             frostlib.slogger.warning("No ruRU Localization for: " + str(textid))
         
-
+    def GetScriptByName(self, scriptname):
+        import scripts as sdb
+        scripts = {
+            ##########   Zulgurub  ##########
+            "boss_arlokk"           : sdb.zulgurub.boss_arlokk,
+            "boss_gahzranka"        : sdb.zulgurub.boss_gahzranka,
+            "boss_grilek"           : sdb.zulgurub.boss_grilek,
+            "boss_hakkar"           : sdb.zulgurub.boss_hakkar,
+            "boss_hazzarah"         : sdb.zulgurub.boss_hazzarah,
+            "boss_jeklik"           : sdb.zulgurub.boss_jeklik,
+            ########## Molten Core ##########
+            "boss_baron_geddon"     : sdb.molten_core.boss_baron_geddon,
+            "boss_garr"             : sdb.molten_core.boss_garr
+            }
+        try:
+            return scripts[scriptname]()
+        except KeyError:
+            return sdb.zulgurub.boss_jeklik()
+        
 
         
     def RegisterScript(self, script):
