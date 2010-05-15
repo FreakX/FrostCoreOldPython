@@ -20,6 +20,9 @@ class boss_baron_geddon(basescript.script_npc):
         self.TIMER_LIVINGBOMB.reset(35,35)
         
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.gethealthpercent() <= 2:
             self.castinterrupt()
             self.cast(self.guid(), self.SPELL_ARMAGEDDOM)
@@ -63,6 +66,9 @@ class boss_garr(basescript.script_npc):
             self.add.append(npc)
             
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.gethealthpercent() < 20:
             self.cast(self.guid(), self.SPELL_ENRAGE)
             return
@@ -101,6 +107,9 @@ class boss_lucifron(basescript.script_npc):
         self.TIMER_SHADOWSCHOCK.reset(6,6)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.TIMER_IMPENDINGDOOM.ready():
             self.cast(self.target(), self.SPELL_IMPENDINGDOOM)
             self.TIMER_IMPENDINGDOOM.newtime(20,20)
@@ -138,6 +147,9 @@ class boss_magmadar(basescript.script_npc):
         self.cast(self.guid(), self.SPELL_MAGMASPIT)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.TIMER_FRENZY.ready():
             self.say(self.EMOTE_GENERIC_FRENZY_KILL)
             self.cast(self.guid(), self.SPELL_FRENZY)
@@ -171,6 +183,9 @@ class boss_gehennas(basescript.script_npc): # Es fehlen noch die adds
         self.TIMER_GEHANNASCURSE.reset(12,12)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.TIMER_SHADOWBOLT.ready():
             self.cast(self.randtarget(), self.SPELL_SHADOWBOLT)
             self.TIMER_SHADOWBOLT.newtime(7,7)
@@ -213,7 +228,9 @@ class boss_golemagg(basescript.script_npc):
         self.cast(self.guid(), self.SPELL_MAGMASPLASH)
 
     def update(self):
-
+        if not self.hastarget():
+            return
+        
         if self.TIMER_PYROBLAST.ready():
             self.cast(self.randtarget(),self.SPELL_PYROBLAST)
             self.TIMER_PYROBLAST.reset()
@@ -256,6 +273,9 @@ class boss_shazzrah(basescript.script_npc):
         self.TIMER_BLINK.reset(30,30)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.TIMER_ARCANEEXPLOSION.ready():
             self.cast(self.target(), self.SPELL_ARCANEEXPLOSION)
             self.TIMER_ARCANEEXPLOSION.newtime(5,9)
@@ -311,6 +331,8 @@ class boss_sulfuron_harbringer(basescript.script_npc):
         self.TIMER_FLAMESPEAR.reset(2,2)
 
     def update(self):
+        if not self.hastarget():
+            return
 
         if self.TIMER_DEMORALIZINGSHOUT.ready():
             self.cast(self.target(), self.SPELL_DEMORALIZINGSHOUT)
@@ -356,6 +378,9 @@ class mob_sulfuron_harbringer(basescript.script_npc):
         self.TIMER_IMMOLATE.reset(8,8)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.gethealthpercent() < 20:
             if self.TIMER_HEAL.ready():
                 self.cast(self.guid(), self.SPELL_HEAL)
@@ -415,6 +440,8 @@ class boss_majordomo_executus(basescript.script_npc):
         self.TIMER_BLASTWAVE.reset(10,10)
 
     def update(self):
+        if not self.hastarget():
+            return
 
         if self.gethealthpercent < 50:
             self.cast(self.guid(), self.SPELL_AEGIS)

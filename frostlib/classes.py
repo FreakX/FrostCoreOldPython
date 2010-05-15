@@ -22,7 +22,7 @@
    */
 """
 import frostlib
-class account(object):
+class Account(object):
     
     def __init__(self,guid,name,password,email,expansion):
         self.__guid = guid
@@ -53,7 +53,7 @@ class account(object):
             self.__verify = False
             return False
 
-class character(object):
+class Character(object):
     def __init__(self, guid, account, name, race, classx, hp, power, equipment, bag, posx, posy, posz, orientation):
         self.__guid = guid
         self.__accountid = account
@@ -86,7 +86,7 @@ class character(object):
         self.__instancemode = instancemode
         
 
-class quest(object):
+class Quest(object):
     def __init__(self, questid, (title_en, title_de, title_fr, title_es), (desc_en, desc_de, desc_fr, desc_es), rewardmoney, rewarditem1, rewarditem2, rewarditem3, rewarditem4, rewarditem5,rewarditem6, choiceitem1, choiceitem2,choiceitem3,choiceitem4,choiceitem5,choiceitem6):
         self.id = questid
         self.title = [title_en, title_de, title_fr, title_es]
@@ -115,23 +115,8 @@ class quest(object):
         elif local == "es":
             return self.desc[3]
     
-    
-    
-class npc(object):
-    def __init__(self, npcid, npcguid):
-        #TODO: Load NPC Data from another Class (NPC Instance Class) (Not Implementet yet))
-        self.guid = npcguid
-        
-    def gossip(self, character):
-        character.opengossip()
-        try:
-            for gossip_item in self.gossip_items:
-                character.gossipadd(gossip_item)
-        except:
-            character.gossipadd("$xx$.$") # Special Code for "Hello <name>"
 
-
-class group(object):
+class Group(object):
     def __init__(self, leader):
         self.leader = leader
         self.member = [leader]
@@ -139,17 +124,9 @@ class group(object):
         self.member.append(member)
     def getmember(self):
         return self.member
-
-class instancehandler(object):
-    def __init__(self):
-        self.instances = []
-    def createnewinstance(self, instance):
-        instancecount = len(self.instances)
-        self.instances.append(instance)
-        return instancecount + 1
         
         
-class instance(object):
+class Instance(object):
     def __init__(self, mode, group, instancemap, instancehandler):
         self.id = instancehandler.createnewinstance(self)
         self.mode = mode
@@ -166,7 +143,7 @@ class instance(object):
         for member in self.member:
             member.setinstance(self.id)
             member.setinstancemode(self.mode)
-class item(object):
+class Item(object):
     def __init__(self,
                  item_entry,
                  item_class,
@@ -561,6 +538,16 @@ class creature(object):
         except NameError:
             return self.en_subname
 
+        
+    def gossip(self, character):
+        character.opengossip()
+        try:
+            for gossip_item in self.gossip_items:
+                character.gossipadd(gossip_item)
+        except:
+            character.gossipadd("$xx$.$") # Special Code for "Hello <name>"
+
+
 class creature_instance(object):
     def __init__(self, creatureobject, xpos, ypos, zpos, size):
         self.creatureobject = creatureobject
@@ -581,7 +568,7 @@ class creature_instance(object):
             self.script = frostlib.creaturescripts.blacktemple.illidan()
             
 
-class script_text(object):
+class ScriptText(object):
     def __init__(self, script_id, script_text):
         self.en_text = script_text
         self.script_text_id = script_id
@@ -617,7 +604,7 @@ class script_text(object):
         except NameError:
             return self.en_text
 
-class bag(object):
+class Bag(object):
     def __init__(self):
         self.bag = {}
         maxslots = 0

@@ -20,18 +20,20 @@ class ItemHandler(object):
         p = frostlib.ProgressBar(int(resultcount), "Loading Item Localizations...")
         pold = str(p)
         cur = 0
+        count = 0
         for entry in range(0,resultcount_de):
             
             currentres = result_de[entry]
             item_entry = int(currentres[0])
             try:
+                count += 1
                 self.witems[item_entry].set_localized(currentres[1],currentres[2],currentres[3])
             except:
                 helpvar += "Got localized name for item " + str(item_entry) + " , but there is no Item with entry " + str(item_entry) + "\n"
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
 
         for entry in range(0,resultcount_es):
@@ -39,13 +41,14 @@ class ItemHandler(object):
             currentres = result_es[entry]
             item_entry = int(currentres[0])
             try:
+                count += 1
                 self.witems[item_entry].set_localized(currentres[1],currentres[2],currentres[3])
             except:
                 helpvar += "Got localized name for item " + str(item_entry) + " , but there is no Item with entry " + str(item_entry) + "\n"
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
 
                 
@@ -54,13 +57,14 @@ class ItemHandler(object):
             currentres = result_fr[entry]
             item_entry = int(currentres[0])
             try:
+                count += 1
                 self.witems[item_entry].set_localized(currentres[1],currentres[2],currentres[3])
             except:
                 helpvar += "Got localized name for item " + str(item_entry) + " , but there is no Item with entry " + str(item_entry) + "\n"
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
 
         for entry in range(0,resultcount_ru):
@@ -68,16 +72,18 @@ class ItemHandler(object):
             currentres = result_ru[entry]
             item_entry = int(currentres[0])
             try:
+                count += 1
                 self.witems[item_entry].set_localized(currentres[1],currentres[2],currentres[3])
             except:
                 helpvar += "Got localized name for item " + str(item_entry) + " , but there is no Item with entry " + str(item_entry) + "\n"
             p.update_time(cur)
             cur += 1
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
         
-        frostlib.eout(helpvar)
+        frostlib.slogger.debug(helpvar)
+        frostlib.slogger.info(">>> Loaded " + str(count) + " Item Localizations")
 
         
     def loaditems(self):
@@ -88,6 +94,7 @@ class ItemHandler(object):
         p = frostlib.ProgressBar(int(resultcount), "Loading Items...")
         pold = str(p)
         result = self.cursor.fetchall()
+        count = 0
         for entry in range(0,resultcount):
             try:
                 currentry =             result[entry]
@@ -215,10 +222,8 @@ class ItemHandler(object):
                 item_HolidayId = currentry[121]
                 del currentry
             except:
-                import traceback
-                traceback.print_exc(file=frostlib.logfile)
-                frostlib.dout("Fehler beim Item: " + str(entry))
-            item = frostlib.classes.item(item_entry,
+                frostlib.slogger.debug("Fehler beim Item: " + str(entry))
+            item = frostlib.classes.Item(item_entry,
                                          item_class,
                                          item_subclass,
                                          item_field4,
@@ -341,9 +346,10 @@ class ItemHandler(object):
                                          item_ItemLimitCategoryId,
                                          item_HolidayId)
             self.witems[item_entry] = item
+            count += 1
                        
             p.update_time(entry)
             if str(p) != pold:
-                frostlib.nout(str(p))
+                frostlib.slogger.info(str(p))
                 pold = str(p)
-        #print self.witems
+        frostlib.slogger.info(">>> Loaded " + str(count) + " Items")

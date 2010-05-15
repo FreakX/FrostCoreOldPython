@@ -30,12 +30,14 @@ import CreatureHandler
 import ScriptHandler
 import PlayerHandler
 import BagHandler
+import TerrainHandler
 
 class world(ItemHandler.ItemHandler,
             CreatureHandler.CreatureHandler,
             ScriptHandler.ScriptHandler,
             PlayerHandler.PlayerHandler,
-            BagHandler.BagHandler):
+            BagHandler.BagHandler,
+            TerrainHandler.TerrainHandler):
     """ World Object, Steuert alle Vorgänge """
     def __init__(self):
         self.witems = {}
@@ -84,7 +86,7 @@ class world(ItemHandler.ItemHandler,
         except:
             import traceback
             traceback.print_exc(file=frostlib.logfile)
-            frostlib.nout("No Connection to MySQL Server")
+            frostlib.slogger.info("No Connection to MySQL Server")
             frostlib.shutdown()
 
         

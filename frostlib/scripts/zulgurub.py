@@ -52,6 +52,9 @@ class boss_arlokk(basescript.script_npc):
         self.selectable()
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.IS_PHASE_TWO == False:
             if self.TIMER_SHADOWWORDPAIN.ready():
                 self.cast(self.target(), self.SPELL_SHADOWWORDPAIN)
@@ -125,6 +128,9 @@ class boss_gahzranka(basescript.script_npc):
         self.TIMER_SLAM.reset(17,17)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.TIMER_FROSTBREATH.ready():
             self.cast(self.target(), self.SPELL_FROSTBREATH)
             self.TIMER_FROSTBREATH.newtime(7,11)
@@ -155,6 +161,9 @@ class boss_grilek(basescript.script_npc):
         self.TIMER_GROUNDTREMOR.reset(8,16)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.TIMER_AVARTAR.ready():
             self.cast(self.guid(), self.SPELL_AVARTAR)
 
@@ -236,6 +245,9 @@ class boss_hakkar(basescript.script_npc):
         self.TIMER_ASPECTOFARLOKK.reset(18,18)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.TIMER_BLOODSIPHON.ready():
             self.cast(self.target(), self.SPELL_BLOODSIPHON)
 
@@ -330,6 +342,9 @@ class boss_hazzarah(basescript.script_npc):
         self.TIMER_ILLUSION.reset(10,18)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.TIMER_MANABURN.ready():
             self.cast(self.target(), self.SPELL_MANABURN)
 
@@ -392,6 +407,9 @@ class boss_jeklik(basescript.script_npc):
         self.TIMER_SPAWNFLYINGBATS.reset(10,10)
 
     def update(self):
+        if not self.hastarget():
+            return
+        
         if self.gethealthpercent() > 50:
             if self.TIMER_CHARGE.ready():
                 self.cast(self.randtarget(), self.SPELL_CHARGE)
