@@ -15,7 +15,8 @@ frostlib.slogger.debug("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-"
 frostlib.slogger.info("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
 frostlib.slogger.info("FrostLIB Hash: " + str(frostlib_hash))
-if frostlib_hash != frostlib.HASH:
+frostlib.slogger.info("Frostlig.FROSTLIB_HASH: " + str(frostlib.FROSTLIB_HASH))
+if frostlib_hash != frostlib.FROSTLIB_HASH:
     frostlib.slogger.info("False FrostLIB HASH")
     frostlib.shutdown()
     

@@ -5,10 +5,10 @@ data = f.readlines()
 f.close()
 f = open("logon.cfg", 'w')
 for lines in data:
-    if not "FROSTLIB_HASH" in lines:
+    if not "frostlib_hash" in lines:
         f.write(lines)
     else:
-        f.write("FROSTLIB_HASH="+frostlib_hash + "\n")
+        f.write("frostlib_hash = "+frostlib_hash + "\n")
     print lines
 f.close
 
@@ -17,9 +17,9 @@ data = f.readlines()
 f.close()
 f = open("world.cfg", 'w')
 for lines in data:
-    if not "FROSTLIB_HASH" in lines:
+    if not "frostlib_hash" in lines:
         f.write(lines)
     else:
-        f.write("FROSTLIB_HASH="+frostlib_hash + "\n")
+        f.write("frostlib_hash = "+frostlib_hash + "\n")
     print lines
 f.close

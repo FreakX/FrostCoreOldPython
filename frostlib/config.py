@@ -24,65 +24,51 @@
 import frostlib
 INI_FILE_WORLD = "world.cfg"
 INI_FILE_LOGON = "logon.cfg"
-def getkey(line):
-    #swallow everything up to the =
-    return line[ : line.find('=') ].strip()
+import ConfigParser
 
-def getval(line):
-    #swallow everything after the =
-    return line[ line.find('=') + 1 : ].strip()
 
 def loadlogonconf():
-    try:
-        confdict = {}
-        f = open(INI_FILE_LOGON, 'r')
-        data = f.readlines()
-        for line in data:
-            key = getkey(line)
-            value = getval(line)
-            confdict[key] = value
-        try:
-            frostlib.LOG_LEVEL = int(confdict["LOG_LEVEL"])
-            frostlib.DEBUG_MODE = int(confdict["DEBUG_MODE"])
-            frostlib.CONNECTION_INFO = int(confdict["CONNECTION_INFO"])
-            frostlib.CONNECTION_INFO_DELAY = int(confdict["CONNECTION_INFO_DELAY"])
-            frostlib.CLIENT_AUTH_INFO = int(confdict["CLIENT_AUTH_INFO"])
-            frostlib.AUTHBUILD_ACCEPT = int(confdict["AUTHBUILD_ACCEPT"])
-            frostlib.HASH = str(confdict["FROSTLIB_HASH"])
+    config = ConfigParser.ConfigParser()
+    config.read(INI_FILE_LOGON)
     
+    ## MAIN cfg ##
+    frostlib.FROSTLIB_HASH =            config.get("MAIN", "FROSTLIB_HASH")
+    frostlib.LOG_LEVEL =                config.get("MAIN", "LOG_LEVEL")
+    frostlib.DEBUG_MODE =               config.get("MAIN", "DEBUG_MODE")
+    frostlib.CONNECTION_INFO =          config.get("MAIN", "CONNECTION_INFO")
+    frostlib.CONNECTION_INFO_DELAY =    config.get("MAIN", "CONNECTION_INFO_DELAY")
+    frostlib.CLIENT_AUTH_INFO =         config.get("MAIN", "CLIENT_AUTH_INFO")
+    frostlib.AUTHBUILD_ACCEPT =         config.get("MAIN", "AUTHBUILD_ACCEPT")
 
-        except:
-            print "Error while loading Config"
-        frostlib.slogger.debug("Logon configuration successfully loaded")
-    except:
-        print "No valid INI File found"
-
-            
+    ## LOGON DB cfg ##
+    frostlib.LOGON_HOST =            config.get("LOGON_DB", "DB_HOST")
+    frostlib.LOGON_USER =            config.get("LOGON_DB", "DB_USER")
+    frostlib.LOGON_PASS =            config.get("LOGON_DB", "DB_PASS")
+    frostlib.LOGON_DB =              config.get("LOGON_DB", "DB_DB")
+    
 def loadworldconf():
-    try:
-        confdict = {}
-        f = open(INI_FILE_WORLD, 'r')
-        data = f.readlines()
-        for line in data:
-            key = getkey(line)
-            value = getval(line)
-            confdict[key] = value
-        try:
-            frostlib.MYSQL_WORLD_HOST = confdict["MYSQL_WORLD_HOST"]
-            frostlib.MYSQL_WORLD_USER = confdict["MYSQL_WORLD_USER"]
-            frostlib.MYSQL_WORLD_PW = confdict["MYSQL_WORLD_PW"]
-            frostlib.MYSQL_WORLD_DB = confdict["MYSQL_WORLD_DB"]
-            frostlib.LOG_LEVEL = int(confdict["LOG_LEVEL"])
-            frostlib.DEBUG_MODE = int(confdict["DEBUG_MODE"])
-            frostlib.CONNECTION_INFO = int(confdict["CONNECTION_INFO"])
-            frostlib.CONNECTION_INFO_DELAY = int(confdict["CONNECTION_INFO_DELAY"])
-            frostlib.CLIENT_AUTH_INFO = int(confdict["CLIENT_AUTH_INFO"])
-            frostlib.AUTHBUILD_ACCEPT = int(confdict["AUTHBUILD_ACCEPT"])
-            frostlib.HASH = str(confdict["FROSTLIB_HASH"])
+    config = ConfigParser.ConfigParser()
+    config.read(INI_FILE_WORLD)
 
+    ## MAIN cfg ##
+    frostlib.FROSTLIB_HASH =            config.get("MAIN", "FROSTLIB_HASH")
+    frostlib.LOG_LEVEL =                config.get("MAIN", "LOG_LEVEL")
+    frostlib.DEBUG_MODE =               config.get("MAIN", "DEBUG_MODE")
+    frostlib.CONNECTION_INFO =          config.get("MAIN", "CONNECTION_INFO")
+    frostlib.CONNECTION_INFO_DELAY =    config.get("MAIN", "CONNECTION_INFO_DELAY")
+    frostlib.CLIENT_AUTH_INFO =         config.get("MAIN", "CLIENT_AUTH_INFO")
+    frostlib.AUTHBUILD_ACCEPT =         config.get("MAIN", "AUTHBUILD_ACCEPT")
 
-        except:
-            print "Error while loading Config"
-        frostlib.slogger.debug("World configuration successfully loaded")
-    except:
-        print "No valid INI File found"
+    ## LOGON DB cfg ##
+    frostlib.LOGON_HOST =            config.get("LOGON_DB", "DB_HOST")
+    frostlib.LOGON_USER =            config.get("LOGON_DB", "DB_USER")
+    frostlib.LOGON_PASS =            config.get("LOGON_DB", "DB_PASS")
+    frostlib.LOGON_DB =              config.get("LOGON_DB", "DB_DB")
+
+    ## WORLD DB cfg ##
+
+    frostlib.WORLD_HOST =            config.get("WORLD_DB", "DB_HOST")
+    frostlib.WORLD_USER =            config.get("WORLD_DB", "DB_USER")
+    frostlib.WORLD_PASS =            config.get("WORLD_DB", "DB_PASS")
+    frostlib.WORLD_DB =              config.get("WORLD_DB", "DB_DB")
+    

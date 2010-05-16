@@ -36,10 +36,12 @@ frostlib.slogger.info("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_
 frostlib.slogger.info("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
 frostlib.slogger.debug("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
-frostlib.slogger.debug("FrostLIB Hash: " + str(frostlib_hash))
-if frostlib_hash != frostlib.HASH:
+frostlib.slogger.info("FrostLIB Hash: " + str(frostlib_hash))
+frostlib.slogger.info("Frostlig.FROSTLIB_HASH: " + str(frostlib.FROSTLIB_HASH))
+if frostlib_hash != frostlib.FROSTLIB_HASH:
     frostlib.slogger.info("False FrostLIB HASH")
     frostlib.shutdown()
+  
 frostlib.slogger.debug("FrostCore Logon is starting...")
 # twisted Imports
 from twisted.internet.protocol import Protocol, Factory

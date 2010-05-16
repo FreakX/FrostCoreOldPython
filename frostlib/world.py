@@ -72,24 +72,20 @@ class world(ItemHandler.ItemHandler,
         """
         Stellt eine Datenbankverbindung her
         """
-        try:
-            import MySQLdb
-            mysql_opts = {
-                'host': frostlib.MYSQL_WORLD_HOST,
-                'user': frostlib.MYSQL_WORLD_USER,
-                'pass': frostlib.MYSQL_WORLD_PW,
-                'db':   frostlib.MYSQL_WORLD_DB
-                }
-            self.mysql = MySQLdb.connect(mysql_opts['host'], mysql_opts['user'], mysql_opts['pass'], mysql_opts['db']) 
-            self.mysql.apilevel = "2.0"
-            self.mysql.threadsafety = 2
-            self.mysql.paramstyle = "format"
-            self.cursor = self.mysql.cursor()
-        except:
-            import traceback
-            traceback.print_exc(file=frostlib.logfile)
-            frostlib.slogger.info("No Connection to MySQL Server")
-            frostlib.shutdown()
+    
+        import MySQLdb
+        mysql_opts = {
+            'host': frostlib.WORLD_HOST,
+            'user': frostlib.WORLD_USER,
+            'pass': frostlib.WORLD_PASS,
+            'db':   frostlib.WORLD_DB
+            }
+        self.mysql = MySQLdb.connect(mysql_opts['host'], mysql_opts['user'], mysql_opts['pass'], mysql_opts['db']) 
+        self.mysql.apilevel = "2.0"
+        self.mysql.threadsafety = 2
+        self.mysql.paramstyle = "format"
+        self.cursor = self.mysql.cursor()
+    
 
         
     
