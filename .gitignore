@@ -1,4 +1,5 @@
 *.pyc
 *.txt
-*.cfg
+world.cfg
+logon.cfg
 *.log

@@ -50,7 +50,7 @@ if __name__ != '__main__':
 LOG_LEVEL = 3                # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
 DEBUG_MODE = True            # Debug Mode True|False
 RELEASE_TYPE = "PRE-ALPHA"   # Current Realease Type Alpha|Beta|Release
-REVISION = 4                 # FrostCore Revision
+REVISION = 6                 # FrostCore Revision
 CONNECTION_INFO = True       # Define if Connection Info Is shown
 CONNECTION_INFO_DELAY = 30   # Seconds between Connection Info
 CLIENT_AUTH_INFO = True      # Show Client Info on Connect True|False
