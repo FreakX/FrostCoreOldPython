@@ -33,7 +33,7 @@ frostlib.slogger.info("___  ____/______________ __________  /___  ____/______ __
 frostlib.slogger.info("__  /_    __  ___/_  __ \__  ___/_  __/_  /     _  __ \__  ___/_  _ \\")
 frostlib.slogger.info("_  __/    _  /    / /_/ /_(__  ) / /_  / /___   / /_/ /_  /    /  __/")
 frostlib.slogger.info("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_/     \___/ ")
-frostlib.slogger.info("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.REVISION))
+frostlib.slogger.info("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.__REVISION__))
 frostlib.slogger.debug("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
 frostlib.slogger.info("FrostLIB Hash: " + str(frostlib_hash))
