@@ -138,15 +138,25 @@ class ScriptHandler(object):
         import scripts as sdb
         scripts = {
             ##########   Zulgurub  ##########
-            "boss_arlokk"           : sdb.zulgurub.boss_arlokk,
-            "boss_gahzranka"        : sdb.zulgurub.boss_gahzranka,
-            "boss_grilek"           : sdb.zulgurub.boss_grilek,
-            "boss_hakkar"           : sdb.zulgurub.boss_hakkar,
-            "boss_hazzarah"         : sdb.zulgurub.boss_hazzarah,
-            "boss_jeklik"           : sdb.zulgurub.boss_jeklik,
+            "boss_arlokk"               : sdb.zulgurub.boss_arlokk,
+            "boss_gahzranka"            : sdb.zulgurub.boss_gahzranka,
+            "boss_grilek"               : sdb.zulgurub.boss_grilek,
+            "boss_hakkar"               : sdb.zulgurub.boss_hakkar,
+            "boss_hazzarah"             : sdb.zulgurub.boss_hazzarah,
+            "boss_jeklik"               : sdb.zulgurub.boss_jeklik,
             ########## Molten Core ##########
-            "boss_baron_geddon"     : sdb.molten_core.boss_baron_geddon,
-            "boss_garr"             : sdb.molten_core.boss_garr
+            "boss_baron_geddon"         : sdb.molten_core.boss_baron_geddon,
+            "boss_garr"                 : sdb.molten_core.boss_garr,
+            "boss_lucifron"             : sdb.molten_core.boss_lucifron,
+            "boss_magmadar"             : sdb.molten_core.boss_magmadar,
+            "boss_gehennas"             : sdb.molten_core.boss_gehennas,
+            "boss_golemagg"             : sdb.molten_core.boss_golemagg,
+            "boss_shazzrah"             : sdb.molten_core.boss_shazzrah,
+            "boss_sulfuron_harbringer"  : sdb.molten_core.boss_sulfuron_harbringer,
+            "mob_sulfuron_harbringer"   : sdb.molten_core.mob_sulfuron_harbringer,
+            "boss_majordomo_executus"   : sdb.molten_core.boss_majordomo_executus,
+            ########## Naxxramas   ##########
+            "boss_anubrekhan"           : sdb.naxxramas.boss_anubrekhan
             }
         try:
             return scripts[scriptname]()
