@@ -40,3 +40,4 @@ if us in ja:
             f.write("__REVISION__ = "+ str(int(revision) + 1) + "\n")
     f.close
     print "Revision set to " + str(int(revision) + 1)
+pause = raw_input("Taste drücken zum Beenden ...")
