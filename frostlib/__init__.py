@@ -50,10 +50,10 @@ if __name__ != '__main__':
 LOG_LEVEL = 3                # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
 DEBUG_MODE = True            # Debug Mode True|False
 RELEASE_TYPE = "PRE-ALPHA"   # Current Realease Type Alpha|Beta|Release
-REVISION = 6                 # FrostCore Revision
-CONNECTION_INFO = True       # Define if Connection Info Is shown
-CONNECTION_INFO_DELAY = 30   # Seconds between Connection Info
-CLIENT_AUTH_INFO = True      # Show Client Info on Connect True|False
+__REVISION__ = 11
+CONNECTION_INFO = True # Define if Connection Info Is shown
+CONNECTION_INFO_DELAY = 30 # Seconds between Connection Info
+CLIENT_AUTH_INFO = True # Show Client Info on Connect True|False
 AUTHBUILD_ACCEPT = 11723
 FROSTLIB_HASH = ""
 
@@ -118,6 +118,29 @@ class switch(object):
             return False
 
 
+class Flagger(object):
+    """
+    Flagger Klasse um Flags aus einem Int zu extrahieren
+    """
+    def __init__(self, value, flags):
+        flags = list(flags)
+        flags.sort()
+        flags.reverse()
+        self.flags = flags
+        self.value = value
+    def HasFlag(self, flag):
+        temp = self.value
+        found = False
+        for flager in self.flags:
+            if flager <= temp:
+                temp -= flager
+                if flager == flag:
+                    found = True
+                    return True
+        if not found:
+            return False
+            
+
 class ProgressBar:
     def __init__(self, duration, text):
         self.duration = duration
@@ -139,7 +162,7 @@ class ProgressBar:
        
     def update_time(self, elapsed_secs):
         self.__update_amount((elapsed_secs / float(self.duration)) * 100.0)
-        self.prog_bar += "  " + str(self.text)
+        self.prog_bar += " " + str(self.text)
 
     def __str__(self):
         return str(self.prog_bar)
