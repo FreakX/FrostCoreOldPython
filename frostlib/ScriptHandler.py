@@ -156,7 +156,11 @@ class ScriptHandler(object):
             "mob_sulfuron_harbringer"   : sdb.molten_core.mob_sulfuron_harbringer,
             "boss_majordomo_executus"   : sdb.molten_core.boss_majordomo_executus,
             ########## Naxxramas   ##########
-            "boss_anubrekhan"           : sdb.naxxramas.boss_anubrekhan
+            "boss_anubrekhan"           : sdb.naxxramas.boss_anubrekhan,
+
+            ########## Schwarzfels ##########
+            "boss_ambassador_flamelash" : sdb.blackrock_depths.boss_ambassador_flamelash,
+            "boss_anubshiah"            : sdb.blackrock_depths.boss_anubshiah
             }
         try:
             return scripts[scriptname]()

@@ -51,7 +51,6 @@ import mechanar
 import botanika
 import schadow_labyrinth
 import arkatraz
-import blacktemple
 import magister_terace # ? Terrasse der Magister
 import karazhan
 import zulaman
