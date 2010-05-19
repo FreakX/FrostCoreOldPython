@@ -36,8 +36,8 @@ frostlib.slogger.info("/_/       /_/     \____/ /____/  \__/  \____/   \____/ /_
 frostlib.slogger.info("FrostCore Revision: " + str(frostlib.RELEASE_TYPE) + "-" + str(frostlib.__REVISION__))
 frostlib.slogger.info("Checking FrostLIB Hash...")
 frostlib_hash = frostlib.hash.GetHashofDirs("frostlib", 1)
-frostlib.slogger.info("FrostLIB Hash: " + str(frostlib_hash))
-frostlib.slogger.info("Frostlig.FROSTLIB_HASH: " + str(frostlib.FROSTLIB_HASH))
+frostlib.slogger.info("Current FrostLIB Hash : " + str(frostlib_hash))
+frostlib.slogger.info("Saved FrostLIB Hash   : " + str(frostlib.FROSTLIB_HASH))
 if frostlib_hash != frostlib.FROSTLIB_HASH:
     frostlib.slogger.info("False FrostLIB HASH")
     frostlib.shutdown()
