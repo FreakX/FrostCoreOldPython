@@ -114,7 +114,7 @@ class script_npc(object):
         print "sWorld::RegisterScript->" + str(self)
         
         
-class script_timer:
+class script_timer(object):
     """
     Interner Script Timer
 

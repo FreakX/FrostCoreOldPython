@@ -49,8 +49,9 @@ if __name__ != '__main__':
     import frostlib
 LOG_LEVEL = 3                # 0 = Normal | 1 = Debug | 2 = Erweitertes Debug | 3 = Alles
 DEBUG_MODE = True            # Debug Mode True|False
-RELEASE_TYPE = "PRE-ALPHA"   # Current Realease Type Alpha|Beta|Release
-__REVISION__ = 16
+import __Revision__
+RELEASE_TYPE = __Revision__.RELEASE_TYPE  # Current Realease Type Alpha|Beta|Release
+__REVISION__ = __Revision__.__REVISION__
 CONNECTION_INFO = True # Define if Connection Info Is shown
 CONNECTION_INFO_DELAY = 30 # Seconds between Connection Info
 CLIENT_AUTH_INFO = True # Show Client Info on Connect True|False
