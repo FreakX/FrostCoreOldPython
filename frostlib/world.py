@@ -22,7 +22,7 @@
    *
    */
 """
-# World Class
+
 import frostlib
 import time
 import ItemHandler
