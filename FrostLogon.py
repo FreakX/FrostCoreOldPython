@@ -70,12 +70,12 @@ class LogonProtocol(Protocol):
     def connectionMade(self):
         global active_connections
         active_connections = active_connections+1
-        frostlib.slogger.debug("Accepting Connection from " + str(self.transport.getPeer()[1]) + " on Port " + str(self.transport.getPeer()[2]))
+        frostlib.slogger.info("Accepting Connection from " + str(self.transport.getPeer()[1]) + " on Port " + str(self.transport.getPeer()[2]))
 
     def connectionLost(self, reason):
         global active_connections
         active_connections = active_connections-1
-        frostlib.slogger.debug("Connection Lost from " + str(self.transport.getPeer()[1]))
+        frostlib.slogger.info("Connection Lost from " + str(self.transport.getPeer()[1]))
 
 def running():
     import time
