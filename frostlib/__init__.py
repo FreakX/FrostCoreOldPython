@@ -21,6 +21,7 @@
    *
    */
 """
+
 if __name__ != '__main__':
     import world
     sworld = world.world()
