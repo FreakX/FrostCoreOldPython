@@ -44,9 +44,6 @@ if frostlib_hash != frostlib.FROSTLIB_HASH:
   
 frostlib.slogger.debug("FrostCore Logon is starting...")
 # twisted Imports
-from twisted.internet.protocol import Protocol, Factory
-from twisted.internet import reactor, threads, defer
-
 active_connections = 0
 
 class LogonProtocol(Protocol):

@@ -5,6 +5,28 @@ Gender = {
     "GENDER_NONE"                        : 2
 }
 
+AuthResult = {
+    "WOW_SUCCESS"                     : 0x00,
+    "WOW_FAIL_UNKNOWN0"               : 0x01,                 #< ? Unable to connect
+    "WOW_FAIL_UNKNOWN1"               : 0x02,                 #< ? Unable to connect
+    "WOW_FAIL_BANNED"                 : 0x03,                 #< This <game> account has been closed and is no longer available for use. Please go to <site>/banned.html for further information.
+    "WOW_FAIL_UNKNOWN_ACCOUNT"        : 0x04,                 #< The information you have entered is not valid. Please check the spelling of the account name and password. If you need help in retrieving a lost or stolen password, see <site> for more information
+    "WOW_FAIL_INCORRECT_PASSWORD"     : 0x05,                 #< The information you have entered is not valid. Please check the spelling of the account name and password. If you need help in retrieving a lost or stolen password, see <site> for more information
+    "WOW_FAIL_ALREADY_ONLINE"         : 0x06,                 #< This account is already logged into <game>. Please check the spelling and try again.
+    "WOW_FAIL_NO_TIME"                : 0x07,                 #< You have used up your prepaid time for this account. Please purchase more to continue playing
+    "WOW_FAIL_DB_BUSY"                : 0x08,                 #< Could not log in to <game> at this time. Please try again later.
+    "WOW_FAIL_VERSION_INVALID"        : 0x09,                 #< Unable to validate game version. This may be caused by file corruption or interference of another program. Please visit <site> for more information and possible solutions to this issue.
+    "WOW_FAIL_VERSION_UPDATE"         : 0x0A,                 #< Downloading
+    "WOW_FAIL_INVALID_SERVER"         : 0x0B,                 #< Unable to connect
+    "WOW_FAIL_SUSPENDED"              : 0x0C,                 #< This <game> account has been temporarily suspended. Please go to <site>/banned.html for further information
+    "WOW_FAIL_FAIL_NOACCESS"          : 0x0D,                 #< Unable to connect
+    "WOW_SUCCESS_SURVEY"              : 0x0E,                 #< Connected.
+    "WOW_FAIL_PARENTCONTROL"          : 0x0F,                 #< Access to this account has been blocked by parental controls. Your settings may be changed in your account preferences at <site>
+    "WOW_FAIL_LOCKED_ENFORCED"        : 0x10,                 #< You have applied a lock to your account. You can change your locked status by calling your account lock phone number.
+    "WOW_FAIL_TRIAL_ENDED"            : 0x11,                 #< Your trial subscription has expired. Please visit <site> to upgrade your account.
+    "WOW_FAIL_USE_BATTLENET"          : 0x12                 #< WOW_FAIL_OTHER This account is now attached to a Battle.net account. Please login with your Battle.net account email address and password.
+}
+
 # Race value is index in ChrRaces.dbc
 Races = {
     "RACE_HUMAN"          : 1,
@@ -1639,8 +1661,7 @@ LockKeyType = {
     "LOCK_KEY_SKILL" : 2
 }
 
-LockType
-{
+LockType = {
     "LOCKTYPE_PICKLOCK"              : 1,
     "LOCKTYPE_HERBALISM"             : 2,
     "LOCKTYPE_MINING"                : 3,
@@ -2171,8 +2192,8 @@ CustomVehicleFLags = {
     "VF_CAN_BE_HEALED"                : 0x0010,                   # vehicle can be healed
     "VF_GIVE_EXP"                     : 0x0020,                   # vehicle will give exp for killing enemies
     "VF_MOVEMENT"                     : 0x0040,                   # vehicle will move on its own, not depending on rider, however rider can cast spells
-    "VF_NON_SELECTABLE"               : 0x0080                    # vehicle will be not selectable after rider enter
-    "VF_HAS_FUEL"                     : 0x0100,     
+    "VF_NON_SELECTABLE"               : 0x0080,                   # vehicle will be not selectable after rider enter
+    "VF_HAS_FUEL"                     : 0x0100     
 }
 
 CustomVehicleSeatFLags = {
