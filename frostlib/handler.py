@@ -21,8 +21,11 @@
    *
    */
 """
-
+import binascii
 import frostlib
+
+def datareturn(data):
+    return binascii.unhexlify(data)
 def getdata(data,fromblock,toblock, reverse=True):
     result = []
     for x in range(fromblock,toblock+1):
@@ -52,7 +55,8 @@ def logonhandler(data):
             client_timezone = int("".join(getdata(data,26,29)), 16)
             client_name_size = int("".join(getdata(data,34,34)), 16)
             client_name = "".join(getdata(data,35,34 + client_name_size, reverse = False)).decode("hex")
-            if frostlib.CLIENT_AUTH_INFO == True:
+            #if frostlib.CLIENT_AUTH_INFO == True:
+            if True:
                 print "Error:   " + str(client_error)
                 print "Size:    " + str(client_packet_size)
                 print "Game:    " + str(client_gamename)
@@ -66,42 +70,15 @@ def logonhandler(data):
             elif frostlib.CLIENT_AUTH_INFO == False:
                 print "[AUTH] with Clientbuild " + str(client_build)
             if str(client_build) == str(frostlib.AUTHBUILD_ACCEPT):
-                packet = []
-                """
-                packet.append("00")
-                packet.append("00")
-                packet.append("00")
-                #srp_b = frostlib.wowmath.bigauthnumber()
-                srp_b = "13db7112721b91e37fffb0525f8869dff46b8168d564e2595ff2fa11a141a42e"
-                #packet.append(str(srp_b)[:63])
-                packet.append(str(srp_b))
-                #srp_g = frostlib.wowmath.bigauthnumber()
-                #srp_g_len = len(srp_g)
-                srp_g = "07"
-                srp_g_len = "01"
-                #srp_n = frostlib.wowmath.bigauthnumber()
-                #srp_n_len = len(srp_n)
-                srp_n = "b79b3e2a87823cab8f5ebfbf8eb10108535006298b5badbd5b53e1895e644b89"
-                srp_n_len = "20"
-                packet.append(srp_g_len)
-                packet.append(srp_g)
-                packet.append(srp_n_len)
-                packet.append(srp_n)
-                packet.append("e9cbbc9d4234009a98ebdb40db99f39500")
-                """
-                packet.append("00000013db7112721b91e37fffb0525f8869dff46b8168d564e2595ff2fa11a141a42e010720b79b3e2a87823cab8f5ebfbf8eb10108535006298b5badbd5b53e1895e644b89cd3010ede00281e26c03cd5a8cfb7c5d36c6f9cc36d2e176532bdaa4f304cbd3e9cbbc9d4234009a98ebdb40db99f39500")
-                result = []
-                for x in packet:
-                    result.append(str(x))
-                    
-                return "".join(result)
+                #return datareturn("00000013db7112721b91e37fffb0525f8869dff46b8168d564e2595ff2fa11a141a42e010720b79b3e2a87823cab8f5ebfbf8eb10108535006298b5badbd5b53e1895e644b89cd3010ede00281e26c03cd5a8cfb7c5d36c6f9cc36d2e176532bdaa4f304cbd3e9cbbc9d4234009a98ebdb40db99f39500")
+                return datareturn("000002")
             else:
                 print "False Client Version"
                 return "error"
 
 
         elif opcode == 1: #AUTHENTICATION PROOF
-            print "Auth Proof"
+            return datareturn("01007adff8d407916f53529440a778eea9d6b64db91000008000000000000000")
 
 
             
