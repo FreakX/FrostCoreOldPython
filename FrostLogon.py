@@ -44,54 +44,17 @@ if frostlib_hash != frostlib.FROSTLIB_HASH:
   
 frostlib.slogger.debug("FrostCore Logon is starting...")
 # twisted Imports
-from twisted.internet.protocol import Protocol, Factory
-from twisted.internet import reactor, threads, defer
+import socket
+import binascii
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(("", 3724))
+s.listen(1)
+conn, addr = s.accept()
+print 'Connected by', addr
+while 1:
+    data = conn.recv(1024)
+    if not data: break
+    print data
+    conn.send(binascii.unhexlify("000000166008e7dc351c05ceda18e8e32c8859f32e56135422d1c932e04fc05dbeba01010720b79b3e2a87823cab8f5ebfbf8eb10108535006298b5badbd5b53e1895e644b8951b7ad3182af63eccb0e09686a5800569f5076bd552a13e06d074fa2e58464f05f9185fd14551ad97cf9ebe204c7b7d500"))
+conn.close()
 
-active_connections = 0
-
-class LogonProtocol(Protocol):
-
-    def dataReceived(self, data):
-        d = defer.succeed(frostlib.handler.logonhandler(data))
-
-        def got_info(res):
-            if res != "error":
-                self.transport.write(res)
-            else:
-                frostlib.slogger.exception("Malformed Packet...dropping Connection")
-                self.transport.loseConnection()
-
-        d = d.addCallback(got_info)
-        if not data:
-            self.transport.write("")
-            
-
-
-    def connectionMade(self):
-        global active_connections
-        active_connections = active_connections+1
-        frostlib.slogger.debug("Accepting Connection from " + str(self.transport.getPeer()[1]) + " on Port " + str(self.transport.getPeer()[2]))
-
-    def connectionLost(self, reason):
-        global active_connections
-        active_connections = active_connections-1
-        frostlib.slogger.debug("Connection Lost from " + str(self.transport.getPeer()[1]))
-
-def running():
-    import time
-    while True:
-        time.sleep(frostlib.CONNECTION_INFO_DELAY)
-        frostlib.slogger.info(str(active_connections) + " Logon Connections Active")
-
-factory = Factory()
-factory.protocol = LogonProtocol
-print "FrostCore Logon Ready!"
-try:
-    reactor.listenTCP(3724, factory)
-    print "FrostCore Logon now listen for Connections!"
-    if frostlib.CONNECTION_INFO == True:
-        reactor.callInThread(running)
-    reactor.run()
-except:
-    frostlib.slogger.exception("Cannot Bind Socket on Port 3724!")
-    frostlib.shutdown()
