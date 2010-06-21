@@ -22,7 +22,7 @@
    * NON PUBLIC VER
    */
 """
-
+from twisted.internet import reactor, protocol, defer
 import frostlib
 from time import sleep
 import warnings
@@ -43,12 +43,12 @@ if frostlib_hash != frostlib.FROSTLIB_HASH:
     frostlib.shutdown()
   
 frostlib.slogger.debug("FrostCore Logon is starting...")
-# twisted Imports
 active_connections = 0
 
-class LogonProtocol(Protocol):
+class LogonProtocol(protocol.Protocol):
 
     def dataReceived(self, data):
+        print data
         d = defer.succeed(frostlib.handler.logonhandler(data))
 
         def got_info(res):
@@ -80,7 +80,7 @@ def running():
         time.sleep(frostlib.CONNECTION_INFO_DELAY)
         frostlib.slogger.info(str(active_connections) + " Logon Connections Active")
 
-factory = Factory()
+factory = protocol.ServerFactory()
 factory.protocol = LogonProtocol
 print "FrostCore Logon Ready!"
 try:
