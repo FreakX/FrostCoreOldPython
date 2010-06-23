@@ -22,8 +22,8 @@
    */
 """
 
-class logon(object):
-    def connect_db(self):
+class Logon(object):
+    def connect_DB(self):
         import MySQLdb
         mysql_opts = {
                 'host': frostlib.MYSQL_ACCOUNT_HOST,
@@ -44,7 +44,7 @@ class logon(object):
             frostlib.shutdown()
 
 
-    def check_user(self, username):
+    def CheckUser(self, username):
         sql = "SELECT * FROM accounts WHERE user = '" + str(username) + "'"
         resultcount = int(self.cursor.execute(sql))
         result = self.cursor_fetchall()
@@ -52,6 +52,12 @@ class logon(object):
             return result[0]
         else:
             return None
+
+    def SelectClientByIP(self,ipstr):
+        for client in self.clients:
+            if client.ip == ipstr:
+                return client
+        
 
     
         

@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 """
   /*
    * FrostCore MMORPG Server Emulator
@@ -24,6 +25,10 @@
 import binascii
 import Constants
 import frostlib
+import hashlib
+import random
+sWorld = frostlib.sWorld
+sLogon = frostlib.sLogon
 
 AuthCmd = {
 "AUTH_LOGON_CHALLENGE" : 0x00,
@@ -49,7 +54,7 @@ def getdata(data,fromblock,toblock, reverse=True):
 		result.reverse()
 	return result
 
-def logonhandler(data):
+def logonhandler(data, ip):
 	try:
 		opcode = int("".join(getdata(data.encode("hex"),1,1)),16) # Finding Opcode
 		if opcode == AuthCmd["AUTH_LOGON_CHALLENGE"]: #AUTHENTICATION_LOGON_CHALLENGE
@@ -67,8 +72,7 @@ def logonhandler(data):
 			client_timezone = int("".join(getdata(data,26,29)), 16)
 			client_name_size = int("".join(getdata(data,34,34)), 16)
 			client_name = "".join(getdata(data,35,34 + client_name_size, reverse = False)).decode("hex")
-			#if frostlib.CLIENT_AUTH_INFO == True:
-			if True:
+			if frostlib.CLIENT_AUTH_INFO == True:
 				print "Error:   " + str(client_error)
 				print "Size:    " + str(client_packet_size)
 				print "Game:    " + str(client_gamename)
@@ -82,7 +86,33 @@ def logonhandler(data):
 			elif frostlib.CLIENT_AUTH_INFO == False:
 				print "[AUTH] with Clientbuild " + str(client_build)
 			if str(client_build) == str(frostlib.AUTHBUILD_ACCEPT):
-				return datareturn("00000013db7112721b91e37fffb0525f8869dff46b8168d564e2595ff2fa11a141a42e010720b79b3e2a87823cab8f5ebfbf8eb10108535006298b5badbd5b53e1895e644b89cd3010ede00281e26c03cd5a8cfb7c5d36c6f9cc36d2e176532bdaa4f304cbd3e9cbbc9d4234009a98ebdb40db99f39500")
+                                packet = frostlib.classes.Packet()
+                                H = lambda s: int(hashlib.sha1(s).hexdigest()[::-1], 16); #sha1, [::-1] kehrt den string um
+                                H_Ng = lambda N,g: H( '%x:%x' % (N,g) ); #H für N und g
+                                H_SIP = lambda s,I,p: H( '%x:%s:%s' % (s,I,p) ); #H für s, I, p
+                                H_AB = lambda A,B: H( '%x:%x' % (A,B) ); #H für A und B
+                                N = 0x894B645E89E1535BBDAD5B8B290650530801B18EBFBF5E8FAB3C82872A3E9BB7L;
+                                g = 7;
+                                k = 3
+                                I = client_name.upper();
+                                p = "159753";
+                                s = random.getrandbits(256); 
+                                x = H_SIP(s,I,p); 
+                                v = pow(g,x,N);
+                                b = random.getrandbits(256); 
+                                B = (k*v + pow(g, b, N)) % N;
+                                packet.append("00")
+                                packet.append("00")
+                                packet.append("00")
+                                packet.append(B)
+                                packet.append("01")
+                                packet.append("07")
+                                packet.append("32")
+                                packet.append(N)
+                                packet.append(s)
+
+                                return packet.data()
+
 			else:
 				print "False Client Version"
 				return "error"

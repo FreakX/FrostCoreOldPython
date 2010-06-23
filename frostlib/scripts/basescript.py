@@ -1,6 +1,6 @@
 # -*- coding: cp1252 -*-
 ## Basic CreatureScript:
-from .. import sworld
+from .. import sWorld
 import time
 import random
 class script_npc(object):
@@ -13,7 +13,7 @@ class script_npc(object):
         Wird ausgeführt wenn ein Spell aus einem Script heraus
         gecastet wird
         """
-        sworld.script_castspell(self.guid() , target, spellid)
+        sWorld.script_castspell(self.guid() , target, spellid)
     def target(self):
         """
         Gibt das Aktuelle Target der Creature zurück,
@@ -40,7 +40,7 @@ class script_npc(object):
         """
         Sagt einen Text, welcher in 5 Sprachen in der DB gespeichert ist
         """
-        sworld.script_say(self.guid() , sth)
+        sWorld.script_say(self.guid() , sth)
     def summon_npc(self, cre_id):
         """
         Ruft einen NPC herbei,
@@ -63,7 +63,7 @@ class script_npc(object):
         """
         Ändert die Display ID der Creature
         """
-        sworld.script_setmodelid(self.guid(), modelid)
+        sWorld.script_setmodelid(self.guid(), modelid)
     def set(self, group, key, value):
         """
         Um tiefgreifende änderungen der Creature zu bewirken
@@ -110,7 +110,7 @@ class script_npc(object):
         print "Orientation: " + str(rotation)
 
     def RegisterScript(self):
-        sworld.RegisterScript(self)
+        sWorld.RegisterScript(self)
         print "sWorld::RegisterScript->" + str(self)
         
         

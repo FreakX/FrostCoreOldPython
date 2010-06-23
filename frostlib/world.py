@@ -33,7 +33,7 @@ import BagHandler
 import TerrainHandler
 import SpellHandler
 
-class world(ItemHandler.ItemHandler,
+class World(ItemHandler.ItemHandler,
             CreatureHandler.CreatureHandler,
             ScriptHandler.ScriptHandler,
             PlayerHandler.PlayerHandler,

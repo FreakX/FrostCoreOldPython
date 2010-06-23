@@ -49,10 +49,11 @@ class LogonProtocol(protocol.Protocol):
 
     def dataReceived(self, data):
         print data
-        d = defer.succeed(frostlib.handler.logonhandler(data))
+        d = defer.succeed(frostlib.handler.logonhandler(data, self.transport.getPeer()[1]))
 
         def got_info(res):
             if res != "error":
+                print res
                 self.transport.write(res)
             else:
                 frostlib.slogger.exception("Malformed Packet...dropping Connection")

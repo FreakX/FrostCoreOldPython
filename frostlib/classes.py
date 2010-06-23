@@ -23,6 +23,14 @@
 """
 
 import frostlib
+import binascii
+
+class Packet(object):
+    def append(self, data):
+        self.data.append(data)
+    def data(self):
+        return binascii.unhexlify("".join(self.data))
+
 class Account(object):
     
     def __init__(self,guid,name,password,email,expansion):

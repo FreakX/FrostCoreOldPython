@@ -23,8 +23,10 @@
 """
 
 if __name__ != '__main__':
-    import world
-    sworld = world.world()
+    import World
+    sWorld = World.World()
+    import Logon
+    sLogon = Logon.Logon()
     import logging
     import logging.handlers
     slogger = logging.getLogger("FrostCore")
