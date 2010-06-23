@@ -132,8 +132,7 @@ factory = Factory()
 factory.protocol = WorldProtocol
 frostlib.slogger.info("FrostCore World Ready!")
 reactor.callInThread(update_scripts)
-
-#reactor.callInThread(developement)
+reactor.callInThread(developement)
 try:
     reactor.listenTCP(8085, factory)
     frostlib.slogger.debug("FrostCore World now listen for Connections!")

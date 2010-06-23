@@ -28,10 +28,10 @@ import frostlib
 us = raw_input("Revision ändern?")
 ja = ["ja", "yes", "1"]
 if us in ja:
-    f = open("frostlib/__init__.py", 'r')
+    f = open("frostlib/__Revision__.py", 'r')
     data = f.readlines()
     f.close()
-    f = open("frostlib/__init__.py", 'w')
+    f = open("frostlib/__Revision__.py", 'w')
     for lines in data:
         if not "__REVISION__" in lines:
             f.write(lines)
