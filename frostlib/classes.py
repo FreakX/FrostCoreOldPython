@@ -26,10 +26,12 @@ import frostlib
 import binascii
 
 class Packet(object):
+    def __init__(self):
+        self.dataraw = []
     def append(self, data):
-        self.data.append(data)
+        self.dataraw.append(str(data))
     def data(self):
-        return binascii.unhexlify("".join(self.data))
+        return binascii.unhexlify("".join(self.dataraw))
 
 class Account(object):
     
